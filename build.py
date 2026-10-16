@@ -14,8 +14,7 @@ for n,v,u,c,d,x in T:
     bf,fit=R[n]
     tools.append(dict(built=bf,hstat=hs,fit=fit,slug=slug(n),name=n,vendor=v,url=u,category=c,what=d,ehr=x or "Not publicly listed; check with vendor",hipaa=h))
 
-# Each filter is one row. page.js treats the key as an opaque string.
-TRAITS=[("nurses","Built for nurses",lambda t:t["built"]=="Nurses"),("hipaa","HIPAA-ready",lambda t:t["hstat"]=="Mentions HIPAA")]
+TRAITS=[{"key":"nurses","label":"Built for nurses","match":lambda t:t["built"]=="Nurses"},{"key":"hipaa","label":"HIPAA-ready","match":lambda t:t["hstat"]=="Mentions HIPAA"}]
 BAYS=[("Built for","built"),("HIPAA status","hstat"),("Bedside fit","fit")]
 TONE={"Unknown":"caution","Not for patient info":"caution","Mentions HIPAA":"stated"}
 SCRIPTS={"/js/"+os.path.basename(f):open(f).read() for f in sorted(glob.glob("web/*.js"))}
@@ -160,9 +159,9 @@ def plate(t): return "<dl class=rc>"+"".join(bay(l,t[k]) for l,k in BAYS)+"</dl>
 NEWS="""<section class=news aria-labelledby=news-h><div><h2 id=news-h>Get the weekly <span class=phrase>"AI at the bedside"</span> note</h2><p class=sub>New tools, rollouts, and what nurses are saying. No spam.</p></div>
 <form action="/api/subscribe" novalidate><label class=sr for=news-email>Email address</label><input id=news-email type=email name=email required autocomplete=email placeholder="you@example.com"><input name=hp class=hp tabindex=-1 autocomplete=off><button class=primary>Subscribe</button><p class=msg id=form-msg data-form-message role=status></p></form></section>"""
 P_={}
-rows="".join(f'<li class=entry data-card data-id="{t["slug"]}" data-category="{e(t["category"])}" data-text="{e((t["name"]+" "+t["vendor"]+" "+t["what"]).lower())}" data-traits="{" ".join(k for k,_,p in TRAITS if p(t))}"><div class=head><h2><a href="/tools/{t["slug"]}">{e(t["name"])}</a></h2><p class=meta>{e(t["vendor"])} <span aria-hidden=true>·</span> {e(t["category"])}</p></div><p class=what>{e(t["what"])}</p>{plate(t)}</li>' for t in tools)
+rows="".join(f'<li class=entry data-card data-id="{t["slug"]}" data-category="{e(t["category"])}" data-text="{e((t["name"]+" "+t["vendor"]+" "+t["what"]).lower())}" data-traits="{" ".join(row["key"] for row in TRAITS if row["match"](t))}"><div class=head><h2><a href="/tools/{t["slug"]}">{e(t["name"])}</a></h2><p class=meta>{e(t["vendor"])} <span aria-hidden=true>·</span> {e(t["category"])}</p></div><p class=what>{e(t["what"])}</p>{plate(t)}</li>' for t in tools)
 filters=('<label class=pick>Category<select data-filter-category><option value="">All categories</option>'+"".join(f"<option>{e(c)}</option>" for c in CATS)+"</select></label>"
-         +"".join(f'<label class=toggle><input type=checkbox data-filter-trait="{k}">{e(l)}</label>' for k,l,_ in TRAITS))
+         +"".join(f'<label class=toggle><input type=checkbox data-filter-trait="{row["key"]}">{e(row["label"])}</label>' for row in TRAITS))
 home=f"""<section class=deck><h1>AI tools for nurses, reviewed by a nurse</h1><p class=lede>Most clinical AI is built for physicians. Very few tools are made for bedside nurses yet. We track the ones that are, and tell you what&#39;s safe to use.</p><p class=sub>An independent directory of {len(tools)} AI tools nurses actually run into: ambient charting, handoff, decision support, NCLEX prep, staffing and more.</p></section>
 <section data-catalog data-state=idle aria-label=Directory><div class=find><label for=q>Search tools, vendors, or tasks</label><input id=q type=search data-filter-query placeholder="e.g. flowsheet, sepsis, NCLEX" autocomplete=off></div><div class=filters>{filters}<p class=count data-catalog-count aria-live=polite>{len(tools)} tools</p></div><div class=cols aria-hidden=true><span>Tool</span><span>What it does</span><span>RN reality check</span></div><ul class=index>{rows}</ul><div class=empty data-catalog-empty hidden><p>No tools match this filter.</p><button type=button data-filter-clear>Clear filters</button></div></section>{NEWS}"""
 HOME_DESC="Independent directory of AI tools for nurses: ambient documentation, handoff, clinical decision support, NCLEX prep, scheduling and patient communication."
@@ -177,7 +176,6 @@ sub=f"""<div class=prose><h1>Submit a tool</h1><p class=sub>Know an AI tool nurs
 P_["/submit"]=page("Submit an AI tool for nurses | Nurse AI Tools","Suggest an AI tool for nurses to be reviewed and listed in the Nurse AI Tools directory.",sub,"/submit")
 ab="""<div class=prose><h1>About</h1><p>Nurse AI Tools is curated by a registered nurse with 14 years of critical care experience who builds with AI on the side.</p><p>Hospitals are rolling out ambient charting, AI handoffs and early-warning tools fast, and nurses are often the last to hear how they actually work on a real shift. This site aims to be the plain-spoken, nurse-first reference.</p><h2>How listings work</h2><ul><li>Facts (vendor, integrations, HIPAA/BAA statements) come from vendors' public websites and are labeled when unconfirmed.</li><li>Every tool gets an <b>RN reality check</b>: who it is built for, its HIPAA status, and whether it fits a bedside workflow. Each answer comes only from vendor or public information. If we cannot verify it, we say Unknown.</li><li>Listings are independent. Any future sponsored placements will be clearly labeled.</li></ul><p>Nothing here is medical advice. Never enter patient information into a tool your facility hasn't approved.</p></div>"""+NEWS
 P_["/about"]=page("About Nurse AI Tools: curated by a critical care RN","Nurse AI Tools is an independent directory of AI tools for nurses, curated by a critical care registered nurse.",ab,"/about")
-# Kept out of P_ so the sitemap skips it. It keeps the homepage canonical the old 404 had.
 NOT_FOUND=page("Page not found | Nurse AI Tools",HOME_DESC,'<div class=prose><h1>Page not found</h1><p><a href="/">Back to the directory</a></p></div>',"/")
 sm='<?xml version="1.0" encoding="UTF-8"?><urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">'+"".join(f"<url><loc>{BASE}{p}</loc><lastmod>2026-10-15</lastmod></url>" for p in P_)+"</urlset>"
 json.dump(tools,open("tools.json","w"),indent=1)
@@ -188,7 +186,6 @@ def fill(src): return re.sub(r"__(PAGES|NOT_FOUND|SITEMAP|SCRIPTS|FONTS|BASE)__"
 W=fill(TEMPLATE)
 open("dist/worker.js","w").write(W); print(len(tools),"tools",len(P_),"pages",len(W),"bytes")
 
-# deploy.js uploads one module with no bundler, so contract.js is inlined in place of its import.
 IMPORT="import { formAt, decide, encodeReply } from '../web/contract.js';\n"
 contract=open("web/contract.js").read()
 assert TEMPLATE.count(IMPORT)==1 and not re.search(r"^\s*import\b",contract,re.M)

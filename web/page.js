@@ -1,6 +1,4 @@
 // @ts-check
-// Browser entry, loaded as <script type=module src="/js/page.js">. The only module that
-// touches the DOM. It finds controls by data-* hooks, never by styling classes.
 
 import { drive } from './fsm.js';
 import { catalogMachine, filtersOf } from './catalog.js';
@@ -14,7 +12,7 @@ import { formAt } from './contract.js';
 /**
  * @typedef {object} CatalogView
  * @property {HTMLElement} root
- * @property {ReadonlyMap<string, HTMLElement>} rows  by item id
+ * @property {ReadonlyMap<string, HTMLElement>} rows
  * @property {HTMLElement} count
  * @property {HTMLElement} empty
  * @property {HTMLInputElement} query
@@ -27,7 +25,7 @@ import { formAt } from './contract.js';
  * @property {HTMLFormElement} form
  * @property {HTMLElement} message
  * @property {HTMLButtonElement} button
- * @property {string} label  the button's resting text
+ * @property {string} restingText
  */
 
 boot(document);
@@ -79,8 +77,6 @@ function bindForm(form, kind) {
 }
 
 /**
- * DOM boundary for the catalog. Throws before any render if a hook is missing, which leaves
- * the server-rendered rows visible and static.
  * @param {HTMLElement} root
  * @returns {CatalogView}
  */
@@ -129,7 +125,7 @@ function readItem(row) {
  */
 function readFormView(form) {
   const button = hook(form.querySelector('button'), HTMLButtonElement);
-  return { form, button, label: button.textContent ?? '', message: hook(form.querySelector('[data-form-message]'), HTMLElement) };
+  return { form, button, restingText: button.textContent ?? '', message: hook(form.querySelector('[data-form-message]'), HTMLElement) };
 }
 
 /**
@@ -163,16 +159,16 @@ function renderCatalog(view, state) {
  */
 function renderForm(view, state) {
   const busy = state.kind === 'validating' || state.kind === 'submitting';
-  const invalid = state.kind === 'error' ? state.invalid : [];
+  const invalidControls = state.kind === 'error' ? state.invalidControls : [];
   view.form.dataset.state = state.kind;
   view.form.setAttribute('aria-busy', String(busy));
   view.button.disabled = busy;
-  view.button.textContent = state.kind === 'submitting' ? 'Sending' : view.label;
+  view.button.textContent = state.kind === 'submitting' ? 'Sending' : view.restingText;
   view.message.textContent = state.kind === 'success' || state.kind === 'error' ? state.message : '';
   if (!view.message.id) view.message.id = 'form-msg';
   for (const el of view.form.querySelectorAll('input, select, textarea')) {
     if (!isField(el) || !el.name || el.name === 'hp') continue;
-    if (invalid.includes(el.name)) {
+    if (invalidControls.includes(el.name)) {
       el.setAttribute('aria-invalid', 'true');
       el.setAttribute('aria-describedby', view.message.id);
     } else {

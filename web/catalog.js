@@ -1,38 +1,29 @@
 // @ts-check
-// The directory filter machine. Trait and category names are opaque strings from build.py,
-// so adding a filter row in Python needs no edit here.
 
 /** @import { Machine } from './fsm.js' */
 
 /**
- * One index row, read from its data-* attributes by page.js.
  * @typedef {object} CatalogItem
- * @property {string} id        tool slug, unique
- * @property {string} category  exact category label
- * @property {string} text      lowercase name, vendor, and description
- * @property {readonly string[]} traits  keys from build.py's TRAITS table, such as "nurses"
+ * @property {string} id
+ * @property {string} category
+ * @property {string} text
+ * @property {readonly string[]} traits
  */
 
 /**
  * @typedef {object} Filters
- * @property {string} query     as typed; matching trims and lowercases it
- * @property {string | null} category  null means every category
- * @property {readonly string[]} traits  a row must carry every listed trait
+ * @property {string} query
+ * @property {string | null} category
+ * @property {readonly string[]} traits
  */
 
 /**
- * idle       no filter is active, so every row shows
- * filtering  a filter is active and at least one row matches, in page order
- * empty      a filter is active and no row matches
- *
  * @typedef {{ readonly kind: 'idle' }
  *   | { readonly kind: 'filtering', readonly filters: Filters, readonly visible: readonly [string, ...string[]] }
  *   | { readonly kind: 'empty', readonly filters: Filters }} CatalogState
  */
 
 /**
- * Every event carries the control's new value, never a toggle, so a repeated DOM event
- * lands on the same state.
  * @typedef {{ readonly type: 'query', readonly text: string }
  *   | { readonly type: 'category', readonly category: string | null }
  *   | { readonly type: 'trait', readonly trait: string, readonly on: boolean }
@@ -46,9 +37,7 @@ const NO_FILTERS = { query: '', category: null, traits: [] };
 const IDLE = { kind: 'idle' };
 
 /**
- * Every state accepts every event: apply the event to the current filters, then classify.
- * Idle is one shared object, so an event that leaves the catalog idle is ignored by `drive`.
- * @param {readonly CatalogItem[]} items  in page order
+ * @param {readonly CatalogItem[]} items
  * @returns {Machine<CatalogState, CatalogEvent>}
  */
 export function catalogMachine(items) {
@@ -60,7 +49,6 @@ export function catalogMachine(items) {
 }
 
 /**
- * The filters a state stands for. Idle stands for no filters.
  * @param {CatalogState} state
  * @returns {Filters}
  */
@@ -91,7 +79,6 @@ function apply(filters, event) {
 }
 
 /**
- * The only place a CatalogState is built.
  * @param {readonly CatalogItem[]} items
  * @param {Filters} filters
  * @returns {CatalogState}
@@ -103,7 +90,6 @@ function classify(items, filters) {
 }
 
 /**
- * Active means a non-blank query, a category, or at least one trait.
  * @param {Filters} filters
  * @returns {boolean}
  */
@@ -119,7 +105,7 @@ function isActive(filters) {
 function matches(item, filters) {
   return (
     (filters.category === null || item.category === filters.category) &&
-    item.text.includes(filters.query.trim().toLowerCase()) &&
+    item.text.toLowerCase().includes(filters.query.trim().toLowerCase()) &&
     filters.traits.every((trait) => item.traits.includes(trait))
   );
 }

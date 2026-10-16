@@ -32,7 +32,6 @@ export default {
 };
 
 /**
- * The only SQL in the project.
  * @param {D1Database} db
  * @param {import('../web/contract.js').Entry} entry
  * @param {{ at: string, userAgent: string }} meta

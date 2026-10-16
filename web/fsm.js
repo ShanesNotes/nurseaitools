@@ -1,10 +1,6 @@
 // @ts-check
-// The machine shape both UI machines share, and the one loop that runs them. No DOM here, so
-// Node tests drive the same machines the browser drives.
 
 /**
- * A finite state machine as two functions over plain data.
- *
  * @template {{ readonly kind: string }} S
  * @template E
  * @typedef {object} Machine
@@ -27,11 +23,6 @@
  */
 
 /**
- * Runs `machine`. Calls `onState` with the initial state, then once per new state.
- * `enter` runs only when `kind` changes, so a repeated submit cannot start a second request.
- * Synchronous entry work runs inside the same `send` call, so validating has already moved
- * on to submitting or error by the time `send` first yields.
- *
  * @template {{ readonly kind: string }} S
  * @template E
  * @param {Machine<S, E>} machine
