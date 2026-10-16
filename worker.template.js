@@ -1,14 +1,49 @@
-const PAGES=__PAGES__;const SITEMAP=__SITEMAP__;
-const J=(o,s=200)=>new Response(JSON.stringify(o),{status:s,headers:{'content-type':'application/json'}});
-export default{async fetch(req,env){const u=new URL(req.url);if(u.hostname==='www.nurseaitools.com'){u.hostname='nurseaitools.com';return Response.redirect(u.toString(),301)}let p=u.pathname.replace(/\/+$/,'')||'/';
-if(req.method==='POST'&&(p==='/api/subscribe'||p==='/api/submit')){let d;try{d=await req.json()}catch{return J({error:'Bad request'},400)}
-if(d.hp)return J({message:'Thanks!'});const ua=(req.headers.get('user-agent')||'').slice(0,200),now=new Date().toISOString();
-if(p==='/api/subscribe'){const em=String(d.email||'').trim().toLowerCase();if(!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(em)||em.length>200)return J({error:'Please enter a valid email.'},400);
-await env.DB.prepare('INSERT OR IGNORE INTO subscribers(email,created_at,user_agent) VALUES(?,?,?)').bind(em,now,ua).run();return J({message:"You're subscribed. Thanks!"})}
-const name=String(d.name||'').trim().slice(0,200),url=String(d.url||'').trim().slice(0,500);if(!name||!/^https?:\/\//.test(url))return J({error:'Tool name and a valid URL are required.'},400);
-await env.DB.prepare('INSERT INTO submissions(name,url,category,notes,email,created_at,user_agent) VALUES(?,?,?,?,?,?,?)').bind(name,url,String(d.category||'').slice(0,100),String(d.notes||'').slice(0,3000),String(d.email||'').slice(0,200),now,ua).run();
-return J({message:'Thanks! Your submission is in the review queue.'})}
-if(p==='/sitemap.xml')return new Response(SITEMAP,{headers:{'content-type':'application/xml'}});
-if(p==='/robots.txt')return new Response('User-agent: *\nAllow: /\nSitemap: __BASE__/sitemap.xml\n');
-const h=PAGES[p];if(h)return new Response(h,{headers:{'content-type':'text/html;charset=utf-8','cache-control':'public,max-age=300'}});
-return new Response(PAGES['/'].replace(/<main>[\s\S]*<\/main>/,'<main><h1>Page not found</h1><p><a href="/">Back to the directory</a></p></main>'),{status:404,headers:{'content-type':'text/html;charset=utf-8'}})}};
+import { formAt, decide, encodeReply } from '../web/contract.js';
+
+const PAGES = __PAGES__;
+const NOT_FOUND = __NOT_FOUND__;
+const SITEMAP = __SITEMAP__;
+const SCRIPTS = __SCRIPTS__;
+const FONTS = __FONTS__;
+const HTML = { 'content-type': 'text/html;charset=utf-8', 'cache-control': 'public,max-age=300' };
+const SCRIPT = { 'content-type': 'text/javascript;charset=utf-8', 'cache-control': 'public,max-age=300' };
+const FONT = { 'content-type': 'font/woff2', 'cache-control': 'public,max-age=31536000,immutable' };
+
+export default {
+  async fetch(req, env) {
+    const u = new URL(req.url);
+    if (u.hostname === 'www.nurseaitools.com') { u.hostname = 'nurseaitools.com'; return Response.redirect(u.toString(), 301); }
+    const p = u.pathname.replace(/\/+$/, '') || '/';
+
+    const form = req.method === 'POST' ? formAt(p) : null;
+    if (form) {
+      const { reply, save } = decide(form, await req.text());
+      if (save) await persist(env.DB, save, { at: new Date().toISOString(), userAgent: (req.headers.get('user-agent') || '').slice(0, 200) });
+      return encodeReply(reply);
+    }
+
+    if (SCRIPTS[p]) return new Response(SCRIPTS[p], { headers: SCRIPT });
+    if (FONTS[p]) return new Response(Uint8Array.from(atob(FONTS[p]), (c) => c.charCodeAt(0)), { headers: FONT });
+    if (p === '/sitemap.xml') return new Response(SITEMAP, { headers: { 'content-type': 'application/xml' } });
+    if (p === '/robots.txt') return new Response('User-agent: *\nAllow: /\nSitemap: __BASE__/sitemap.xml\n');
+    if (PAGES[p]) return new Response(PAGES[p], { headers: HTML });
+    return new Response(NOT_FOUND, { status: 404, headers: { 'content-type': 'text/html;charset=utf-8' } });
+  },
+};
+
+/**
+ * The only SQL in the project.
+ * @param {D1Database} db
+ * @param {import('../web/contract.js').Entry} entry
+ * @param {{ at: string, userAgent: string }} meta
+ */
+async function persist(db, entry, meta) {
+  switch (entry.kind) {
+    case 'subscriber':
+      return db.prepare('INSERT OR IGNORE INTO subscribers(email,created_at,user_agent) VALUES(?,?,?)')
+        .bind(entry.email, meta.at, meta.userAgent).run();
+    case 'submission':
+      return db.prepare('INSERT INTO submissions(name,url,category,notes,email,created_at,user_agent) VALUES(?,?,?,?,?,?,?)')
+        .bind(entry.name, entry.url, entry.category, entry.notes, entry.email, meta.at, meta.userAgent).run();
+  }
+}

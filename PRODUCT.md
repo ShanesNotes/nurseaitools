@@ -42,6 +42,8 @@ Name: Nurse AI Tools. The owner asked for a look that is distinctive, credible, 
 
 The owner later pinned the visual system: retro futurist. Type, color, texture, layout, and motion come from that world. It must still read as a credible clinical reference. It must not be a gimmick or a generic neon synthwave template. Contrast, focus states, and reduced motion are required. Tokens and the direction are documented in the README.
 
+The committed reading of that pin is a 1971 clinical futures manual. Cool paper, a field-blue masthead, Syncopate for display, and a three-bay status plate. This session chose that reading under the pin. The owner did not confirm it in a second message.
+
 ## Evidence on Hand
 
 `tools.py` and `reality.py` are the authored tool facts. `tools.json` is generated. Live site: https://nurseaitools.com. About page states the curator is a registered nurse with 14 years of critical care experience. HIPAA lines are computed from a vendor-homepage check dated Oct 15, 2026, or from the category rule for education and general LLMs. Do not fabricate testimonials, sponsorships, BAAs, or bedside outcomes.
