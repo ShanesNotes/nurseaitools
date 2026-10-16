@@ -43,8 +43,8 @@ a:hover{text-decoration-thickness:2px}
 .sr,.skip:not(:focus){position:absolute;width:1px;height:1px;overflow:hidden;clip-path:inset(50%);white-space:nowrap}
 .skip{position:absolute;top:.5rem;left:.5rem;z-index:2;padding:.5rem .75rem;background:var(--ivory);color:var(--ink)}
 .mast{background-color:var(--field);background-image:repeating-linear-gradient(135deg,rgb(244 241 230/.05) 0 1px,transparent 1px 5px);color:var(--ivory)}
-.mast .wrap{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:.35rem 2rem;padding-block:1rem}
-.mark{font:700 clamp(1.35rem,.85rem + 1.4vw,1.65rem)/1.15 var(--wide);letter-spacing:.05em;text-transform:uppercase;color:var(--ivory);text-decoration:none;padding-block:.2rem}
+.mast .wrap{display:flex;flex-wrap:wrap;align-items:flex-end;justify-content:space-between;gap:.85rem 2.5rem;padding-block:clamp(1.35rem,2.5vw,2rem)}
+.mark{font:700 clamp(1.25rem,.1rem + 7.2vw,3rem)/1.05 var(--wide);letter-spacing:.02em;text-transform:uppercase;color:var(--ivory);text-decoration:none}
 .mast nav{display:flex;flex-wrap:wrap;column-gap:1.5rem}
 .mast nav a{color:var(--ivory);text-decoration:none;display:inline-block;padding-block:.625rem}
 .mast nav a:hover,.mast nav a[aria-current=page]{text-decoration:underline;text-decoration-thickness:1px;text-underline-offset:.4em}
@@ -104,6 +104,7 @@ input[aria-invalid=true]:not(:focus-visible),select[aria-invalid=true]:not(:focu
 .bay{display:grid;align-content:start;gap:.3125rem;padding:.5rem .625rem .625rem;border-left:1px solid var(--hair)}
 .bay:first-child{border-left:0}
 .bay dt{font:700 .8125rem/1.25 var(--wide);letter-spacing:.03em;text-transform:uppercase;color:var(--muted)}
+.entry .bay dt{min-height:2.5em}
 .bay dd{margin:0;font-weight:600;font-size:.9375rem;line-height:1.25}
 .caution{background:var(--amber-bg);color:var(--amber)}
 .stated{background:var(--teal-bg);color:var(--teal)}
@@ -111,7 +112,8 @@ input[aria-invalid=true]:not(:focus-visible),select[aria-invalid=true]:not(:focu
 @keyframes draw{from{transform:scaleX(0)}}
 [data-state=filtering] .rc::before{animation:draw 180ms ease-out}
 .news{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,28rem);align-items:start;gap:1rem 2.5rem;margin-top:3.5rem;padding-top:1.5rem;border-top:2px solid var(--ink)}
-.news h2{font-size:1.0625rem;margin-bottom:.5rem;max-width:20em}
+.news h2{font-size:1.0625rem;margin-bottom:.5rem;max-width:22em}
+.phrase{white-space:nowrap}
 .news form{display:flex;flex-wrap:wrap;gap:.5rem}
 .news input{flex:1 1 13rem;width:auto}
 .msg{flex-basis:100%;font-weight:600}
@@ -142,7 +144,7 @@ input[aria-invalid=true]:not(:focus-visible),select[aria-invalid=true]:not(:focu
 .foot{color:var(--muted);font-size:.875rem;padding-bottom:2rem}
 .foot p{padding-top:1.5rem;border-top:1px solid var(--hair)}
 @media (max-width:52rem){.cols{display:none}.index{border-top:2px solid var(--ink)}.entry{grid-template-columns:minmax(0,1fr);grid-template-areas:"head" "what" "rc"}.entry .rc{margin-top:.5rem}.news{grid-template-columns:minmax(0,1fr)}}
-@media (max-width:32rem){.rc{grid-template-columns:minmax(0,1fr)}.bay{grid-template-columns:7.5rem minmax(0,1fr);align-items:baseline;border-left:0;border-top:1px solid var(--hair)}.bay:first-child{border-top:0}
+@media (max-width:32rem){.rc{grid-template-columns:minmax(0,1fr)}.bay{grid-template-columns:7.5rem minmax(0,1fr);align-items:baseline;border-left:0;border-top:1px solid var(--hair)}.bay:first-child{border-top:0}.entry .bay dt{min-height:0}
  .pick{flex:1 1 100%}.pick select{flex:1;min-width:0}.count{flex-basis:100%;margin-left:0}.spec{grid-template-columns:minmax(0,1fr)}.spec dt{border-bottom:0;padding-bottom:0}}
 @media (prefers-reduced-motion:reduce){[data-state=filtering] .rc::before{animation:none}}
 """
@@ -155,7 +157,7 @@ def page(title,desc,body,path):
     return f"""<!doctype html><html lang=en><head><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1"><title>{e(title)}</title><meta name=description content="{e(desc)}"><link rel=canonical href="{BASE}{path}"><meta property=og:title content="{e(title)}"><meta property=og:description content="{e(desc)}"><meta property=og:type content=website><meta property=og:url content="{BASE}{path}"><meta name=theme-color content="#123655">{HEAD}<style>{CSS}</style></head><body><a class=skip href="#main">Skip to content</a><header class=mast><div class=wrap><a class=mark href="/">Nurse AI Tools</a><nav aria-label=Site>{nav}</nav></div></header><main id=main class=wrap>{body}</main><footer class="wrap foot"><p>© 2026 Nurse AI Tools · Independent directory, not affiliated with listed vendors · Not medical advice. Always follow your facility's policies.</p></footer><script type=module src="/js/page.js"></script></body></html>"""
 def bay(label,value): return f'<div class="bay{" "+TONE[value] if value in TONE else ""}"><dt>{label}</dt><dd>{e(value)}</dd></div>'
 def plate(t): return "<dl class=rc>"+"".join(bay(l,t[k]) for l,k in BAYS)+"</dl>"
-NEWS="""<section class=news aria-labelledby=news-h><div><h2 id=news-h>Get the weekly "AI at the bedside" note</h2><p class=sub>New tools, rollouts, and what nurses are saying. No spam.</p></div>
+NEWS="""<section class=news aria-labelledby=news-h><div><h2 id=news-h>Get the weekly <span class=phrase>"AI at the bedside"</span> note</h2><p class=sub>New tools, rollouts, and what nurses are saying. No spam.</p></div>
 <form action="/api/subscribe" novalidate><label class=sr for=news-email>Email address</label><input id=news-email type=email name=email required autocomplete=email placeholder="you@example.com"><input name=hp class=hp tabindex=-1 autocomplete=off><button class=primary>Subscribe</button><p class=msg id=form-msg data-form-message role=status></p></form></section>"""
 P_={}
 rows="".join(f'<li class=entry data-card data-id="{t["slug"]}" data-category="{e(t["category"])}" data-text="{e((t["name"]+" "+t["vendor"]+" "+t["what"]).lower())}" data-traits="{" ".join(k for k,_,p in TRAITS if p(t))}"><div class=head><h2><a href="/tools/{t["slug"]}">{e(t["name"])}</a></h2><p class=meta>{e(t["vendor"])} <span aria-hidden=true>·</span> {e(t["category"])}</p></div><p class=what>{e(t["what"])}</p>{plate(t)}</li>' for t in tools)

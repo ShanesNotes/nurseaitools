@@ -110,5 +110,5 @@ The site is drawn as a 1971 clinical futures manual. It reads as a credible refe
 - A form error names the field that failed, sets `aria-invalid` and `aria-describedby` on that control, and draws an amber edge. The HTTP reply text from `/api/subscribe` and `/api/submit` is unchanged.
 - The copper rule is a 2px line across the top of each plate, and it is the only motion on the site. It is visible by default. When the directory enters the `filtering` state, the rule on each visible plate draws once from the left in 180ms ease-out.
 - Under `prefers-reduced-motion: reduce`, the rule does not animate.
-- The masthead is full-bleed field blue with a 1px diagonal security tint. No other surface has texture. There is no glow, glass, or gradient text.
+- The masthead is full-bleed field blue with a 1px diagonal security tint. The wordmark is the largest type on the page. No other surface has texture. There is no glow, glass, or gradient text.
 - Controls are ordinary inputs and buttons with one chamfered corner. The chamfer comes from `clip-path`, which would clip an outline, so the 2px focus ring is drawn inside the control.
