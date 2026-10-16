@@ -56,6 +56,19 @@ npx wrangler deploy
 
 `wrangler.toml` deploys the worker `nurseaitools` with the D1 binding `DB` on the database `nurseaitools`. The worker imports `web/contract.js`, and wrangler bundles that import. Do not set `no_bundle = true`, because the import then fails.
 
+Apply `schema.sql` once on the remote database if the tables are not already there:
+
+```sh
+npx wrangler d1 execute nurseaitools --remote --file schema.sql
+```
+
+A subscribe still inserts into D1. When the secret `KIT_API_KEY` is set, the worker then posts the address to Kit after that insert. `KIT_TAG_ID` is optional. Leave both unset and Kit is skipped.
+
+```sh
+npx wrangler secret put KIT_API_KEY
+npx wrangler secret put KIT_TAG_ID
+```
+
 `deploy.js` is a second deploy path for a connector that uploads one module through the Cloudflare API with no bundler. `build.py` writes the worker into it with `web/contract.js` inlined in place of the import. Run the build before you use it.
 
 ## Reference
