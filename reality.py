@@ -12,5 +12,6 @@ R={
 "ShiftMed":(N,U),"Trusted Health":(N,U),"ShiftKey":(N,U),"NurseGrid":(N,U),"Qventus":(U,DK),"LeanTaaS iQueue":(U,DK),"Medely":(N,U),
 "Hippocratic AI":(U,U),"care.coach":(U,U),"LookDeep Health":(N,BS),"Caregility":(N,BS),"Artisight":(N,BS),"Andor Health":(B,U),"Hyro":(U,U),
 "ChatGPT":(Gn,U),"Claude":(Gn,U),"Gemini":(Gn,U),"Microsoft Copilot":(Gn,U),"Perplexity":(Gn,U),"NotebookLM":(Gn,U),
+"GoodNurse":(N,ED),"NCLEXIT":(N,ED),"NurseSavvy":(N,ED),"CarePlanHQ":(N,ED),"Care Plan Genie":(N,ED),"PEPID Nursing Student Care Plan":(N,ED),"Quizlet":(Gn,ED),"Knowt":(Gn,ED),"StudyFetch":(Gn,ED),
 "Wellsheet":(Ph,DK),"Epic generative AI (summaries & handoff)":(B,DK),"Innovaccer":(U,DK),"Notable":(U,DK),
 }

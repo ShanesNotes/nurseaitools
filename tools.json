@@ -322,7 +322,7 @@
   "category": "Education / NCLEX",
   "what": "NCLEX-RN/PN question bank with detailed rationales and performance analytics.",
   "ehr": "Not publicly listed; check with vendor",
-  "hipaa": "Not publicly stated on vendor homepage; verify with vendor."
+  "hipaa": "Study tool: never enter real patient information (PHI). Use made-up or de-identified cases only."
  },
  {
   "built": "Nurses",
@@ -335,7 +335,7 @@
   "category": "Education / NCLEX",
   "what": "NCLEX and specialty-cert (e.g. CCRN) question banks and readiness assessments.",
   "ehr": "Not publicly listed; check with vendor",
-  "hipaa": "Not publicly stated on vendor homepage; verify with vendor."
+  "hipaa": "Study tool: never enter real patient information (PHI). Use made-up or de-identified cases only."
  },
  {
   "built": "Both",
@@ -348,7 +348,7 @@
   "category": "Education / NCLEX",
   "what": "Visual mnemonic study platform for nursing and NCLEX content.",
   "ehr": "Not publicly listed; check with vendor",
-  "hipaa": "Not publicly stated on vendor homepage; verify with vendor."
+  "hipaa": "Study tool: never enter real patient information (PHI). Use made-up or de-identified cases only."
  },
  {
   "built": "Nurses",
@@ -361,7 +361,7 @@
   "category": "Education / NCLEX",
   "what": "Video-based nursing school and NCLEX study platform.",
   "ehr": "Not publicly listed; check with vendor",
-  "hipaa": "Not publicly stated on vendor homepage; verify with vendor."
+  "hipaa": "Study tool: never enter real patient information (PHI). Use made-up or de-identified cases only."
  },
  {
   "built": "Nurses",
@@ -374,7 +374,7 @@
   "category": "Education / NCLEX",
   "what": "NCLEX prep courses and question banks.",
   "ehr": "Not publicly listed; check with vendor",
-  "hipaa": "Not publicly stated on vendor homepage; verify with vendor."
+  "hipaa": "Study tool: never enter real patient information (PHI). Use made-up or de-identified cases only."
  },
  {
   "built": "Nurses",
@@ -387,7 +387,7 @@
   "category": "Education / NCLEX",
   "what": "Nursing video lectures and question banks with spaced repetition.",
   "ehr": "Not publicly listed; check with vendor",
-  "hipaa": "Not publicly stated on vendor homepage; verify with vendor."
+  "hipaa": "Study tool: never enter real patient information (PHI). Use made-up or de-identified cases only."
  },
  {
   "built": "Nurses",
@@ -400,7 +400,7 @@
   "category": "Education / NCLEX",
   "what": "Nursing school and NCLEX study lessons, cheat sheets and courses.",
   "ehr": "Not publicly listed; check with vendor",
-  "hipaa": "Not publicly stated on vendor homepage; verify with vendor."
+  "hipaa": "Study tool: never enter real patient information (PHI). Use made-up or de-identified cases only."
  },
  {
   "built": "Both",
@@ -413,7 +413,7 @@
   "category": "Education / NCLEX",
   "what": "Animated health-science videos and study tools used by nursing students.",
   "ehr": "Not publicly listed; check with vendor",
-  "hipaa": "Not publicly stated on vendor homepage; verify with vendor."
+  "hipaa": "Study tool: never enter real patient information (PHI). Use made-up or de-identified cases only."
  },
  {
   "built": "Nurses",
@@ -426,7 +426,7 @@
   "category": "Education / NCLEX",
   "what": "Nursing school assessments, NCLEX review and remediation used by many programs.",
   "ehr": "Not publicly listed; check with vendor",
-  "hipaa": "Not publicly stated on vendor homepage; verify with vendor."
+  "hipaa": "Study tool: never enter real patient information (PHI). Use made-up or de-identified cases only."
  },
  {
   "built": "Nurses",
@@ -739,5 +739,122 @@
   "what": "AI agents that automate intake, documentation prep and administrative hand-offs for health systems.",
   "ehr": "Not publicly listed; check with vendor",
   "hipaa": "Not publicly stated on vendor homepage; verify with vendor."
+ },
+ {
+  "built": "Nurses",
+  "hstat": "Not for patient info",
+  "fit": "Education only",
+  "slug": "goodnurse",
+  "name": "GoodNurse",
+  "vendor": "GoodNurse",
+  "url": "https://goodnurse.com",
+  "category": "Education / NCLEX",
+  "what": "AI NCLEX tutor with 2,000+ practice questions and adaptive study plans; you can ask follow-up questions on a missed item.",
+  "ehr": "Not publicly listed; check with vendor",
+  "hipaa": "Study tool: never enter real patient information (PHI). Use made-up or de-identified cases only."
+ },
+ {
+  "built": "Nurses",
+  "hstat": "Not for patient info",
+  "fit": "Education only",
+  "slug": "nclexit",
+  "name": "NCLEXIT",
+  "vendor": "NCLEXIT",
+  "url": "https://www.nclexit.com",
+  "category": "Education / NCLEX",
+  "what": "AI-native NCLEX-RN prep: NGN practice questions, unfolding case studies, adaptive CAT-style mock exams, a 24/7 AI tutor and spoken clinical simulation. Paid, with a 7-day free trial.",
+  "ehr": "Not publicly listed; check with vendor",
+  "hipaa": "Study tool: never enter real patient information (PHI). Use made-up or de-identified cases only."
+ },
+ {
+  "built": "Nurses",
+  "hstat": "Not for patient info",
+  "fit": "Education only",
+  "slug": "nursesavvy",
+  "name": "NurseSavvy",
+  "vendor": "NurseSavvy",
+  "url": "https://nursesavvy.com",
+  "category": "Education / NCLEX",
+  "what": "NCLEX question bank matched to nursing-school coursework, with free CAT readiness exams and per-question AI specialty tutors on a free plan with a monthly allowance.",
+  "ehr": "Not publicly listed; check with vendor",
+  "hipaa": "Study tool: never enter real patient information (PHI). Use made-up or de-identified cases only."
+ },
+ {
+  "built": "Nurses",
+  "hstat": "Not for patient info",
+  "fit": "Education only",
+  "slug": "careplanhq",
+  "name": "CarePlanHQ",
+  "vendor": "CarePlanHQ",
+  "url": "https://careplanhq.com",
+  "category": "Study & care plans",
+  "what": "AI care plan generator: enter an assessment and it drafts NANDA-I diagnoses, NIC interventions and NOC outcomes as a PDF.",
+  "ehr": "Not publicly listed; check with vendor",
+  "hipaa": "Study tool: never enter real patient information (PHI). Use made-up or de-identified cases only."
+ },
+ {
+  "built": "Nurses",
+  "hstat": "Not for patient info",
+  "fit": "Education only",
+  "slug": "care-plan-genie",
+  "name": "Care Plan Genie",
+  "vendor": "NURSING.com",
+  "url": "https://careplangenie.nursing.com",
+  "category": "Study & care plans",
+  "what": "Care plan builder from NURSING.com that suggests NANDA diagnoses, goals and interventions from your assessment data.",
+  "ehr": "Not publicly listed; check with vendor",
+  "hipaa": "Study tool: never enter real patient information (PHI). Use made-up or de-identified cases only."
+ },
+ {
+  "built": "Nurses",
+  "hstat": "Not for patient info",
+  "fit": "Education only",
+  "slug": "pepid-nursing-student-care-plan",
+  "name": "PEPID Nursing Student Care Plan",
+  "vendor": "PEPID",
+  "url": "https://pepid.com/products/nursing-student-care-plan/",
+  "category": "Study & care plans",
+  "what": "Guided care plan builder with 200+ NANDA-based templates; faculty can grade and comment. Sold to schools, not individuals.",
+  "ehr": "Not publicly listed; check with vendor",
+  "hipaa": "Study tool: never enter real patient information (PHI). Use made-up or de-identified cases only."
+ },
+ {
+  "built": "General",
+  "hstat": "Not for patient info",
+  "fit": "Education only",
+  "slug": "quizlet",
+  "name": "Quizlet",
+  "vendor": "Quizlet",
+  "url": "https://quizlet.com",
+  "category": "Study & care plans",
+  "what": "Flashcard and study platform with AI features that turn notes into study sets and practice tests.",
+  "ehr": "Not publicly listed; check with vendor",
+  "hipaa": "Study tool: never enter real patient information (PHI). Use made-up or de-identified cases only."
+ },
+ {
+  "built": "General",
+  "hstat": "Not for patient info",
+  "fit": "Education only",
+  "slug": "knowt",
+  "name": "Knowt",
+  "vendor": "Knowt",
+  "url": "https://knowt.com",
+  "category": "Study & care plans",
+  "what": "Free flashcard and note tool with AI that builds flashcards and quizzes from lecture notes, slides and videos.",
+  "ehr": "Not publicly listed; check with vendor",
+  "hipaa": "Study tool: never enter real patient information (PHI). Use made-up or de-identified cases only."
+ },
+ {
+  "built": "General",
+  "hstat": "Not for patient info",
+  "fit": "Education only",
+  "slug": "studyfetch",
+  "name": "StudyFetch",
+  "vendor": "StudyFetch",
+  "url": "https://www.studyfetch.com",
+  "category": "Study & care plans",
+  "what": "Turns lecture slides, notes and study guides into flashcards, quizzes and tests with an AI tutor.",
+  "ehr": "Not publicly listed; check with vendor",
+  "hipaa": "Study tool: never enter real patient information (PHI). Use made-up or de-identified cases only."
  }
 ]

@@ -2,15 +2,16 @@ import base64,glob,html,json,os,re
 exec(open('tools.py').read());exec(open('reality.py').read())
 BASE="https://nurseaitools.com"
 HIP={"deepscribe","nabla","navina","caregility","clinicalkey","lyrebird","tali.ai","sully","getfreed","hippocratic","care.coach","heidihealth","hyro","suki","artisight","andorhealth"}
-CATS=[A,H,C,E,S,P,G]
+CATS=[A,H,C,E,K,S,P,G]
 def slug(s): return re.sub(r'[^a-z0-9]+','-',s.lower()).strip('-')
 e=html.escape
 tools=[]
 for n,v,u,c,d,x in T:
     h=("Vendor website mentions HIPAA (checked Oct 15, 2026). BAA availability not confirmed here; ask the vendor." if any(k in u for k in HIP)
        else "Consumer version: do not enter patient information (PHI). Enterprise/BAA terms vary; check with your organization." if c==G
+       else "Study tool: never enter real patient information (PHI). Use made-up or de-identified cases only." if c in (E,K)
        else "Not publicly stated on vendor homepage; verify with vendor.")
-    hs=("Mentions HIPAA" if any(k in u for k in HIP) else "Not for patient info" if c in (G,E) else "Unknown")
+    hs=("Mentions HIPAA" if any(k in u for k in HIP) else "Not for patient info" if c in (G,E,K) else "Unknown")
     bf,fit=R[n]
     tools.append(dict(built=bf,hstat=hs,fit=fit,slug=slug(n),name=n,vendor=v,url=u,category=c,what=d,ehr=x or "Not publicly listed; check with vendor",hipaa=h))
 
@@ -150,7 +151,7 @@ input[aria-invalid=true]:not(:focus-visible),select[aria-invalid=true]:not(:focu
 CSS="".join(l.strip() for l in CSS.splitlines())
 HEAD=("".join(f'<link rel=preload href="{f}" as=font type=font/woff2 crossorigin>' for f in FONTS)
       +"".join(f'<link rel=modulepreload href="{s}">' for s in SCRIPTS if s!="/js/page.js"))
-NAV=[("/","Directory"),("/submit","Submit a tool"),("/about","About")]
+NAV=[("/","Directory"),("/students","Students"),("/submit","Submit a tool"),("/about","About")]
 def page(title,desc,body,path):
     nav="".join(f'<a href="{h}"{" aria-current=page" if h==path else ""}>{t}</a>' for h,t in NAV)
     return f"""<!doctype html><html lang=en><head><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1"><title>{e(title)}</title><meta name=description content="{e(desc)}"><link rel=canonical href="{BASE}{path}"><meta property=og:title content="{e(title)}"><meta property=og:description content="{e(desc)}"><meta property=og:type content=website><meta property=og:url content="{BASE}{path}"><meta name=theme-color content="#123655">{HEAD}<style>{CSS}</style></head><body><a class=skip href="#main">Skip to content</a><header class=mast><div class=wrap><a class=mark href="/">Nurse AI Tools</a><nav aria-label=Site>{nav}</nav></div></header><main id=main class=wrap>{body}</main><footer class="wrap foot"><p>© 2026 Nurse AI Tools · Independent directory, not affiliated with listed vendors · Not medical advice. Always follow your facility's policies.</p></footer><script type=module src="/js/page.js"></script></body></html>"""
@@ -175,9 +176,30 @@ sub=f"""<div class=prose><h1>Submit a tool</h1><p class=sub>Know an AI tool nurs
 <form class=stack action="/api/submit" novalidate><label class=field>Tool name<input name=name required autocomplete=off></label><label class=field>Official website<input name=url type=url required placeholder="https://" autocomplete=url></label><label class=field>Category<select name=category>{"".join(f"<option>{e(c)}</option>" for c in CATS)}</select></label><label class=field>Notes<textarea name=notes rows=4 placeholder="What does it do for nurses? EHR integrations? HIPAA/BAA?"></textarea></label><label class=field>Your email (optional)<input name=email type=email autocomplete=email></label><input name=hp class=hp tabindex=-1 autocomplete=off><div class=actions><button class=primary>Submit</button><p class=msg id=form-msg data-form-message role=status></p></div></form></div>"""
 P_["/submit"]=page("Submit an AI tool for nurses | Nurse AI Tools","Suggest an AI tool for nurses to be reviewed and listed in the Nurse AI Tools directory.",sub,"/submit")
 ab="""<div class=prose><h1>About</h1><p>Nurse AI Tools is curated by a registered nurse with 14 years of critical care experience who builds with AI on the side.</p><p>Hospitals are rolling out ambient charting, AI handoffs and early-warning tools fast, and nurses are often the last to hear how they actually work on a real shift. This site aims to be the plain-spoken, nurse-first reference.</p><h2>How listings work</h2><ul><li>Facts (vendor, integrations, HIPAA/BAA statements) come from vendors' public websites and are labeled when unconfirmed.</li><li>Every tool gets an <b>RN reality check</b>: who it is built for, its HIPAA status, and whether it fits a bedside workflow. Each answer comes only from vendor or public information. If we cannot verify it, we say Unknown.</li><li>Listings are independent. Any future sponsored placements will be clearly labeled.</li></ul><p>Nothing here is medical advice. Never enter patient information into a tool your facility hasn't approved.</p></div>"""+NEWS
-P_["/about"]=page("About Nurse AI Tools: curated by a critical care RN","Nurse AI Tools is an independent directory of AI tools for nurses, curated by a critical care registered nurse.",ab,"/about")
+P_["/about"]=page("About Nurse AI Tools","Nurse AI Tools is an independent, nurse-run directory of AI tools for nurses, nursing students and new grads.",ab,"/about")
+
+BY={t["name"]:t for t in tools}
+def entry(t): return f'<li class=entry><div class=head><h2><a href="/tools/{t["slug"]}">{e(t["name"])}</a></h2><p class=meta>{e(t["vendor"])} <span aria-hidden=true>·</span> {e(t["category"])}</p></div><p class=what>{e(t["what"])}</p>{plate(t)}</li>'
+def picks(names): return '<div class=cols aria-hidden=true><span>Tool</span><span>What it does</span><span>RN reality check</span></div><ul class=index>'+"".join(entry(BY[n]) for n in names)+'</ul>'
+RULE='<p class=sub>No star ratings here. We only rate tools we have used on real shifts or in real study, and we will say so when we do. Everything below is from vendor sites, checked Oct 2026.</p>'
+PHI='<h2>One rule before any of these</h2><p>Never paste real patient details from clinical into any study or AI tool. Change names, dates, ages and rare details, or make the case up. Your school and your clinical site both have policies on this.</p>'
+SP=[("/students/best-free-ai","Best free AI for nursing students"),("/students/ai-care-plan-tools","AI care plan tools"),("/students/nclex-ai-tutors","NCLEX AI tutors compared")]
+def stu(path,title,desc,body):
+    side='<p class=back><a href="/students">Back to the students hub</a></p>' if path!="/students" else ""
+    P_[path]=page(title+" | Nurse AI Tools",desc,side+body+NEWS,path)
+stu("/students","AI tools for nursing students and new grads","AI study tools, care plan helpers and NCLEX AI tutors for nursing students and new grads, with an RN reality check on each.",
+ f'<section class=deck><h1>AI for nursing students and new grads</h1><p class=lede>Care plans, pharm, NCLEX, your first year on the floor. Here is which AI tools actually help, and where they can steer you wrong.</p>{RULE}</section><div class=prose><h2>Guides</h2><ul>'+"".join(f'<li><a href="{p}">{t}</a></li>' for p,t in SP)+f'</ul>{PHI}</div><section aria-label="Student tools">'+picks([t["name"] for t in tools if t["category"] in (E,K)])+'</section>')
+stu("/students/best-free-ai","Best free AI for nursing students (2026)","Free and free-tier AI tools nursing students use for studying, flashcards, lecture notes and NCLEX practice, with honest caveats.",
+ f'<section class=deck><h1>Best free AI for nursing students</h1><p class=lede>You do not need to pay for AI to get through nursing school. These have a real free option.</p>{RULE}</section><div class=prose><h2>How to use them without getting burned</h2><ul><li>Upload your own lecture slides to NotebookLM so answers come from your course, not the open web.</li><li>General chatbots like ChatGPT and Claude are good at explaining a concept three different ways. They are not a source. Check drug doses and lab values in your drug guide or your school&#39;s references.</li><li>Use AI to quiz you, not to write your graded work. Most programs treat that as an academic integrity issue.</li></ul>{PHI}</div>'
+ +picks(["NotebookLM","Knowt","NurseSavvy","ChatGPT","Claude","Gemini","Quizlet","StudyFetch","OpenEvidence"])+'<p class=fine>Free tiers change often. "Free" here means the vendor offers a free plan or free access as of Oct 2026. Some limit how much you can use.</p>')
+stu("/students/ai-care-plan-tools","AI care plan tools for nursing students","AI nursing care plan generators compared: CarePlanHQ, Care Plan Genie, PEPID and general chatbots, plus what research says about AI care plan accuracy.",
+ f'<section class=deck><h1>AI care plan tools</h1><p class=lede>AI can draft a NANDA-style care plan in seconds. Whether it is right for your patient is still on you.</p>{RULE}</section><div class=prose><h2>What the research says</h2><p>A 2026 scoping review of 15 studies in the Journal of Clinical Nursing found large language models are useful for organizing text, matching standard terminology and drafting goals and interventions, but that privacy, hallucination and bias remain problems and they cannot replace clinical judgment. A scenario study comparing ChatGPT, Gemini and DeepSeek found moderate-to-high quality plans that were still incomplete and written at a college reading level.</p><h2>How to use one well</h2><ul><li>Do your own assessment and pick your priority diagnosis first. Then compare it to what the tool suggests.</li><li>Check every intervention has a rationale you could defend to your instructor.</li><li>Ask your instructor whether AI drafts are allowed for the assignment.</li></ul>{PHI}</div>'
+ +picks(["CarePlanHQ","Care Plan Genie","PEPID Nursing Student Care Plan","ChatGPT","Claude"]))
+stu("/students/nclex-ai-tutors","NCLEX AI tutors compared (2026)","NCLEX AI tutors and adaptive question banks compared: GoodNurse, NCLEXIT, NurseSavvy, UWorld, Archer Review and more.",
+ f'<section class=deck><h1>NCLEX AI tutors compared</h1><p class=lede>The newer NCLEX prep tools add an AI tutor you can argue with. The older question banks have years of polished rationales. Here is how they line up.</p>{RULE}</section><div class=prose><h2>What to compare</h2><ul><li><b>NGN coverage.</b> The current NCLEX tests clinical judgment with case studies, bow-tie, matrix and highlight items. Make sure the bank has all of them.</li><li><b>Rationales vs a tutor.</b> A tutor that answers follow-ups helps when a rationale does not click. AI can also be confidently wrong, so cross-check anything that surprises you.</li><li><b>Readiness exams.</b> Adaptive CAT-style practice tests tell you more than raw percent correct.</li><li><b>Price and free trials.</b> Check the current plan on the vendor site. Prices change.</li></ul></div>'
+ +picks(["GoodNurse","NCLEXIT","NurseSavvy","UWorld Nursing","Archer Review","Kaplan NCLEX Prep","SimpleNursing","Lecturio Nursing"])+'<p class=fine>Feature descriptions come from each vendor&#39;s site in Oct 2026. Nurse AI Tools may earn a commission from some NCLEX prep links in the future; that will never change what we write.</p>')
 NOT_FOUND=page("Page not found | Nurse AI Tools",HOME_DESC,'<div class=prose><h1>Page not found</h1><p><a href="/">Back to the directory</a></p></div>',"/")
-sm='<?xml version="1.0" encoding="UTF-8"?><urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">'+"".join(f"<url><loc>{BASE}{p}</loc><lastmod>2026-10-15</lastmod></url>" for p in P_)+"</urlset>"
+sm='<?xml version="1.0" encoding="UTF-8"?><urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">'+"".join(f"<url><loc>{BASE}{p}</loc><lastmod>2026-10-16</lastmod></url>" for p in P_)+"</urlset>"
 json.dump(tools,open("tools.json","w"),indent=1)
 
 TEMPLATE=open("worker.template.js").read()

@@ -1,4 +1,5 @@
 # (name, vendor, url, category, what_it_does, ehr) ; ehr "" => not publicly listed
+K="Study & care plans"
 A,H,C,E,S,P,G="Ambient documentation","Handoff & summaries","Clinical decision support","Education / NCLEX","Scheduling & staffing","Patient communication","General LLMs for nurses"
 T=[
 ("Dragon Copilot (nursing)","Microsoft","https://www.microsoft.com/en-us/health-solutions/clinical-workflow/dragon-copilot",A,"Ambient capture of nurse observations in Epic Rover that drafts flowsheet entries (vitals, LDAs, wounds, safety) and narrative nurse notes for review before filing.","Epic (Rover/Hyperspace)"),
@@ -58,4 +59,13 @@ T=[
 ("Epic generative AI (summaries & handoff)","Epic Systems","https://www.epic.com/software/ai/",H,"Epic's built-in AI features, including generated patient summaries and handoff support, for organizations on Epic.","Epic (native)"),
 ("Innovaccer","Innovaccer","https://innovaccer.com",H,"Healthcare data and AI platform that unifies patient records and supports care-team hand-offs and care coordination.",""),
 ("Notable","Notable","https://www.notablehealth.com",H,"AI agents that automate intake, documentation prep and administrative hand-offs for health systems.",""),
+("GoodNurse","GoodNurse","https://goodnurse.com",E,"AI NCLEX tutor with 2,000+ practice questions and adaptive study plans; you can ask follow-up questions on a missed item.",""),
+("NCLEXIT","NCLEXIT","https://www.nclexit.com",E,"AI-native NCLEX-RN prep: NGN practice questions, unfolding case studies, adaptive CAT-style mock exams, a 24/7 AI tutor and spoken clinical simulation. Paid, with a 7-day free trial.",""),
+("NurseSavvy","NurseSavvy","https://nursesavvy.com",E,"NCLEX question bank matched to nursing-school coursework, with free CAT readiness exams and per-question AI specialty tutors on a free plan with a monthly allowance.",""),
+("CarePlanHQ","CarePlanHQ","https://careplanhq.com",K,"AI care plan generator: enter an assessment and it drafts NANDA-I diagnoses, NIC interventions and NOC outcomes as a PDF.",""),
+("Care Plan Genie","NURSING.com","https://careplangenie.nursing.com",K,"Care plan builder from NURSING.com that suggests NANDA diagnoses, goals and interventions from your assessment data.",""),
+("PEPID Nursing Student Care Plan","PEPID","https://pepid.com/products/nursing-student-care-plan/",K,"Guided care plan builder with 200+ NANDA-based templates; faculty can grade and comment. Sold to schools, not individuals.",""),
+("Quizlet","Quizlet","https://quizlet.com",K,"Flashcard and study platform with AI features that turn notes into study sets and practice tests.",""),
+("Knowt","Knowt","https://knowt.com",K,"Free flashcard and note tool with AI that builds flashcards and quizzes from lecture notes, slides and videos.",""),
+("StudyFetch","StudyFetch","https://www.studyfetch.com",K,"Turns lecture slides, notes and study guides into flashcards, quizzes and tests with an AI tutor.",""),
 ]
