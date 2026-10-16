@@ -1,0 +1,385 @@
+{
+  "schemaVersion": 2,
+  "generatedAt": "2026-10-16T03:19:01Z",
+  "title": "Design System: Nurse AI Tools",
+  "extensions": {
+    "colorMeta": {
+      "field": {
+        "role": "primary",
+        "displayName": "Field Blue",
+        "canonical": "#123655",
+        "tonalRamp": [
+          "#000c1c",
+          "#022744",
+          "#214565",
+          "#406587",
+          "#6186aa",
+          "#83a9cf",
+          "#a6cef4",
+          "#e2f0ff"
+        ]
+      },
+      "copper": {
+        "role": "secondary",
+        "displayName": "Plate Copper",
+        "canonical": "#8c4a32",
+        "tonalRamp": [
+          "#1b0300",
+          "#441200",
+          "#6b2c14",
+          "#8f4c34",
+          "#b36e55",
+          "#d99076",
+          "#ffb59a",
+          "#ffe9e1"
+        ]
+      },
+      "amber": {
+        "role": "tertiary",
+        "displayName": "Caution Amber",
+        "canonical": "#7a4e00",
+        "tonalRamp": [
+          "#140800",
+          "#362000",
+          "#5c3a00",
+          "#835710",
+          "#a77839",
+          "#cb9b5c",
+          "#f1bf80",
+          "#ffebd3"
+        ]
+      },
+      "amber-bg": {
+        "role": "tertiary",
+        "displayName": "Caution Wash",
+        "canonical": "#f8edd4",
+        "tonalRamp": [
+          "#110a00",
+          "#2c2410",
+          "#4a412c",
+          "#6a604b",
+          "#8b816b",
+          "#aea48d",
+          "#d3c8b0",
+          "#f9eed5"
+        ]
+      },
+      "teal": {
+        "role": "tertiary",
+        "displayName": "Stated Teal",
+        "canonical": "#0c5c4c",
+        "tonalRamp": [
+          "#000f0a",
+          "#002d23",
+          "#004e40",
+          "#276f5e",
+          "#4c917f",
+          "#6fb5a2",
+          "#93dac6",
+          "#bcffeb"
+        ]
+      },
+      "teal-bg": {
+        "role": "tertiary",
+        "displayName": "Stated Wash",
+        "canonical": "#e4f3ee",
+        "tonalRamp": [
+          "#040e0b",
+          "#1c2824",
+          "#394541",
+          "#586560",
+          "#788681",
+          "#9ba9a4",
+          "#becdc8",
+          "#e3f2ed"
+        ]
+      },
+      "paper": {
+        "role": "neutral",
+        "displayName": "Daylight Paper",
+        "canonical": "#e7eef2",
+        "tonalRamp": [
+          "#080c0e",
+          "#212629",
+          "#3d4346",
+          "#5c6266",
+          "#7d8387",
+          "#a0a6aa",
+          "#c3cace",
+          "#e9f0f4"
+        ]
+      },
+      "ink": {
+        "role": "neutral",
+        "displayName": "Manual Ink",
+        "canonical": "#14202b",
+        "tonalRamp": [
+          "#030c16",
+          "#1a2632",
+          "#364450",
+          "#556370",
+          "#768492",
+          "#98a7b6",
+          "#bccbda",
+          "#e2f1ff"
+        ]
+      },
+      "ivory": {
+        "role": "neutral",
+        "displayName": "Ivory",
+        "canonical": "#f4f1e6",
+        "tonalRamp": [
+          "#0d0b05",
+          "#27251d",
+          "#444239",
+          "#646158",
+          "#858278",
+          "#a8a59b",
+          "#ccc9bf",
+          "#f2efe4"
+        ]
+      },
+      "line": {
+        "role": "neutral",
+        "displayName": "Rule Line",
+        "canonical": "#737d85",
+        "tonalRamp": [
+          "#050c12",
+          "#1e262d",
+          "#3a434a",
+          "#59636a",
+          "#7a848c",
+          "#9ca7af",
+          "#c0cbd4",
+          "#e5f0f9"
+        ]
+      },
+      "hair": {
+        "role": "neutral",
+        "displayName": "Hairline",
+        "canonical": "#b9c1c6",
+        "tonalRamp": [
+          "#070c0f",
+          "#20262a",
+          "#3c4347",
+          "#5b6267",
+          "#7c8488",
+          "#9fa6ab",
+          "#c2cad0",
+          "#e8f0f5"
+        ]
+      },
+      "muted": {
+        "role": "neutral",
+        "displayName": "Muted Ink",
+        "canonical": "#535e67",
+        "tonalRamp": [
+          "#050c13",
+          "#1d262e",
+          "#39434c",
+          "#58636c",
+          "#78848e",
+          "#9ba7b1",
+          "#becbd5",
+          "#e4f0fb"
+        ]
+      }
+    },
+    "typographyMeta": {
+      "display": {
+        "displayName": "Display",
+        "purpose": "The wordmark. It is the largest type on the page, Syncopate 700, uppercase, tracking 0.02em."
+      },
+      "headline": {
+        "displayName": "Headline",
+        "purpose": "Page titles, Syncopate 700, uppercase, tracking 0.03em. Section headings use the same face at 1.0625rem, 1rem, or 0.9375rem."
+      },
+      "title": {
+        "displayName": "Title",
+        "purpose": "Index tool names, Source Sans 3 600, so the list stays scannable."
+      },
+      "body": {
+        "displayName": "Body",
+        "purpose": "Page text. The lede steps up to clamp(1.125rem, 1rem + 0.5vw, 1.3125rem)."
+      },
+      "label": {
+        "displayName": "Label",
+        "purpose": "Field labels, filter labels, and buttons at 1.0625rem. Plate values are this weight at 0.9375rem. Plate labels are Syncopate 700 at 0.8125rem."
+      }
+    },
+    "shadows": [
+      {
+        "name": "inset-field",
+        "value": "inset 0 0 0 1px var(--field, #123655)",
+        "purpose": "Inner half of the focus stroke on chamfered fields, default buttons, and unchecked toggles. The border turns Field Blue beside it."
+      },
+      {
+        "name": "inset-ivory",
+        "value": "inset 0 0 0 2px var(--ivory, #f4f1e6)",
+        "purpose": "Focus ring on primary buttons and checked toggles."
+      }
+    ],
+    "motion": [
+      {
+        "name": "plate-draw",
+        "value": "180ms ease-out",
+        "purpose": "The copper rule draws once from the left while the directory is filtering. The rule is visible at rest. prefers-reduced-motion removes the animation."
+      }
+    ],
+    "breakpoints": [
+      {
+        "name": "index-stack",
+        "value": "52rem"
+      },
+      {
+        "name": "plate-stack",
+        "value": "32rem"
+      }
+    ]
+  },
+  "components": [
+    {
+      "name": "Primary Button",
+      "kind": "button",
+      "refersTo": "button-primary",
+      "description": "Field-blue action for subscribe and submit. Hover fill is #1d4a72. Focus is a 2px ivory inset ring.",
+      "html": "<button class=\"ds-btn-primary\" type=\"button\">Subscribe</button>",
+      "css": ".ds-btn-primary {\n  --edge: var(--line, #737d85);\n  --fill: var(--ivory, #f4f1e6);\n  --ring: transparent;\n  --rw: 0px;\n  --d: calc(var(--cut, 10px) * 0.7071);\n  font-family: var(--sans, \"Source Sans 3\", sans-serif);\n  font-size: 1.0625rem;\n  color: var(--ink, #14202b);\n  min-height: 2.75rem;\n  margin: 0;\n  padding: 0.5rem 0.875rem;\n  border: 1px solid var(--edge);\n  border-radius: 0;\n  clip-path: polygon(0 0, calc(100% - var(--cut, 10px)) 0, 100% var(--cut, 10px), 100% 100%, 0 100%);\n  background:\n    linear-gradient(225deg, transparent var(--d), var(--edge) 0 calc(var(--d) + 1px), var(--ring) 0 calc(var(--d) + 1px + var(--rw)), transparent 0) border-box,\n    var(--fill);\n  box-shadow: inset 0 0 0 var(--rw) var(--ring);\n  --edge: var(--field, #123655);\n  --fill: var(--field, #123655);\n  font-weight: 600;\n  color: var(--ivory, #f4f1e6);\n  padding: 0.5rem 1.25rem;\n  cursor: pointer;\n}\n.ds-btn-primary:hover {\n  --edge: var(--field, #123655);\n  --fill: #1d4a72;\n}\n.ds-btn-primary:focus-visible {\n  outline: 0;\n  --edge: var(--field, #123655);\n  --ring: var(--ivory, #f4f1e6);\n  --rw: 2px;\n}"
+    },
+    {
+      "name": "Default Button",
+      "kind": "button",
+      "refersTo": "button",
+      "description": "Ivory control for a quiet action such as clearing filters.",
+      "html": "<button class=\"ds-btn\" type=\"button\">Clear filters</button>",
+      "css": ".ds-btn {\n  --edge: var(--line, #737d85);\n  --fill: var(--ivory, #f4f1e6);\n  --ring: transparent;\n  --rw: 0px;\n  --d: calc(var(--cut, 10px) * 0.7071);\n  font-family: var(--sans, \"Source Sans 3\", sans-serif);\n  font-size: 1.0625rem;\n  color: var(--ink, #14202b);\n  min-height: 2.75rem;\n  margin: 0;\n  padding: 0.5rem 0.875rem;\n  border: 1px solid var(--edge);\n  border-radius: 0;\n  clip-path: polygon(0 0, calc(100% - var(--cut, 10px)) 0, 100% var(--cut, 10px), 100% 100%, 0 100%);\n  background:\n    linear-gradient(225deg, transparent var(--d), var(--edge) 0 calc(var(--d) + 1px), var(--ring) 0 calc(var(--d) + 1px + var(--rw)), transparent 0) border-box,\n    var(--fill);\n  box-shadow: inset 0 0 0 var(--rw) var(--ring);\n  font-weight: 600;\n  cursor: pointer;\n}\n.ds-btn:hover { --edge: var(--ink, #14202b); }\n.ds-btn:focus-visible {\n  outline: 0;\n  --edge: var(--field, #123655);\n  --ring: var(--field, #123655);\n  --rw: 1px;\n}"
+    },
+    {
+      "name": "Text Field",
+      "kind": "input",
+      "refersTo": "input",
+      "description": "Ivory chamfered field. An invalid, unfocused control takes an amber edge.",
+      "html": "<label class=\"ds-field\">Tool name<input class=\"ds-input\" type=\"text\" placeholder=\"Name\"></label>",
+      "css": ".ds-field {\n  display: grid;\n  gap: 0.375rem;\n  font-family: var(--sans, \"Source Sans 3\", sans-serif);\n  font-size: 1.0625rem;\n  font-weight: 600;\n  color: var(--ink, #14202b);\n}\n.ds-input {\n  --edge: var(--line, #737d85);\n  --fill: var(--ivory, #f4f1e6);\n  --ring: transparent;\n  --rw: 0px;\n  --d: calc(var(--cut, 10px) * 0.7071);\n  font-family: var(--sans, \"Source Sans 3\", sans-serif);\n  font-size: 1.0625rem;\n  color: var(--ink, #14202b);\n  min-height: 2.75rem;\n  margin: 0;\n  padding: 0.5rem 0.875rem;\n  border: 1px solid var(--edge);\n  border-radius: 0;\n  clip-path: polygon(0 0, calc(100% - var(--cut, 10px)) 0, 100% var(--cut, 10px), 100% 100%, 0 100%);\n  background:\n    linear-gradient(225deg, transparent var(--d), var(--edge) 0 calc(var(--d) + 1px), var(--ring) 0 calc(var(--d) + 1px + var(--rw)), transparent 0) border-box,\n    var(--fill);\n  box-shadow: inset 0 0 0 var(--rw) var(--ring);\n  font-weight: 400;\n  width: 100%;\n}\n.ds-input::placeholder { color: var(--muted, #535e67); opacity: 1; }\n.ds-input:focus-visible {\n  outline: 0;\n  --edge: var(--field, #123655);\n  --ring: var(--field, #123655);\n  --rw: 1px;\n}\n.ds-input[aria-invalid=\"true\"]:not(:focus-visible) { --edge: var(--amber, #7a4e00); }"
+    },
+    {
+      "name": "Search Field",
+      "kind": "input",
+      "refersTo": "input-search",
+      "description": "The directory search, taller than a text field, with the native cancel glyph removed.",
+      "html": "<label class=\"ds-find\">Search tools, vendors, or tasks<input class=\"ds-search\" type=\"search\" placeholder=\"e.g. flowsheet, sepsis, NCLEX\"></label>",
+      "css": ".ds-find {\n  display: grid;\n  gap: 0.375rem;\n  font-family: var(--sans, \"Source Sans 3\", sans-serif);\n  font-size: 1.0625rem;\n  font-weight: 600;\n  color: var(--ink, #14202b);\n}\n.ds-search {\n  --edge: var(--line, #737d85);\n  --fill: var(--ivory, #f4f1e6);\n  --ring: transparent;\n  --rw: 0px;\n  --d: calc(var(--cut, 10px) * 0.7071);\n  font-family: var(--sans, \"Source Sans 3\", sans-serif);\n  font-size: 1.0625rem;\n  color: var(--ink, #14202b);\n  min-height: 2.75rem;\n  margin: 0;\n  padding: 0.5rem 0.875rem;\n  border: 1px solid var(--edge);\n  border-radius: 0;\n  clip-path: polygon(0 0, calc(100% - var(--cut, 10px)) 0, 100% var(--cut, 10px), 100% 100%, 0 100%);\n  background:\n    linear-gradient(225deg, transparent var(--d), var(--edge) 0 calc(var(--d) + 1px), var(--ring) 0 calc(var(--d) + 1px + var(--rw)), transparent 0) border-box,\n    var(--fill);\n  box-shadow: inset 0 0 0 var(--rw) var(--ring);\n  font-weight: 400;\n  font-size: 1.125rem;\n  width: 100%;\n  min-height: 3.25rem;\n  padding: 0.5rem 1rem;\n}\n.ds-search::placeholder { color: var(--muted, #535e67); opacity: 1; }\n.ds-search::-webkit-search-cancel-button { -webkit-appearance: none; }\n.ds-search:focus-visible {\n  outline: 0;\n  --edge: var(--field, #123655);\n  --ring: var(--field, #123655);\n  --rw: 1px;\n}"
+    },
+    {
+      "name": "Select",
+      "kind": "input",
+      "refersTo": "select",
+      "description": "Chamfered select with a 12 by 8 pixel ink caret. The native arrow is removed.",
+      "html": "<label class=\"ds-pick\">Category<select class=\"ds-select\"><option>All categories</option><option>Ambient documentation</option></select></label>",
+      "css": ".ds-pick {\n  display: inline-flex;\n  align-items: center;\n  gap: 0.625rem;\n  font-family: var(--sans, \"Source Sans 3\", sans-serif);\n  font-size: 1.0625rem;\n  font-weight: 600;\n  color: var(--ink, #14202b);\n}\n.ds-select {\n  --edge: var(--line, #737d85);\n  --fill: var(--ivory, #f4f1e6);\n  --ring: transparent;\n  --rw: 0px;\n  --d: calc(var(--cut, 10px) * 0.7071);\n  font-family: var(--sans, \"Source Sans 3\", sans-serif);\n  font-size: 1.0625rem;\n  color: var(--ink, #14202b);\n  min-height: 2.75rem;\n  margin: 0;\n  padding: 0.5rem 0.875rem;\n  border: 1px solid var(--edge);\n  border-radius: 0;\n  clip-path: polygon(0 0, calc(100% - var(--cut, 10px)) 0, 100% var(--cut, 10px), 100% 100%, 0 100%);\n  background:\n    linear-gradient(225deg, transparent var(--d), var(--edge) 0 calc(var(--d) + 1px), var(--ring) 0 calc(var(--d) + 1px + var(--rw)), transparent 0) border-box,\n    var(--fill);\n  box-shadow: inset 0 0 0 var(--rw) var(--ring);\n  font-weight: 400;\n  width: auto;\n  min-width: 15rem;\n  padding: 0.5rem 2.5rem 0.5rem 0.875rem;\n  appearance: none;\n  background:\n    linear-gradient(225deg, transparent var(--d), var(--edge) 0 calc(var(--d) + 1px), var(--ring) 0 calc(var(--d) + 1px + var(--rw)), transparent 0) border-box,\n    url(\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8'%3E%3Cpath d='M1 1.5l5 5 5-5' fill='none' stroke='%2314202b' stroke-width='1.6'/%3E%3C/svg%3E\") right 0.875rem center / 12px 8px no-repeat,\n    var(--fill);\n}\n.ds-select:focus-visible {\n  outline: 0;\n  --edge: var(--field, #123655);\n  --ring: var(--field, #123655);\n  --rw: 1px;\n}\n.ds-select[aria-invalid=\"true\"]:not(:focus-visible) { --edge: var(--amber, #7a4e00); }"
+    },
+    {
+      "name": "Filter Toggle",
+      "kind": "chip",
+      "refersTo": "toggle",
+      "description": "A chamfered filter. Checked matches the primary button. The check is a clipped mark, not an icon.",
+      "html": "<div class=\"ds-toggles\"><label class=\"ds-toggle\"><input type=\"checkbox\" checked>Built for nurses</label><label class=\"ds-toggle\"><input type=\"checkbox\">HIPAA-ready</label></div>",
+      "css": ".ds-toggles { display: flex; flex-wrap: wrap; gap: 0.75rem 1rem; }\n.ds-toggle {\n  --edge: var(--line, #737d85);\n  --fill: var(--ivory, #f4f1e6);\n  --ring: transparent;\n  --rw: 0px;\n  --d: calc(var(--cut, 10px) * 0.7071);\n  font-family: var(--sans, \"Source Sans 3\", sans-serif);\n  font-size: 1.0625rem;\n  color: var(--ink, #14202b);\n  min-height: 2.75rem;\n  margin: 0;\n  padding: 0.5rem 0.875rem;\n  border: 1px solid var(--edge);\n  border-radius: 0;\n  clip-path: polygon(0 0, calc(100% - var(--cut, 10px)) 0, 100% var(--cut, 10px), 100% 100%, 0 100%);\n  background:\n    linear-gradient(225deg, transparent var(--d), var(--edge) 0 calc(var(--d) + 1px), var(--ring) 0 calc(var(--d) + 1px + var(--rw)), transparent 0) border-box,\n    var(--fill);\n  box-shadow: inset 0 0 0 var(--rw) var(--ring);\n  display: inline-flex;\n  align-items: center;\n  gap: 0.625rem;\n  font-weight: 600;\n  padding: 0.5rem 1.125rem 0.5rem 0.875rem;\n  cursor: pointer;\n  user-select: none;\n}\n.ds-toggle:hover { --edge: var(--ink, #14202b); }\n.ds-toggle:has(:checked) {\n  --edge: var(--field, #123655);\n  --fill: var(--field, #123655);\n  color: var(--ivory, #f4f1e6);\n}\n.ds-toggle:has(:focus-visible) {\n  outline: 0;\n  --edge: var(--field, #123655);\n  --ring: var(--field, #123655);\n  --rw: 1px;\n}\n.ds-toggle:has(:checked):has(:focus-visible) {\n  outline: 0;\n  --edge: var(--field, #123655);\n  --ring: var(--ivory, #f4f1e6);\n  --rw: 2px;\n}\n.ds-toggle input {\n  appearance: none;\n  flex: none;\n  display: grid;\n  place-content: center;\n  width: 1.125rem;\n  height: 1.125rem;\n  margin: 0;\n  border: 1.5px solid currentColor;\n  background: transparent;\n  color: inherit;\n}\n.ds-toggle input::before {\n  content: \"\";\n  width: 0.6875rem;\n  height: 0.6875rem;\n  background: currentColor;\n  clip-path: polygon(12% 46%, 0 64%, 42% 100%, 100% 18%, 84% 4%, 40% 68%);\n  transform: scale(0);\n}\n.ds-toggle input:checked::before { transform: none; }\n.ds-toggle input:focus-visible { outline: 0; }"
+    },
+    {
+      "name": "Masthead",
+      "kind": "nav",
+      "refersTo": "mast",
+      "description": "Full-bleed field blue with the 1px security tint, the ivory wordmark, and the site links.",
+      "html": "<header class=\"ds-mast\"><a class=\"ds-mark\" href=\"/\">Nurse AI Tools</a><nav class=\"ds-nav\" aria-label=\"Site\"><a href=\"/\" aria-current=\"page\">Directory</a><a href=\"/submit\">Submit a tool</a><a href=\"/about\">About</a></nav></header>",
+      "css": ".ds-mast {\n  display: flex;\n  flex-wrap: wrap;\n  align-items: flex-end;\n  justify-content: space-between;\n  gap: 0.85rem 2.5rem;\n  padding: clamp(1.35rem, 2.5vw, 2rem) clamp(1rem, 4vw, 2.5rem);\n  background-color: var(--field, #123655);\n  background-image: repeating-linear-gradient(135deg, rgb(244 241 230 / 0.05) 0 1px, transparent 1px 5px);\n  color: var(--ivory, #f4f1e6);\n}\n.ds-mark {\n  font-family: var(--wide, \"Syncopate\", \"Source Sans 3\", sans-serif);\n  font-weight: 700;\n  font-size: clamp(1.25rem, 0.1rem + 7.2vw, 3rem);\n  line-height: 1.05;\n  letter-spacing: 0.02em;\n  text-transform: uppercase;\n  color: var(--ivory, #f4f1e6);\n  text-decoration: none;\n}\n.ds-nav { display: flex; flex-wrap: wrap; column-gap: 1.5rem; }\n.ds-nav a {\n  font-family: var(--sans, \"Source Sans 3\", sans-serif);\n  font-size: 1.0625rem;\n  color: var(--ivory, #f4f1e6);\n  text-decoration: none;\n  display: inline-block;\n  padding-block: 0.625rem;\n}\n.ds-nav a:hover,\n.ds-nav a[aria-current=\"page\"] {\n  text-decoration: underline;\n  text-decoration-thickness: 1px;\n  text-underline-offset: 0.4em;\n}\n.ds-mast :focus-visible {\n  outline: 2px solid var(--ivory, #f4f1e6);\n  outline-offset: 2px;\n}"
+    },
+    {
+      "name": "Status Plate",
+      "kind": "custom",
+      "refersTo": "bay-stated",
+      "description": "Three bays under a copper rule. Amber is Unknown or Not for patient info. Teal is Mentions HIPAA. Nurses stays untoned.",
+      "html": "<dl class=\"ds-plate\"><div class=\"ds-bay\"><dt>Built for</dt><dd>Nurses</dd></div><div class=\"ds-bay ds-bay-stated\"><dt>HIPAA status</dt><dd>Mentions HIPAA</dd></div><div class=\"ds-bay ds-bay-caution\"><dt>Bedside fit</dt><dd>Unknown</dd></div></dl>",
+      "css": ".ds-plate {\n  position: relative;\n  display: grid;\n  grid-template-columns: repeat(3, minmax(0, 1fr));\n  margin: 0;\n  padding-top: 2px;\n  border-bottom: 1px solid var(--hair, #b9c1c6);\n  background: var(--paper, #e7eef2);\n}\n.ds-plate::before {\n  content: \"\";\n  position: absolute;\n  inset: 0 0 auto;\n  height: 2px;\n  background: var(--copper, #8c4a32);\n  transform-origin: left;\n}\n@keyframes ds-draw { from { transform: scaleX(0); } }\n[data-state=\"filtering\"] .ds-plate::before { animation: ds-draw 180ms ease-out; }\n@media (prefers-reduced-motion: reduce) {\n  [data-state=\"filtering\"] .ds-plate::before { animation: none; }\n}\n.ds-bay {\n  display: grid;\n  align-content: start;\n  gap: 0.3125rem;\n  margin: 0;\n  padding: 0.5rem 0.625rem 0.625rem;\n  border-left: 1px solid var(--hair, #b9c1c6);\n}\n.ds-bay:first-child { border-left: 0; }\n.ds-bay dt {\n  margin: 0;\n  font-family: var(--wide, \"Syncopate\", \"Source Sans 3\", sans-serif);\n  font-weight: 700;\n  font-size: 0.8125rem;\n  line-height: 1.25;\n  letter-spacing: 0.03em;\n  text-transform: uppercase;\n  color: var(--muted, #535e67);\n}\n.ds-bay dd {\n  margin: 0;\n  font-family: var(--sans, \"Source Sans 3\", sans-serif);\n  font-weight: 600;\n  font-size: 0.9375rem;\n  line-height: 1.25;\n  color: var(--ink, #14202b);\n}\n.ds-bay-caution { background: var(--amber-bg, #f8edd4); color: var(--amber, #7a4e00); }\n.ds-bay-stated { background: var(--teal-bg, #e4f3ee); color: var(--teal, #0c5c4c); }\n.ds-bay-caution dt,\n.ds-bay-caution dd,\n.ds-bay-stated dt,\n.ds-bay-stated dd { color: inherit; }\n@media (max-width: 32rem) {\n  .ds-plate { grid-template-columns: minmax(0, 1fr); }\n  .ds-bay {\n    grid-template-columns: 7.5rem minmax(0, 1fr);\n    align-items: baseline;\n    border-left: 0;\n    border-top: 1px solid var(--hair, #b9c1c6);\n  }\n  .ds-bay:first-child { border-top: 0; }\n}"
+    },
+    {
+      "name": "Index Row",
+      "kind": "custom",
+      "refersTo": "bay-caution",
+      "description": "A ruled directory row. The tool name is Source Sans 3 600. The plate sits in the third column.",
+      "html": "<div class=\"ds-index\"><div class=\"ds-cols\" aria-hidden=\"true\"><span>Tool</span><span>What it does</span><span>RN reality check</span></div><article class=\"ds-entry\"><div><h2><a href=\"/tools/example\">Tool name</a></h2><p class=\"ds-meta\">Vendor <span aria-hidden=\"true\">\u00b7</span> Category</p></div><p class=\"ds-what\">What it does for nurses.</p><dl class=\"ds-row-plate\"><div class=\"ds-row-bay\"><dt>Built for</dt><dd>Nurses</dd></div><div class=\"ds-row-bay ds-row-stated\"><dt>HIPAA status</dt><dd>Mentions HIPAA</dd></div><div class=\"ds-row-bay ds-row-caution\"><dt>Bedside fit</dt><dd>Unknown</dd></div></dl></article></div>",
+      "css": ".ds-index { background: var(--paper, #e7eef2); color: var(--ink, #14202b); }\n.ds-cols {\n  display: grid;\n  grid-template-columns: minmax(11rem, 15rem) minmax(0, 1fr) minmax(20.5rem, 26rem);\n  column-gap: clamp(1.25rem, 3vw, 2.5rem);\n  align-items: end;\n  padding-bottom: 0.625rem;\n  border-bottom: 2px solid var(--ink, #14202b);\n  font-family: var(--wide, \"Syncopate\", \"Source Sans 3\", sans-serif);\n  font-weight: 700;\n  font-size: 0.8125rem;\n  line-height: 1.25;\n  letter-spacing: 0.03em;\n  text-transform: uppercase;\n}\n.ds-entry {\n  position: relative;\n  display: grid;\n  grid-template-columns: minmax(11rem, 15rem) minmax(0, 1fr) minmax(20.5rem, 26rem);\n  column-gap: clamp(1.25rem, 3vw, 2.5rem);\n  row-gap: 0.375rem;\n  align-items: start;\n  padding: 1.125rem 0 1.25rem;\n  border-bottom: 1px solid var(--hair, #b9c1c6);\n}\n.ds-entry h2 {\n  margin: 0;\n  font-family: var(--sans, \"Source Sans 3\", sans-serif);\n  font-weight: 600;\n  font-size: 1.1875rem;\n  line-height: 1.25;\n}\n.ds-entry h2 a { color: var(--ink, #14202b); text-decoration: none; }\n.ds-entry h2 a::after { content: \"\"; position: absolute; inset: 0; }\n.ds-entry:hover h2 a { text-decoration: underline; text-decoration-thickness: 1px; }\n.ds-entry h2 a:focus-visible { outline: 0; }\n.ds-entry:has(a:focus-visible) {\n  outline: 2px solid var(--field, #123655);\n  outline-offset: 2px;\n}\n.ds-meta {\n  margin: 0.125rem 0 0;\n  color: var(--muted, #535e67);\n  font-family: var(--sans, \"Source Sans 3\", sans-serif);\n  font-size: 0.9375rem;\n}\n.ds-what {\n  margin: 0;\n  max-width: 62ch;\n  font-family: var(--sans, \"Source Sans 3\", sans-serif);\n  font-size: 1.0625rem;\n  line-height: 1.5;\n}\n.ds-row-plate {\n  position: relative;\n  display: grid;\n  grid-template-columns: repeat(3, minmax(0, 1fr));\n  margin: 0;\n  padding-top: 2px;\n  border-bottom: 1px solid var(--hair, #b9c1c6);\n}\n.ds-row-plate::before {\n  content: \"\";\n  position: absolute;\n  inset: 0 0 auto;\n  height: 2px;\n  background: var(--copper, #8c4a32);\n  transform-origin: left;\n}\n.ds-row-bay {\n  display: grid;\n  align-content: start;\n  gap: 0.3125rem;\n  margin: 0;\n  padding: 0.5rem 0.625rem 0.625rem;\n  border-left: 1px solid var(--hair, #b9c1c6);\n}\n.ds-row-bay:first-child { border-left: 0; }\n.ds-row-bay dt {\n  margin: 0;\n  min-height: 2.5em;\n  font-family: var(--wide, \"Syncopate\", \"Source Sans 3\", sans-serif);\n  font-weight: 700;\n  font-size: 0.8125rem;\n  line-height: 1.25;\n  letter-spacing: 0.03em;\n  text-transform: uppercase;\n  color: var(--muted, #535e67);\n}\n.ds-row-bay dd {\n  margin: 0;\n  font-family: var(--sans, \"Source Sans 3\", sans-serif);\n  font-weight: 600;\n  font-size: 0.9375rem;\n  line-height: 1.25;\n  color: var(--ink, #14202b);\n}\n.ds-row-caution { background: var(--amber-bg, #f8edd4); color: var(--amber, #7a4e00); }\n.ds-row-stated { background: var(--teal-bg, #e4f3ee); color: var(--teal, #0c5c4c); }\n.ds-row-caution dt,\n.ds-row-caution dd,\n.ds-row-stated dt,\n.ds-row-stated dd { color: inherit; }\n@media (max-width: 52rem) {\n  .ds-cols { display: none; }\n  .ds-index { border-top: 2px solid var(--ink, #14202b); }\n  .ds-entry { grid-template-columns: minmax(0, 1fr); }\n  .ds-row-plate { margin-top: 0.5rem; }\n}\n@media (max-width: 32rem) {\n  .ds-row-plate { grid-template-columns: minmax(0, 1fr); }\n  .ds-row-bay {\n    grid-template-columns: 7.5rem minmax(0, 1fr);\n    align-items: baseline;\n    border-left: 0;\n    border-top: 1px solid var(--hair, #b9c1c6);\n  }\n  .ds-row-bay:first-child { border-top: 0; }\n  .ds-row-bay dt { min-height: 0; }\n}"
+    }
+  ],
+  "narrative": {
+    "northStar": "The 1971 Clinical Futures Manual",
+    "overview": "This is a clinical index drawn as a 1971 futures manual. The page sits on cool daylight paper. A full-bleed field-blue masthead carries an ivory wordmark, and the only texture on the site is a 1px diagonal security tint inside that masthead. The directory below is a ruled list a nurse can scan.\n\nThe signature is the three-bay status plate, labeled Built for, HIPAA status, and Bedside fit in the words the data already uses. A copper rule runs across the top. It is visible at rest, and when a filter settles it draws once from the left in 180ms ease-out. That animation is removed under prefers-reduced-motion. Controls stay ordinary inputs and buttons, each with a single top-right chamfer and an inset focus ring.\n\nThe retro-futurist pin is held as this manual: a credible clinical reference with personality. It refuses neon, glow, glass, gradient text, emoji, and kickers. Contrast, a visible focus state, and reduced motion belong to the material. Nurses is never colored as a grade.",
+    "keyCharacteristics": [
+      "Cool daylight paper, a field-blue masthead, and an ivory wordmark",
+      "Syncopate 700 for display, Source Sans 3 for reading and for scannable tool names",
+      "Square corners, with one 10px top-right chamfer on controls",
+      "A three-bay status plate whose copper rule is the only motion",
+      "Flat depth from the masthead, 2px ink rules, and hairlines"
+    ],
+    "rules": [
+      {
+        "name": "The Plate Copper Rule",
+        "body": "Copper is the 2px line across the status plate and nothing else.",
+        "section": "colors"
+      },
+      {
+        "name": "The Grade Tone Rule",
+        "body": "On a reality-check value, amber means Unknown or Not for patient info, and teal means Mentions HIPAA. Nurses is never colored as a grade, and neither are Physicians, Both, General, or a bedside-fit phrase other than Unknown. Form errors reuse amber and form success reuses teal. Those messages are not grades.",
+        "section": "colors"
+      },
+      {
+        "name": "The Display Budget Rule",
+        "body": "Syncopate 700 is the wordmark, page titles, section headings, the index column head, and plate labels at 0.8125rem. Index tool names, field labels, buttons, and plate values stay Source Sans 3.",
+        "section": "typography"
+      },
+      {
+        "name": "The Ruled Index Rule",
+        "body": "The directory is a three-column ruled list at desktop and a stack below 52rem. It is not a card grid.",
+        "section": "layout"
+      },
+      {
+        "name": "The Flat Manual Rule",
+        "body": "Surfaces do not lift. Do not add a drop shadow, a glow, or glass. The inset ring is a focus stroke.",
+        "section": "elevation"
+      },
+      {
+        "name": "The Hatch Rule",
+        "body": "The masthead carries a 1px diagonal security tint, ivory at 5% opacity, 135 degrees, repeating every 5px. No other surface is textured.",
+        "section": "elevation"
+      },
+      {
+        "name": "The One Chamfer Rule",
+        "body": "Controls have square corners and one 10px cut at the top-right. Nothing else is chamfered.",
+        "section": "shapes"
+      },
+      {
+        "name": "The Inset Focus Rule",
+        "body": "Clip-path clips outlines, so chamfered controls clear the outline and draw focus inside the shape. The border turns Field Blue and a 1px Field Blue inset ring completes the stroke. Primary buttons and checked toggles draw a 2px Ivory inset ring instead. Unclipped links and index rows keep a 2px Field Blue outline, offset 2px. On the masthead that outline is Ivory.",
+        "section": "shapes"
+      }
+    ],
+    "dos": [
+      "Do paint the page in Daylight Paper and the masthead in Field Blue, with the Ivory wordmark on that field.",
+      "Do keep Plate Copper to the 2px status-plate rule.",
+      "Do use Caution Amber for Unknown, Not for patient info, invalid edges, and form errors, and Stated Teal for Mentions HIPAA and form success.",
+      "Do leave Nurses untoned, along with Physicians, Both, General, and any bedside-fit phrase other than Unknown.",
+      "Do set Syncopate 700 on the wordmark, page titles, section headings, the column head, and plate labels, and Source Sans 3 600 on index tool names, labels, buttons, and plate values.",
+      "Do chamfer controls once at the top-right by 10px and draw their focus inside the clip.",
+      "Do draw the copper rule in 180ms ease-out while the directory is filtering, and remove that animation under prefers-reduced-motion."
+    ],
+    "donts": [
+      "Don't use neon, glow, glass, gradient text, emoji, or kickers.",
+      "Don't add a drop shadow, and don't put texture anywhere but the masthead hatch.",
+      "Don't color Nurses as a grade.",
+      "Don't set index tool names in Syncopate.",
+      "Don't round controls. The corner radius stays 0.",
+      "Don't turn the index into an icon-card grid.",
+      "Don't put copper on a button, a link, or body text."
+    ]
+  }
+}
