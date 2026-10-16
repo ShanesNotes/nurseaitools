@@ -1,0 +1,2 @@
+CREATE TABLE IF NOT EXISTS subscribers(id INTEGER PRIMARY KEY AUTOINCREMENT,email TEXT UNIQUE NOT NULL,created_at TEXT,user_agent TEXT);
+CREATE TABLE IF NOT EXISTS submissions(id INTEGER PRIMARY KEY AUTOINCREMENT,name TEXT,url TEXT,category TEXT,notes TEXT,email TEXT,created_at TEXT,user_agent TEXT,status TEXT DEFAULT 'new');

@@ -1,0 +1,8 @@
+name = "nurseaitools"
+main = "dist/worker.js"
+compatibility_date = "2026-10-01"
+workers_dev = true
+[[d1_databases]]
+binding = "DB"
+database_name = "nurseaitools"
+database_id = "76c61476-6d94-490e-802e-54e456d45d93"
