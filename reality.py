@@ -14,4 +14,5 @@ R={
 "ChatGPT":(Gn,U),"Claude":(Gn,U),"Gemini":(Gn,U),"Microsoft Copilot":(Gn,U),"Perplexity":(Gn,U),"NotebookLM":(Gn,U),
 "GoodNurse":(N,ED),"NCLEXIT":(N,ED),"NurseSavvy":(N,ED),"CarePlanHQ":(N,ED),"Care Plan Genie":(N,ED),"PEPID Nursing Student Care Plan":(N,ED),"Quizlet":(Gn,ED),"Knowt":(Gn,ED),"StudyFetch":(Gn,ED),
 "Wellsheet":(Ph,DK),"Epic generative AI (summaries & handoff)":(B,DK),"Innovaccer":(U,DK),"Notable":(U,DK),
+"ClinicalKey Nursing AI":(N,U),"Epic Chart with Art (nursing ambient)":(N,BS),"AvaSure":(N,BS),"Stryker SmartCare (care.ai)":(N,BS),"UbiSim":(N,ED),
 }

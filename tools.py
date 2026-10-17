@@ -56,7 +56,7 @@ T=[
 ("Perplexity","Perplexity","https://www.perplexity.ai",G,"AI answer engine that cites web sources; useful for quick, sourced lookups.",""),
 ("NotebookLM","Google","https://notebooklm.google.com",G,"AI notebook that answers questions only from documents you upload (e.g. policies, lecture notes).",""),
 ("Wellsheet","Wellsheet","https://www.wellsheet.com",H,"AI chart summarization that surfaces the most relevant patient information inside the EHR workflow.",""),
-("Epic generative AI (summaries & handoff)","Epic Systems","https://www.epic.com/software/ai/",H,"Epic's built-in AI features, including generated patient summaries and handoff support, for organizations on Epic.","Epic (native)"),
+("Epic generative AI (summaries & handoff)","Epic Systems","https://www.epic.com/software/ai/",H,"Epic's built-in Art AI features for organizations on Epic, including AI-drafted end-of-shift nursing care plan notes and Inpatient Insights summaries of recent events during a stay.","Epic (native)"),
 ("Innovaccer","Innovaccer","https://innovaccer.com",H,"Healthcare data and AI platform that unifies patient records and supports care-team hand-offs and care coordination.",""),
 ("Notable","Notable","https://www.notablehealth.com",H,"AI agents that automate intake, documentation prep and administrative hand-offs for health systems.",""),
 ("GoodNurse","GoodNurse","https://goodnurse.com",E,"AI NCLEX tutor with 2,000+ practice questions and adaptive study plans; you can ask follow-up questions on a missed item.",""),
@@ -68,4 +68,9 @@ T=[
 ("Quizlet","Quizlet","https://quizlet.com",K,"Flashcard and study platform with AI features that turn notes into study sets and practice tests.",""),
 ("Knowt","Knowt","https://knowt.com",K,"Free flashcard and note tool with AI that builds flashcards and quizzes from lecture notes, slides and videos.",""),
 ("StudyFetch","StudyFetch","https://www.studyfetch.com",K,"Turns lecture slides, notes and study guides into flashcards, quizzes and tests with an AI tutor.",""),
+("ClinicalKey Nursing AI","Elsevier","https://www.elsevier.com/promotions/introducing-clinicalkey-for-nursing-ai",C,"Nurse-specific AI assistant (launched Sept 2026) that answers plain-language questions on assessments, interventions, procedures, medications and discharge planning, with citations to Elsevier nursing books, journals and Clinical Skills. Sold to hospitals, separate from ClinicalKey AI for physicians.",""),
+("Epic Chart with Art (nursing ambient)","Epic Systems","https://www.epic.com/epic/post/mount-sinai-medical-center-among-first-in-the-nation-to-bring-ambient-ai-to-nurses/",A,"Epic's own ambient AI for nurses: listens to bedside conversation (English and Spanish) and drafts assessments, care plans and education notes for nurse review before they enter the chart. Early pilots at Mount Sinai Miami Beach and Northeast Georgia Health System in 2026.","Epic (native, including Rover)"),
+("AvaSure","AvaSure","https://avasure.com",P,"Virtual care platform for virtual sitting, virtual nursing and patient safety observation, with computer vision and AI applications for in-room monitoring.","Epic (Toolbox designation, per vendor site)"),
+("Stryker SmartCare (care.ai)","Stryker","https://www.stryker.com/us/en/smart-care.html",P,"AI-enabled smart room platform from Stryker and care.ai: ambient monitoring sensors, virtual nursing and virtual monitoring that automate rounding and safety workflows.",""),
+("UbiSim","UbiSim (Laerdal)","https://www.ubisimvr.com",E,"VR clinical simulation for nursing schools and hospitals, with nurse-authored scenarios and AI-enhanced debriefing to build clinical judgment.",""),
 ]
