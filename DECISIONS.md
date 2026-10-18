@@ -1,0 +1,5 @@
+Subtract Before You Add: deleted the webfonts, the FONTS route, the chamfer clip-paths, the SVG select caret and the copper animation before writing one line of the new CSS.
+Experience First: the index became one sheet with Built for, HIPAA status and Bedside fit as their own columns under an "RN reality check" head, so a nurse reads down one column instead of decoding a plate per row.
+Experience First: each accent has one job (blue is the reality check, green is Mentions HIPAA, red is PHI and invalid fields, yellow lives in the stripe), and caution values get a dashed edge so shape carries the meaning without hue.
+Laziness Protocol: kept the ul/li rows and every data-* hook and moved the plate into columns with display:contents, so web/*.js and its 39 tests did not change.
+Prove It Works: test_style.py derives contrast pairs from the shipped rules and checks content survival per tool, and seven mutations (dark muted, shadow, accent fill, no skip link, dropped EHR, outline:0, 15px) each made it fail.

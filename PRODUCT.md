@@ -40,9 +40,7 @@ Search and filter UI states are explicit: idle, filtering, empty results. Newsle
 
 Name: Nurse AI Tools. The owner asked for a look that is distinctive, credible, and handcrafted, like a serious clinical reference that also has personality, and said the current site looks like generic AI slop. That character is binding.
 
-The owner later pinned the visual system: retro futurist. Type, color, texture, layout, and motion come from that world. It must still read as a credible clinical reference. It must not be a gimmick or a generic neon synthwave template. Contrast, focus states, and reduced motion are required. Tokens and the direction are documented in the README.
-
-The committed reading of that pin is a 1971 clinical futures manual. Cool paper, a field-blue masthead, Syncopate for display, and a three-bay status plate. concept-seed returned seed key 3630b0a9. The script says a brief-pinned decision beats the roll, so the pin held and the assigned index was not built.
+The owner later replaced the retro-futurist pin with the design system of marketforever.dev: dark, flat, one monospace face, plus four sparse accent edges (red, blue, green, yellow). It must still read as a credible clinical reference. Contrast, focus states, and the 390px phone layout are required. `DESIGN.md` documents the system and `test_style.py` checks it.
 
 ## Evidence on Hand
 

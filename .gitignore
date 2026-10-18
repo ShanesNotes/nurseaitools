@@ -2,3 +2,4 @@ uploads/
 pages/
 node_modules/
 .wrangler/
+.claude/
