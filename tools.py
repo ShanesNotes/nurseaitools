@@ -4,7 +4,7 @@ A,H,C,E,S,P,G="Ambient documentation","Handoff & summaries","Clinical decision s
 T=[
 ("Dragon Copilot (nursing)","Microsoft","https://www.microsoft.com/en-us/health-solutions/clinical-workflow/dragon-copilot",A,"Ambient capture of nurse observations in Epic Rover that drafts flowsheet entries (vitals, LDAs, wounds, safety) and narrative nurse notes for review before filing.","Epic (Rover/Hyperspace)"),
 ("Commure Ambient for Nursing","Commure","https://www.commure.com/blog/introducing-commure-ambient-for-nursing-in-epic-rover",A,"Ambient AI inside Epic Rover that turns spoken assessments into structured flowsheet and LDA suggestions for nurse review.","Epic (Rover, via Ambient Voice Recognition Toolbox)"),
-("Abridge","Abridge","https://www.abridge.com",A,"Ambient clinical documentation that drafts notes from conversations; being piloted by some health systems for nursing workflows.","Epic"),
+("Abridge","Abridge","https://www.abridge.com",A,"Ambient clinical documentation that drafts notes from conversations; mainly used by physicians and APPs. Its separate nursing product is listed as Abridge for Nurses.","Epic"),
 ("Nabla","Nabla","https://www.nabla.com",A,"Ambient AI assistant that generates clinical notes from patient encounters.","Epic, athenahealth (per vendor site)"),
 ("Suki","Suki","https://www.suki.ai",A,"Voice AI assistant for ambient note generation, dictation and chart Q&A.","Epic, Oracle Health, MEDITECH, athenahealth (per vendor site)"),
 ("Sully.ai","Sully.ai","https://www.sully.ai",A,"Suite of AI 'agents' for clinical notes, intake and admin tasks.","Epic, Oracle Health (Cerner), MEDITECH, athenahealth (per vendor site)"),
@@ -21,7 +21,7 @@ T=[
 ("Bayesian Health","Bayesian Health","https://www.bayesianhealth.com",C,"AI early-warning platform (e.g. sepsis, deterioration) embedded in clinician workflow.","Epic (per vendor site)"),
 ("Viz.ai","Viz.ai","https://www.viz.ai",C,"AI care-coordination platform that flags suspected stroke and other time-critical findings and alerts care teams.",""),
 ("Aidoc","Aidoc","https://www.aidoc.com",C,"AI that flags critical imaging findings (e.g. PE, bleed) to speed triage and care-team notification.",""),
-("OpenEvidence","OpenEvidence","https://www.openevidence.com",C,"Free-for-clinicians AI search that answers clinical questions with citations to medical literature.",""),
+("OpenEvidence","OpenEvidence","https://www.openevidence.com",C,"Free-for-clinicians AI search that answers clinical questions with citations to medical literature. Some health systems now embed it in Epic; at Northwestern Medicine (Oct 2026) nurses and pharmacists got access too.","Epic (at some health systems, e.g. Northwestern Medicine)"),
 ("UpToDate (AI features)","Wolters Kluwer","https://www.wolterskluwer.com/en/solutions/uptodate",C,"Point-of-care clinical reference; Wolters Kluwer has added generative AI search on top of UpToDate content.",""),
 ("Glass Health","Glass Health","https://glass.health",C,"AI clinical reasoning tool that drafts differentials and assessment/plans for clinician review.","Epic (per vendor site)"),
 ("Prenosis Sepsis ImmunoScore","Prenosis","https://prenosis.com",C,"AI sepsis risk tool; Prenosis announced FDA De Novo authorization for Sepsis ImmunoScore in 2024.",""),
@@ -73,4 +73,7 @@ T=[
 ("AvaSure","AvaSure","https://avasure.com",P,"Virtual care platform for virtual sitting, virtual nursing and patient safety observation, with computer vision and AI applications for in-room monitoring.","Epic (Toolbox designation, per vendor site)"),
 ("Stryker SmartCare (care.ai)","Stryker","https://www.stryker.com/us/en/smart-care.html",P,"AI-enabled smart room platform from Stryker and care.ai: ambient monitoring sensors, virtual nursing and virtual monitoring that automate rounding and safety workflows.",""),
 ("UbiSim","UbiSim (Laerdal)","https://www.ubisimvr.com",E,"VR clinical simulation for nursing schools and hospitals, with nurse-authored scenarios and AI-enhanced debriefing to build clinical judgment.",""),
+("Abridge for Nurses","Abridge","https://www.abridge.com/platform/nursing",A,"Ambient AI for nursing: turns natural nurse-patient conversation into draft flowsheet entries you verify against linked sources before filing, and pulls relevant patient context forward. Works across devices. Sold to health systems.",""),
+("hellocare.ai","hellocare.ai","https://hellocare.ai",P,"AI-assisted virtual nursing platform for virtual rounding, admissions and discharges, plus AI virtual sitting, fall prevention and detection, and privacy features.","Epic, Cerner, Allscripts (per vendor site)"),
+("Vitalize","Vitalize","https://www.vitalize.care",S,"AI operations platform for hospital staffing offices: predictive scheduling, a staffing command center, and flow and capacity optimization.",""),
 ]

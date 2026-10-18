@@ -34,7 +34,7 @@
   "vendor": "Abridge",
   "url": "https://www.abridge.com",
   "category": "Ambient documentation",
-  "what": "Ambient clinical documentation that drafts notes from conversations; being piloted by some health systems for nursing workflows.",
+  "what": "Ambient clinical documentation that drafts notes from conversations; mainly used by physicians and APPs. Its separate nursing product is listed as Abridge for Nurses.",
   "ehr": "Epic",
   "hipaa": "Not publicly stated on vendor homepage; verify with vendor."
  },
@@ -49,7 +49,7 @@
   "category": "Ambient documentation",
   "what": "Ambient AI assistant that generates clinical notes from patient encounters.",
   "ehr": "Epic, athenahealth (per vendor site)",
-  "hipaa": "Vendor website mentions HIPAA (checked Oct 15, 2026). BAA availability not confirmed here; ask the vendor."
+  "hipaa": "Vendor website mentions HIPAA (checked Oct 2026). BAA availability not confirmed here; ask the vendor."
  },
  {
   "built": "Physicians",
@@ -62,7 +62,7 @@
   "category": "Ambient documentation",
   "what": "Voice AI assistant for ambient note generation, dictation and chart Q&A.",
   "ehr": "Epic, Oracle Health, MEDITECH, athenahealth (per vendor site)",
-  "hipaa": "Vendor website mentions HIPAA (checked Oct 15, 2026). BAA availability not confirmed here; ask the vendor."
+  "hipaa": "Vendor website mentions HIPAA (checked Oct 2026). BAA availability not confirmed here; ask the vendor."
  },
  {
   "built": "Physicians",
@@ -75,7 +75,7 @@
   "category": "Ambient documentation",
   "what": "Suite of AI 'agents' for clinical notes, intake and admin tasks.",
   "ehr": "Epic, Oracle Health (Cerner), MEDITECH, athenahealth (per vendor site)",
-  "hipaa": "Vendor website mentions HIPAA (checked Oct 15, 2026). BAA availability not confirmed here; ask the vendor."
+  "hipaa": "Vendor website mentions HIPAA (checked Oct 2026). BAA availability not confirmed here; ask the vendor."
  },
  {
   "built": "Physicians",
@@ -101,7 +101,7 @@
   "category": "Ambient documentation",
   "what": "Ambient AI scribe that drafts encounter notes from natural conversation.",
   "ehr": "Epic (per vendor site)",
-  "hipaa": "Vendor website mentions HIPAA (checked Oct 15, 2026). BAA availability not confirmed here; ask the vendor."
+  "hipaa": "Vendor website mentions HIPAA (checked Oct 2026). BAA availability not confirmed here; ask the vendor."
  },
  {
   "built": "Physicians",
@@ -114,7 +114,7 @@
   "category": "Ambient documentation",
   "what": "AI scribe that transcribes visits and drafts notes, letters and documents.",
   "ehr": "Epic, Oracle Health (Cerner) (per vendor site)",
-  "hipaa": "Vendor website mentions HIPAA (checked Oct 15, 2026). BAA availability not confirmed here; ask the vendor."
+  "hipaa": "Vendor website mentions HIPAA (checked Oct 2026). BAA availability not confirmed here; ask the vendor."
  },
  {
   "built": "Physicians",
@@ -127,7 +127,7 @@
   "category": "Ambient documentation",
   "what": "Low-cost AI scribe for individual clinicians that drafts notes from recorded visits.",
   "ehr": "Not publicly listed; check with vendor",
-  "hipaa": "Vendor website mentions HIPAA (checked Oct 15, 2026). BAA availability not confirmed here; ask the vendor."
+  "hipaa": "Vendor website mentions HIPAA (checked Oct 2026). BAA availability not confirmed here; ask the vendor."
  },
  {
   "built": "Physicians",
@@ -140,7 +140,7 @@
   "category": "Ambient documentation",
   "what": "Ambient AI scribe (popular in Australia) that drafts clinical notes and letters.",
   "ehr": "Not publicly listed; check with vendor",
-  "hipaa": "Vendor website mentions HIPAA (checked Oct 15, 2026). BAA availability not confirmed here; ask the vendor."
+  "hipaa": "Vendor website mentions HIPAA (checked Oct 2026). BAA availability not confirmed here; ask the vendor."
  },
  {
   "built": "Physicians",
@@ -166,7 +166,7 @@
   "category": "Ambient documentation",
   "what": "Voice AI assistant for documentation and medical information lookup.",
   "ehr": "Not publicly listed; check with vendor",
-  "hipaa": "Vendor website mentions HIPAA (checked Oct 15, 2026). BAA availability not confirmed here; ask the vendor."
+  "hipaa": "Vendor website mentions HIPAA (checked Oct 2026). BAA availability not confirmed here; ask the vendor."
  },
  {
   "built": "Physicians",
@@ -179,7 +179,7 @@
   "category": "Handoff & summaries",
   "what": "AI copilot that summarizes scattered patient data into a concise chart overview.",
   "ehr": "Epic, athenahealth (per vendor site)",
-  "hipaa": "Vendor website mentions HIPAA (checked Oct 15, 2026). BAA availability not confirmed here; ask the vendor."
+  "hipaa": "Vendor website mentions HIPAA (checked Oct 2026). BAA availability not confirmed here; ask the vendor."
  },
  {
   "built": "Nurses",
@@ -255,8 +255,8 @@
   "vendor": "OpenEvidence",
   "url": "https://www.openevidence.com",
   "category": "Clinical decision support",
-  "what": "Free-for-clinicians AI search that answers clinical questions with citations to medical literature.",
-  "ehr": "Not publicly listed; check with vendor",
+  "what": "Free-for-clinicians AI search that answers clinical questions with citations to medical literature. Some health systems now embed it in Epic; at Northwestern Medicine (Oct 2026) nurses and pharmacists got access too.",
+  "ehr": "Epic (at some health systems, e.g. Northwestern Medicine)",
   "hipaa": "Not publicly stated on vendor homepage; verify with vendor."
  },
  {
@@ -309,7 +309,7 @@
   "category": "Clinical decision support",
   "what": "Generative AI answers grounded in Elsevier clinical content with citations.",
   "ehr": "Not publicly listed; check with vendor",
-  "hipaa": "Vendor website mentions HIPAA (checked Oct 15, 2026). BAA availability not confirmed here; ask the vendor."
+  "hipaa": "Vendor website mentions HIPAA (checked Oct 2026). BAA availability not confirmed here; ask the vendor."
  },
  {
   "built": "Nurses",
@@ -530,7 +530,7 @@
   "category": "Patient communication",
   "what": "Safety-focused generative AI 'agents' that make non-diagnostic patient calls (pre-op, post-discharge, chronic care follow-up).",
   "ehr": "Epic (per vendor site)",
-  "hipaa": "Vendor website mentions HIPAA (checked Oct 15, 2026). BAA availability not confirmed here; ask the vendor."
+  "hipaa": "Vendor website mentions HIPAA (checked Oct 2026). BAA availability not confirmed here; ask the vendor."
  },
  {
   "built": "Unknown",
@@ -543,7 +543,7 @@
   "category": "Patient communication",
   "what": "Avatar-based virtual companions/health coaching for patients, staffed by humans with AI support.",
   "ehr": "Not publicly listed; check with vendor",
-  "hipaa": "Vendor website mentions HIPAA (checked Oct 15, 2026). BAA availability not confirmed here; ask the vendor."
+  "hipaa": "Vendor website mentions HIPAA (checked Oct 2026). BAA availability not confirmed here; ask the vendor."
  },
  {
   "built": "Nurses",
@@ -569,7 +569,7 @@
   "category": "Patient communication",
   "what": "Virtual care platform for virtual nursing, telesitting and inpatient video consults.",
   "ehr": "Epic (per vendor site)",
-  "hipaa": "Vendor website mentions HIPAA (checked Oct 15, 2026). BAA availability not confirmed here; ask the vendor."
+  "hipaa": "Vendor website mentions HIPAA (checked Oct 2026). BAA availability not confirmed here; ask the vendor."
  },
  {
   "built": "Nurses",
@@ -582,7 +582,7 @@
   "category": "Patient communication",
   "what": "Smart hospital platform: in-room cameras/sensors for virtual nursing and AI workflow automation.",
   "ehr": "Not publicly listed; check with vendor",
-  "hipaa": "Vendor website mentions HIPAA (checked Oct 15, 2026). BAA availability not confirmed here; ask the vendor."
+  "hipaa": "Vendor website mentions HIPAA (checked Oct 2026). BAA availability not confirmed here; ask the vendor."
  },
  {
   "built": "Both",
@@ -595,7 +595,7 @@
   "category": "Patient communication",
   "what": "AI-powered virtual care and care-team collaboration platform (ThinkAndor).",
   "ehr": "Epic, Oracle Health (Cerner) (per vendor site)",
-  "hipaa": "Vendor website mentions HIPAA (checked Oct 15, 2026). BAA availability not confirmed here; ask the vendor."
+  "hipaa": "Vendor website mentions HIPAA (checked Oct 2026). BAA availability not confirmed here; ask the vendor."
  },
  {
   "built": "Unknown",
@@ -608,7 +608,7 @@
   "category": "Patient communication",
   "what": "Conversational AI for health system phone lines, scheduling and patient questions.",
   "ehr": "Epic (per vendor site)",
-  "hipaa": "Vendor website mentions HIPAA (checked Oct 15, 2026). BAA availability not confirmed here; ask the vendor."
+  "hipaa": "Vendor website mentions HIPAA (checked Oct 2026). BAA availability not confirmed here; ask the vendor."
  },
  {
   "built": "General",
@@ -868,7 +868,7 @@
   "category": "Clinical decision support",
   "what": "Nurse-specific AI assistant (launched Sept 2026) that answers plain-language questions on assessments, interventions, procedures, medications and discharge planning, with citations to Elsevier nursing books, journals and Clinical Skills. Sold to hospitals, separate from ClinicalKey AI for physicians.",
   "ehr": "Not publicly listed; check with vendor",
-  "hipaa": "Vendor website mentions HIPAA (checked Oct 15, 2026). BAA availability not confirmed here; ask the vendor."
+  "hipaa": "Vendor website mentions HIPAA (checked Oct 2026). BAA availability not confirmed here; ask the vendor."
  },
  {
   "built": "Nurses",
@@ -921,5 +921,44 @@
   "what": "VR clinical simulation for nursing schools and hospitals, with nurse-authored scenarios and AI-enhanced debriefing to build clinical judgment.",
   "ehr": "Not publicly listed; check with vendor",
   "hipaa": "Study tool: never enter real patient information (PHI). Use made-up or de-identified cases only."
+ },
+ {
+  "built": "Nurses",
+  "hstat": "Mentions HIPAA",
+  "fit": "Bedside/mobile workflow",
+  "slug": "abridge-for-nurses",
+  "name": "Abridge for Nurses",
+  "vendor": "Abridge",
+  "url": "https://www.abridge.com/platform/nursing",
+  "category": "Ambient documentation",
+  "what": "Ambient AI for nursing: turns natural nurse-patient conversation into draft flowsheet entries you verify against linked sources before filing, and pulls relevant patient context forward. Works across devices. Sold to health systems.",
+  "ehr": "Not publicly listed; check with vendor",
+  "hipaa": "Vendor website mentions HIPAA (checked Oct 2026). BAA availability not confirmed here; ask the vendor."
+ },
+ {
+  "built": "Nurses",
+  "hstat": "Mentions HIPAA",
+  "fit": "Bedside/mobile workflow",
+  "slug": "hellocare-ai",
+  "name": "hellocare.ai",
+  "vendor": "hellocare.ai",
+  "url": "https://hellocare.ai",
+  "category": "Patient communication",
+  "what": "AI-assisted virtual nursing platform for virtual rounding, admissions and discharges, plus AI virtual sitting, fall prevention and detection, and privacy features.",
+  "ehr": "Epic, Cerner, Allscripts (per vendor site)",
+  "hipaa": "Vendor website mentions HIPAA (checked Oct 2026). BAA availability not confirmed here; ask the vendor."
+ },
+ {
+  "built": "Unknown",
+  "hstat": "Unknown",
+  "fit": "Desk or charting only",
+  "slug": "vitalize",
+  "name": "Vitalize",
+  "vendor": "Vitalize",
+  "url": "https://www.vitalize.care",
+  "category": "Scheduling & staffing",
+  "what": "AI operations platform for hospital staffing offices: predictive scheduling, a staffing command center, and flow and capacity optimization.",
+  "ehr": "Not publicly listed; check with vendor",
+  "hipaa": "Not publicly stated on vendor homepage; verify with vendor."
  }
 ]

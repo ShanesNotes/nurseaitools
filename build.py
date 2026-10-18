@@ -1,13 +1,13 @@
 import glob,html,json,os,re
 exec(open('tools.py').read());exec(open('reality.py').read())
 BASE="https://nurseaitools.com"
-HIP={"deepscribe","nabla","navina","caregility","clinicalkey","lyrebird","tali.ai","sully","getfreed","hippocratic","care.coach","heidihealth","hyro","suki","artisight","andorhealth"}
+HIP={"deepscribe","nabla","navina","caregility","clinicalkey","lyrebird","tali.ai","sully","getfreed","hippocratic","care.coach","heidihealth","hyro","suki","artisight","andorhealth","abridge.com/platform/nursing","hellocare"}
 CATS=[A,H,C,E,K,S,P,G]
 def slug(s): return re.sub(r'[^a-z0-9]+','-',s.lower()).strip('-')
 e=html.escape
 tools=[]
 for n,v,u,c,d,x in T:
-    h=("Vendor website mentions HIPAA (checked Oct 15, 2026). BAA availability not confirmed here; ask the vendor." if any(k in u for k in HIP)
+    h=("Vendor website mentions HIPAA (checked Oct 2026). BAA availability not confirmed here; ask the vendor." if any(k in u for k in HIP)
        else "Consumer version: do not enter patient information (PHI). Enterprise/BAA terms vary; check with your organization." if c==G
        else "Study tool: never enter real patient information (PHI). Use made-up or de-identified cases only." if c in (E,K)
        else "Not publicly stated on vendor homepage; verify with vendor.")

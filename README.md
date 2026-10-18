@@ -16,7 +16,7 @@ npm install
 python3 build.py
 ```
 
-The build prints `71 tools 78 pages <n> bytes`. It writes `dist/worker.js`, `tools.json`, and the worker embedded in `deploy.js`.
+The build prints `74 tools 81 pages <n> bytes`. It writes `dist/worker.js`, `tools.json`, and the worker embedded in `deploy.js`.
 
 Edit tool facts in `tools.py` and the reality check judgments in `reality.py`. Edit markup and CSS in `build.py`. Edit browser behavior in `web/`.
 
