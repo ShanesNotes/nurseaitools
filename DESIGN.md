@@ -1,56 +1,56 @@
 # Design
 
-Nurse AI Tools uses the marketforever.dev system. The page is dark and flat and set in one monospace face. It reads as a clinical reference sheet. A nurse scans the index, filters it, opens a tool, and reads the RN reality check.
+Nurse AI Tools keeps the Market token structure, type roles, spacing scale, and ink rules from `docs/design/market-source/DESIGN.md` (market@64b7d286). That file is the source of truth. This page records only what the nursing site changes, and why.
 
-The tokens are on `:root` in the CSS string in `build.py`. No color, size, or space is written outside `:root`. `python3 test_style.py` builds the site and checks every rule below against the shipped CSS and pages.
+The page is light first, on warm paper. A dark theme follows `prefers-color-scheme` and uses the spec's dark inks except the two edges named below. White, or near-black on paper, is what the directory could verify. Pencil is what it could not, with the word Unknown beside it. Gold is for titles, navigation, and column heads. Red is only the harm edge. Green is only the "Mentions HIPAA" edge. Blue is the link color and the reality-check edge. Frames are square and 1px. There is no shadow, gradient, or blur.
 
-## Color
+`python3 test_style.py` checks the shipped CSS against the values below.
 
-| Token | Hex | Use |
-| --- | --- | --- |
-| `--color-bg` | `#0a0c10` | Page |
-| `--color-surface` | `#11141a` | Index sheet, reality-check panel, newsletter panel, buttons |
-| `--color-thead` | `#141821` | Index column head |
-| `--color-hover` | `#1d222c` | Hovered or focused index row |
-| `--color-text` | `#e7e9ee` | Body text, 13.12:1 on the hover row |
-| `--color-muted` | `#8b93a1` | Secondary text, labels, the dashed caution edge, 5.15:1 on hover |
-| `--color-faint` | `#868d99` | Placeholders, 4.77:1 on hover |
-| `--color-line` | `#3a4250` | Row rules |
-| `--color-line-strong` | `#5c6578` | Inputs, pane edges, the header and footer rules |
-| `--color-mark` | `#e6c87e` | The focus ring |
-| `--color-accent` / `--color-accent-text` | `#e7e9ee` / `#0a0c10` | The filled button and the skip link |
+## What stayed
 
-Every text color clears 4.7:1 on the page, the panel, the table head, and the hover row. Selected text is page color on text color.
+Color names, including `ground`, `panel`, `raised`, `hover`, `text`, `soft`, `pencil`, `heading`, `up`, `down`, and `buy`. The spacing scale is 2, 4, 8, 12, and 16px. Type roles stay `display`, `title`, `body`, `figure`, `lead`, `small`, `micro`, `button`, `trackerHead`, and `trackerLine`. Display, title, and lead stay 18, 14, and 18px. Figure stays 15px. Small stays 12px. Dark `text`, `heading`, `pencil`, `soft`, `up`, `down`, and `buy` keep the spec hexes. Quality, coin, pace, and skill tokens keep the spec hexes and are not painted.
 
-Four accents are edges only. Each has one job.
+## What changed
 
-- `--accent-blue` `#4aa3ff` marks the RN reality check. It is the rule under the column-head group on the index and the left edge of the panel on a tool page.
-- `--accent-green` `#3fae5c` is the solid edge around "Mentions HIPAA".
-- `--accent-red` `#e87878` is the left edge of the PHI rule on student pages and the border of an invalid field.
-- `--accent-yellow` `#e6c87e` appears only in the stripe.
+| Token | Old | New | Why |
+| --- | --- | --- | --- |
+| `micro` size | 11px | 12px | Nothing on the site is under 12px. |
+| `button` size | 11px | 18px | The control is 44px tall and sits beside 18px field text. |
+| `trackerLine` size | 10px | 12px | Same floor. This role is not drawn here. |
+| `body` size | 13px | 18px | A row is a sentence a nurse reads, not an auction cell. |
+| Display, title, button, and tracker faces | Friz Quadrata | Host Grotesk | The client face cannot be shipped. |
+| Body, lead, small, and micro faces | Arial Narrow | Host Grotesk | There is no Arial Narrow file, and a condensed face fights long paragraphs. |
+| Figure face | Arial Narrow | JetBrains Mono | Figures keep a second face. This is the licensed one already on the worker. |
+| Control reach | 24px | 44px | Nurse tap target. The row is the hit target for its name. |
+| Focus ring | 1px `accent` | 2px `accent` | A 1px ring is easy to miss. |
+| Dark `edge` and `rule` | `#4a4234`, `#332d23` | `#7d7262` | The spec edge is about 1.5:1 on the ground. With no client frame art, the sheet would disappear. |
+| Light `ground` | `#1c1611` | `#f6f1e8` | Warm paper for long text. The spec has one dark look. |
+| Light `panel` | `#211a14` | `#efe8db` | The mast, one step off the paper. |
+| Light `raised` | `#221f18` | `#fffaf3` | Sheets, fields, and doors. |
+| Light `hover` | `#2c281f` | `#e9e1d2` | The hover sits under the words. |
+| Light `rule` | `#332d23` | `#8a7d68` | Row hairline, still 3:1 on paper. |
+| Light `text` | `#ffffff` | `#1c1611` | Seen ink. The dark ground hex moves to the text. |
+| Light `soft` | `#a49d89` | `#5c5348` | Secondary text clears 4.5:1 on paper. |
+| Light `pencil` | `#9a9a9a` | `#5e584e` | Unknown ink clears 4.5:1. Dark pencil already does, and stays. |
+| Light `heading`, `muted`, `button` | `#ffd100` | `#6e4e0c` | Pigment gold is about 2:1 on paper. |
+| Light `accent`, `line`, `trim` | `#e2b55c`, `#c9a24a` | `#6e4e0c` | The focus ring has to clear 4.5:1. |
+| Light `up`, `fresh`, `complete` | `#72c48e`, `#28ff28` | `#1f6b3a` | Green text and the HIPAA edge. |
+| Light `down` | `#e4705f` | `#8d2c1e` | The harm edge. |
+| Light `buy` | `#6a95d8` | `#1e3f86` | Links and the reality-check edge. |
+| Light `frame` | `#1a1712` | `#e7dfd0` | Unused as a costume. Kept so the name still exists. |
+| Light `edge`, `menuEdge` | `#4a4234`, `#8e8671` | `#6b5e4a` | The 1px frame. |
+| Light `bar`, `tab` | `#2a2318`, `#1c1912` | `#dfd3bc`, `#efe8db` | Column heads and the reality-check head. |
+| Light `menu` | `#0b0a08` | `#1c1611` | Filled button and skip link. `menuText` stays `#ece5d3`. |
+| Light `objective` | `#eeeeee` | `#1c1611` | Not painted. Kept off neon on paper. |
 
-All four sit in the 4px stripe at the top of every page. No accent is used as text or as a fill.
+## Ink on the page
 
-A reality-check value is plain when it is a fact (Nurses, Education only). Unknown and Not for patient info get a dashed edge. Mentions HIPAA gets a solid green edge. The words carry the meaning, the edge style carries it a second time, and the hue a third.
+Home opens with the title, the brand line, three doors, then the directory. The title and the wordmark are `heading`. The brand line and the rows are `text` at `body`. Unknown is a dashed `pencil` edge. "Not for patient info" is a solid `down` edge. "Mentions HIPAA" is a solid `up` edge. The words still say which is which.
 
-## Type
+At 960px and below, the column head hides and each row stacks. At 560px and below, the reality-check values become label and value lines, and the category filter stacks. The page does not scroll sideways at 390px.
 
-One family, `ui-monospace, "Cascadia Mono", "Segoe UI Mono", Menlo, Consolas, monospace`. No webfont. Ligatures are off and numbers are tabular with a slashed zero.
-
-Six sizes. 12px for column heads and reality-check labels. 13px for row meta, index values, notes, and the footer. 14px for descriptions, nav, labels, and buttons. 16px for body copy, fields, tool names, and tool-page values. 20px for the wordmark and section heads. 24px for page titles.
-
-## Space and shape
-
-Spacing is 4, 8, 12, 16, 24, and 32px (`--space-2` to `--space-7`). The gutter is 16px. Corners are 0 or 2px. Edges are 1px, and the focus ring and accent edges are 2px. There is no shadow, gradient, blur, or animation.
-
-## Layout
-
-The index is one sheet with five columns at desktop: tool, what it does, built for, HIPAA status, and bedside fit. The last three sit under an "RN reality check" group head. The head sticks while the list scrolls. At 960px and below the head hides and each row stacks, with the three reality-check values in a labeled row. At 560px and below those values become label and value lines. The page never scrolls sideways at 390px.
-
-## Keyboard and touch
-
-Every page opens with a skip link to `main`. Every link, field, select, checkbox, and button shows the same 2px gold ring, and no rule restyles it. Controls are at least 44px tall. A filter toggle is a labeled native checkbox. When checked, its border turns text color.
+Every page opens with a skip link to `main`. Links in the mast, the doors, the guides, the tool spec, buttons, fields, and the filter toggles are at least 44px tall.
 
 ## Copy
 
-No emoji. No hero, feature cards, or counts beyond the tool count the build computes. The words unlock, elevate, seamless, powerful, robust, next-gen, journey, dashboard, empower, effortless, cutting-edge, game-changer, transform, and the phrase "curated by" stay out of shipped pages, scripts, and CSS. So do em dashes and curly quotes.
+No emoji. The brand line on home is "AI should run the rules in the background so nurses can run the care." The words unlock, elevate, seamless, powerful, robust, next-gen, journey, dashboard, empower, effortless, cutting-edge, game-changer, transform, and the phrase "curated by" stay out of shipped pages, scripts, and CSS. So do em dashes and curly quotes.
