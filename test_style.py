@@ -1,4 +1,5 @@
 """The shipped look stays on the dark system, readable, and plain. Run: python3 test_style.py"""
+import base64
 import html
 import json
 import pathlib
@@ -163,7 +164,13 @@ flat = re.compile(r"box-shadow|text-shadow|gradient|blur\(|@font-face|@import|wo
 for path, page in ALL_PAGES.items():
     for m in flat.finditer(page):
         check(False, f"{path}: {m.group(0)}")
-check("FONTS" not in WORKER, "the worker still carries the FONTS table")
+fonts = const("FONTS")
+check(len(fonts) == 9, f"{len(fonts)} font files, want 9")
+for path, file in fonts.items():
+    if path.endswith(".woff2"):
+        check(base64.b64decode(file["b64"])[:4] == b"wOF2", f"{path} is not a woff2")
+    else:
+        check("SIL Open Font License" in file.get("text", ""), f"{path} is missing the OFL text")
 
 # Scale: every size, space, radius and color comes from :root.
 for media, selector, decls in STYLED:

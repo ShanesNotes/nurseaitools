@@ -1,4 +1,4 @@
-import glob,html,json,os,re
+import base64,glob,html,json,os,re
 exec(open('tools.py').read());exec(open('reality.py').read())
 BASE="https://nurseaitools.com"
 HIP={"deepscribe","nabla","navina","caregility","clinicalkey","lyrebird","tali.ai","sully","getfreed","hippocratic","care.coach","heidihealth","hyro","suki","artisight","andorhealth","abridge.com/platform/nursing","hellocare"}
@@ -19,6 +19,10 @@ TRAITS=[{"key":"nurses","label":"Built for nurses","match":lambda t:t["built"]==
 BAYS=[("Built for","built"),("HIPAA status","hstat"),("Bedside fit","fit")]
 TONE={"Unknown":"caution","Not for patient info":"caution","Mentions HIPAA":"stated"}
 SCRIPTS={"/js/"+os.path.basename(f):open(f).read() for f in sorted(glob.glob("web/*.js"))}
+FONTS={}
+for f in sorted(glob.glob("fonts/*")):
+    name=os.path.basename(f); raw=open(f,"rb").read(); key="/fonts/"+name
+    FONTS[key]={"type":"font/woff2","b64":base64.b64encode(raw).decode()} if name.endswith(".woff2") else {"type":"text/plain;charset=utf-8","text":raw.decode()}
 
 CSS="""
 :root{--color-bg:#0a0c10;--color-surface:#11141a;--color-thead:#141821;--color-hover:#1d222c;
@@ -200,8 +204,8 @@ sm='<?xml version="1.0" encoding="UTF-8"?><urlset xmlns="http://www.sitemaps.org
 json.dump(tools,open("tools.json","w"),indent=1)
 
 TEMPLATE=open("worker.template.js").read()
-VALUES={"PAGES":json.dumps(P_),"NOT_FOUND":json.dumps(NOT_FOUND),"SITEMAP":json.dumps(sm),"SCRIPTS":json.dumps(SCRIPTS),"BASE":BASE}
-def fill(src): return re.sub(r"__(PAGES|NOT_FOUND|SITEMAP|SCRIPTS|BASE)__",lambda m:VALUES[m.group(1)],src)
+VALUES={"PAGES":json.dumps(P_),"NOT_FOUND":json.dumps(NOT_FOUND),"SITEMAP":json.dumps(sm),"SCRIPTS":json.dumps(SCRIPTS),"FONTS":json.dumps(FONTS),"BASE":BASE}
+def fill(src): return re.sub(r"__(PAGES|NOT_FOUND|SITEMAP|SCRIPTS|FONTS|BASE)__",lambda m:VALUES[m.group(1)],src)
 W=fill(TEMPLATE)
 open("dist/worker.js","w").write(W); print(len(tools),"tools",len(P_),"pages",len(W),"bytes")
 
