@@ -1,0 +1,445 @@
+{
+  "schemaVersion": 2,
+  "generatedAt": "2026-10-15T12:00:00Z",
+  "title": "Design System: Market",
+  "extensions": {
+    "colorMeta": {
+      "ground": {
+        "role": "neutral",
+        "displayName": "Inset Dark",
+        "canonical": "#1c1611",
+        "purpose": "The Tailoring detail inset warm dark ground, sampled RGB 27.5,22.1,17.2; flat fallback #1c1611.",
+        "tonalRamp": [
+          "oklch(15% 0.004 84.6)",
+          "oklch(26% 0.004 84.6)",
+          "oklch(38% 0.004 84.6)",
+          "oklch(49% 0.004 84.6)",
+          "oklch(61% 0.004 84.6)",
+          "oklch(72% 0.004 84.6)",
+          "oklch(84% 0.004 84.6)",
+          "oklch(95% 0.004 84.6)"
+        ]
+      },
+      "frame": {
+        "role": "neutral",
+        "displayName": "Dialog Ground",
+        "canonical": "#1a1712",
+        "purpose": "The dialog frame's flat fill under the client's dark background art.",
+        "tonalRamp": [
+          "oklch(15% 0.004 84.6)",
+          "oklch(26% 0.004 84.6)",
+          "oklch(38% 0.004 84.6)",
+          "oklch(49% 0.004 84.6)",
+          "oklch(61% 0.004 84.6)",
+          "oklch(72% 0.004 84.6)",
+          "oklch(84% 0.004 84.6)",
+          "oklch(95% 0.004 84.6)"
+        ]
+      },
+      "text": {
+        "role": "primary",
+        "displayName": "Seen White",
+        "canonical": "#ffffff",
+        "purpose": "Every observed value and selected control: the client's GameFontHighlight white.",
+        "tonalRamp": [
+          "oklch(15% 0.025 89.2)",
+          "oklch(26% 0.025 89.2)",
+          "oklch(38% 0.025 89.2)",
+          "oklch(49% 0.025 89.2)",
+          "oklch(61% 0.025 89.2)",
+          "oklch(72% 0.025 89.2)",
+          "oklch(84% 0.025 89.2)",
+          "oklch(95% 0.025 89.2)"
+        ],
+        "native": "HIGHLIGHT_FONT_COLOR"
+      },
+      "heading": {
+        "role": "primary",
+        "displayName": "Client Gold",
+        "canonical": "#ffd100",
+        "purpose": "Titles, section headers, labels and column heads: the client's GameFontNormal gold.",
+        "tonalRamp": [
+          "oklch(15% 0.179 92.7)",
+          "oklch(26% 0.179 92.7)",
+          "oklch(38% 0.179 92.7)",
+          "oklch(49% 0.179 92.7)",
+          "oklch(61% 0.179 92.7)",
+          "oklch(72% 0.179 92.7)",
+          "oklch(84% 0.179 92.7)",
+          "oklch(95% 0.179 92.7)"
+        ],
+        "native": "NORMAL_FONT_COLOR"
+      },
+      "pencil": {
+        "role": "secondary",
+        "displayName": "Pencil Grey",
+        "canonical": "#9a9a9a",
+        "purpose": "Carries, unknowns, estimates and leaders: what Market did not see, always beside its reason.",
+        "tonalRamp": [
+          "oklch(15% 0.008 67.6)",
+          "oklch(26% 0.008 67.6)",
+          "oklch(38% 0.008 67.6)",
+          "oklch(49% 0.008 67.6)",
+          "oklch(61% 0.008 67.6)",
+          "oklch(72% 0.008 67.6)",
+          "oklch(84% 0.008 67.6)",
+          "oklch(95% 0.008 67.6)"
+        ]
+      },
+      "down": {
+        "role": "secondary",
+        "displayName": "Loss Red",
+        "canonical": "#e4705f",
+        "purpose": "Losses only.",
+        "tonalRamp": [
+          "oklch(15% 0.148 30.0)",
+          "oklch(26% 0.148 30.0)",
+          "oklch(38% 0.148 30.0)",
+          "oklch(49% 0.148 30.0)",
+          "oklch(61% 0.148 30.0)",
+          "oklch(72% 0.148 30.0)",
+          "oklch(84% 0.148 30.0)",
+          "oklch(95% 0.148 30.0)"
+        ],
+        "native": "RED_FONT_COLOR"
+      },
+      "up": {
+        "role": "secondary",
+        "displayName": "Gain Green",
+        "canonical": "#72c48e",
+        "purpose": "Gains and fresh asks.",
+        "tonalRamp": [
+          "oklch(15% 0.113 153.9)",
+          "oklch(26% 0.113 153.9)",
+          "oklch(38% 0.113 153.9)",
+          "oklch(49% 0.113 153.9)",
+          "oklch(61% 0.113 153.9)",
+          "oklch(72% 0.113 153.9)",
+          "oklch(84% 0.113 153.9)",
+          "oklch(95% 0.113 153.9)"
+        ],
+        "native": "GREEN_FONT_COLOR"
+      },
+      "accent": {
+        "role": "secondary",
+        "displayName": "Accent Gold",
+        "canonical": "#e2b55c",
+        "purpose": "A selected toolbar tab, a selected personal chart marker, the minimap badge; the chart's line.",
+        "tonalRamp": [
+          "oklch(15% 0.119 82.6)",
+          "oklch(26% 0.119 82.6)",
+          "oklch(38% 0.119 82.6)",
+          "oklch(49% 0.119 82.6)",
+          "oklch(61% 0.119 82.6)",
+          "oklch(72% 0.119 82.6)",
+          "oklch(84% 0.119 82.6)",
+          "oklch(95% 0.119 82.6)"
+        ]
+      },
+      "trim": {
+        "role": "tertiary",
+        "displayName": "Gold Trim",
+        "canonical": "#c9a24a",
+        "purpose": "Market's own gold edge where the client's dialog border is missing; the fallback tab's trim.",
+        "tonalRamp": [
+          "oklch(15% 0.115 85.2)",
+          "oklch(26% 0.115 85.2)",
+          "oklch(38% 0.115 85.2)",
+          "oklch(49% 0.115 85.2)",
+          "oklch(61% 0.115 85.2)",
+          "oklch(72% 0.115 85.2)",
+          "oklch(84% 0.115 85.2)",
+          "oklch(95% 0.115 85.2)"
+        ]
+      },
+      "bar": {
+        "role": "tertiary",
+        "displayName": "Title Bar",
+        "canonical": "#2a2318",
+        "purpose": "The title bar and the section headers' dark bar.",
+        "tonalRamp": [
+          "oklch(15% 0.004 84.6)",
+          "oklch(26% 0.004 84.6)",
+          "oklch(38% 0.004 84.6)",
+          "oklch(49% 0.004 84.6)",
+          "oklch(61% 0.004 84.6)",
+          "oklch(72% 0.004 84.6)",
+          "oklch(84% 0.004 84.6)",
+          "oklch(95% 0.004 84.6)"
+        ]
+      },
+      "edge": {
+        "role": "tertiary",
+        "displayName": "Inset Edge",
+        "canonical": "#4a4234",
+        "purpose": "The insets' 1 px border.",
+        "tonalRamp": [
+          "oklch(15% 0.004 84.6)",
+          "oklch(26% 0.004 84.6)",
+          "oklch(38% 0.004 84.6)",
+          "oklch(49% 0.004 84.6)",
+          "oklch(61% 0.004 84.6)",
+          "oklch(72% 0.004 84.6)",
+          "oklch(84% 0.004 84.6)",
+          "oklch(95% 0.004 84.6)"
+        ]
+      },
+      "menu": {
+        "role": "neutral",
+        "displayName": "Classic Dark List",
+        "canonical": "#0b0a08",
+        "purpose": "The dropdown list and the world frames' fill.",
+        "tonalRamp": [
+          "oklch(15% 0.005 85.9)",
+          "oklch(26% 0.005 85.9)",
+          "oklch(38% 0.005 85.9)",
+          "oklch(49% 0.005 85.9)",
+          "oklch(61% 0.005 85.9)",
+          "oklch(72% 0.005 85.9)",
+          "oklch(84% 0.005 85.9)",
+          "oklch(95% 0.005 85.9)"
+        ]
+      },
+      "panel": {
+        "role": "neutral",
+        "displayName": "Warm panel",
+        "canonical": "#211a14",
+        "purpose": "Panels raised slightly above the warm inset ground."
+      },
+      "skill": {
+        "role": "secondary",
+        "displayName": "Profession rank",
+        "canonical": "#2f237c",
+        "purpose": "Median RGB 47,35,124 from Tailoring bar x180-300/y76-86; shared rank-bar tint at 0.6 opacity."
+      },
+      "pace1": {
+        "role": "secondary",
+        "displayName": "Pace: clears very fast",
+        "canonical": "#28ff28",
+        "purpose": "The item tooltip's pace mark and Sells words for an item that clears very fast (two up triangles)."
+      },
+      "pace2": {
+        "role": "secondary",
+        "displayName": "Pace: clears fast",
+        "canonical": "#40bf40",
+        "purpose": "The item tooltip's pace mark and Sells words for an item that clears fast (one up triangle)."
+      },
+      "pace3": {
+        "role": "secondary",
+        "displayName": "Pace: steady",
+        "canonical": "#ffff00",
+        "purpose": "The item tooltip's pace mark and Sells words for an item that sells steadily (a diamond)."
+      },
+      "pace4": {
+        "role": "secondary",
+        "displayName": "Pace: clears slowly",
+        "canonical": "#ff6a50",
+        "purpose": "The item tooltip's pace mark and Sells words for an item that clears slowly (one down triangle)."
+      },
+      "pace5": {
+        "role": "secondary",
+        "displayName": "Pace: barely moves",
+        "canonical": "#e8655c",
+        "purpose": "The item tooltip's pace mark and Sells words for an item that barely moves (two down triangles); the handoff's #d42a1e lightened to read 4.5:1 on every ground (ADR 0180)."
+      }
+    },
+    "typographyMeta": {
+      "display": {
+        "displayName": "Display",
+        "purpose": "The Trading item name and the Ledger's net line (Friz Quadrata 18)."
+      },
+      "title": {
+        "displayName": "Title",
+        "purpose": "Headings, section headers, tabs and sections."
+      },
+      "figure": {
+        "displayName": "Figure",
+        "purpose": "Standalone figures: the header ask, the Ledger net value, Position cells."
+      },
+      "body": {
+        "displayName": "Body",
+        "purpose": "Cells, labels, notes, segments and dropdowns."
+      },
+      "small": {
+        "displayName": "Small",
+        "purpose": "Table cells and tracker lines; kept until callers move to body."
+      },
+      "micro": {
+        "displayName": "Micro",
+        "purpose": "Axis ticks, column headings, tallies and footnotes."
+      },
+      "button": {
+        "displayName": "Button",
+        "purpose": "UIPanelButtonTemplate labels in Friz Quadrata."
+      }
+    },
+    "shadows": [],
+    "motion": [],
+    "breakpoints": [
+      {
+        "name": "compact",
+        "value": "760px"
+      },
+      {
+        "name": "auction",
+        "value": "792px"
+      },
+      {
+        "name": "large",
+        "value": "1024px"
+      },
+      {
+        "name": "hd",
+        "value": "1056px"
+      },
+      {
+        "name": "wide",
+        "value": "1440px"
+      },
+      {
+        "name": "ultrawide",
+        "value": "1778px"
+      }
+    ],
+    "notes": {
+      "shadows": "None: the addon draws no shadow (Elevation & Depth).",
+      "motion": "No motion tokens. The one timed change is the alert banner, shown 6 s then faded over 1 s (AlertBanner.lua).",
+      "breakpoints": "Not responsive breakpoints: the window widths Layout is checked at (M.TERMINAL_VIEWPORTS: compact 760x540, auction 792x482, large 1024x700, hd 1056x702, ultrawide 1778x936) plus the preview's 1440x900.",
+      "tonalRamp": "Synthesized in OKLCH at the token's hue and chroma, lightness 15% to 95%; the code defines no tonal scale.",
+      "components": "Stand-in values for the one look (ADR 0085) from tools/terminal-dev/static/style.css; client art (the dialog border, tab and button templates) is stood in by flat fills.",
+      "native": "heading, muted, button, text, up, down, orange, yellow and green are the client's own colours read at load through U.NATIVE (R15); canonical is the fallback hex, exempt from the 4.5:1 floor only as the client gives it (ADR 0085, 2026-10-17)."
+    }
+  },
+  "components": [
+    {
+      "name": "Bottom tabs",
+      "kind": "nav",
+      "refersTo": "tab",
+      "description": "The view tabs under the frame (U.tab, the client's PanelTabButtonTemplate; style.css button.index stands in): the selected one raised with a white label, the rest gold.",
+      "html": "<div class=\"ds-tabs\"><button class=\"ds-index\" aria-pressed=\"true\">Overview</button><button class=\"ds-index\">Ledger</button><button class=\"ds-index\">Trading</button><button class=\"ds-index\">Professions</button></div>",
+      "css": ".ds-tabs { display: flex; gap: 2px; align-items: flex-end; background: #1a1712; padding: 4px 8px 0; } .ds-index { height: 26px; border: 1px solid #c9a24a; background: #1c1912; color: #ffd100; font-family: 'Friz Quadrata TT', serif; font-size: 14px; padding: 0 8px; cursor: pointer; white-space: nowrap; } .ds-index[aria-pressed=\"true\"] { background: #1c1611; color: #ffffff; border-top-color: transparent; } .ds-index:not([aria-pressed=\"true\"]):hover { background: #1c1912; color: #ffffff; } .ds-index:focus-visible { outline: 1px solid #e2b55c; outline-offset: 1px; }"
+    },
+    {
+      "name": "Action button",
+      "kind": "button",
+      "refersTo": "control-action",
+      "description": "A stand-in for the client's red UIPanelButtonTemplate (style.css button.act), gold label in Friz Quadrata. Client stand-in fills, not Market tokens.",
+      "html": "<button class=\"ds-act\">Open</button>",
+      "css": ".ds-act { height: 24px; min-width: 52px; padding: 0 8px; background: #7d1309; color: #ffd100; border: 1px solid #3e0904; font-family: 'Friz Quadrata TT', 'Friz Quadrata', C059, serif; font-size: 11px; cursor: pointer; white-space: nowrap; } .ds-act:hover { background: #95180c; } .ds-act:active { border-color: #ffd100; } .ds-act:focus-visible { outline: 1px solid #e2b55c; outline-offset: 1px; }"
+    },
+    {
+      "name": "Segment group",
+      "kind": "chip",
+      "refersTo": "control-segment-group",
+      "description": "Ranges, periods and the guide scope as one classic segmented control (U.group; style.css button.seg.grp): cells 24x24 at least, side by side sharing their muted rules, the chosen cell ringed in ink in the ledger.",
+      "html": "<div class=\"ds-strip\"><button class=\"ds-seg\">1H</button><button class=\"ds-seg\">6H</button><button class=\"ds-seg\">1D</button><button class=\"ds-seg\" aria-pressed=\"true\">7D</button><button class=\"ds-seg\">30D</button></div>",
+      "css": ".ds-strip { display: flex; gap: 0; background: #1c1611; padding: 4px; } .ds-seg { width: 26px; height: 24px; padding: 0; border: 0; background: transparent; color: #ffd100; font-family: 'Arial Narrow', 'Nimbus Sans Narrow', 'Liberation Sans Narrow', sans-serif; font-size: 13px; cursor: pointer; box-shadow: inset 1px 0 0 #ffd100, inset 0 1px 0 #ffd100, inset 0 -1px 0 #ffd100; } .ds-seg:last-child { box-shadow: inset 0 0 0 1px #ffd100; } .ds-seg:hover { background: #2c281f; color: #ffffff; } .ds-seg[aria-pressed=\"true\"] { color: #ffffff; box-shadow: inset 0 0 0 1px #ffffff; } .ds-seg:focus-visible { outline: 1px solid #e2b55c; outline-offset: 1px; }"
+    },
+    {
+      "name": "Section tabs",
+      "kind": "nav",
+      "refersTo": "control-section",
+      "description": "Positions, History, Listings, Sessions (style.css button.sec): heading face, muted idle, the selected one ringed in ink in the ledger.",
+      "html": "<div class=\"ds-secs\"><button class=\"ds-sec\" aria-pressed=\"true\">Positions</button><button class=\"ds-sec\">History</button><button class=\"ds-sec\">Listings</button></div>",
+      "css": ".ds-secs { display: flex; gap: 4px; background: #1c1611; padding: 4px; } .ds-sec { height: 24px; padding: 0 10px; border: 0; background: transparent; color: #ffd100; font-family: 'Friz Quadrata TT', serif; font-size: 14px; cursor: pointer; } .ds-sec:hover { background: #2c281f; color: #ffffff; } .ds-sec[aria-pressed=\"true\"] { color: #ffffff; box-shadow: inset 0 0 0 1px #ffffff; } .ds-sec:focus-visible { outline: 1px solid #e2b55c; outline-offset: 1px; }"
+    },
+    {
+      "name": "Dropdown and classic list",
+      "kind": "input",
+      "refersTo": "control-dropdown",
+      "description": "The choice over an ink rule in the ledger, opening the classic dark list (style.css .dd, .menu, button.item); the chosen item is header gold; choices 24 tall, 25 apart.",
+      "html": "<div class=\"ds-ddwrap\"><button class=\"ds-dd\">This character <span class=\"ds-arrow\"></span></button><div class=\"ds-menu\"><div class=\"ds-menu-title\">Character</div><button class=\"ds-item\" aria-pressed=\"true\">This character</button><button class=\"ds-item\">Account</button></div></div>",
+      "css": ".ds-ddwrap { background: #1c1611; padding: 6px; width: 180px; } .ds-dd { display: flex; align-items: center; justify-content: space-between; gap: 4px; width: 100%; height: 24px; padding: 0 2px; background: none; border: 0; border-bottom: 1px solid #ffffff; color: #ffffff; font-family: 'Arial Narrow', 'Nimbus Sans Narrow', 'Liberation Sans Narrow', sans-serif; font-size: 13px; cursor: pointer; } .ds-arrow { width: 0; height: 0; border-left: 4px solid transparent; border-right: 4px solid transparent; border-top: 5px solid #ffffff; } .ds-dd:focus-visible { outline: 1px solid #e2b55c; outline-offset: 1px; } .ds-menu { margin-top: 2px; background: #0b0a08; border: 1px solid #8e8671; padding: 2px; } .ds-menu-title { color: #8e8671; font-family: 'Arial Narrow', 'Nimbus Sans Narrow', 'Liberation Sans Narrow', sans-serif; font-size: 11px; padding: 1px 4px 2px; } .ds-item { display: block; width: 100%; height: 24px; margin-bottom: 1px; padding: 0 6px; text-align: left; background: none; border: 0; color: #ece5d3; font-family: 'Arial Narrow', 'Nimbus Sans Narrow', 'Liberation Sans Narrow', sans-serif; font-size: 13px; cursor: pointer; } .ds-item[aria-pressed=\"true\"] { color: #ffd100; } .ds-item:hover { background: rgba(142, 134, 113, 0.35); }"
+    },
+    {
+      "name": "Ledger lines",
+      "kind": "custom",
+      "refersTo": "page",
+      "description": "The account book (style.css .gline): a heading in the heading face over a rule, rows with a pencil dotted leader to the figure, a double-ruled total in ink, a pencil unknown. The column holds at most 420 units, centred on its page.",
+      "html": "<div class=\"ds-ledger\"><div class=\"ds-gline ds-head\"><span class=\"ds-l\">Income</span></div><div class=\"ds-gline\"><span class=\"ds-l\">Auction sales</span><span class=\"ds-lead\">. . . . . . . . . . . . . . . . . . . . . . . .</span><span class=\"ds-v\">1g 34s 81c</span></div><div class=\"ds-gline\"><span class=\"ds-l\">Looted</span><span class=\"ds-lead\">. . . . . . . . . . . . . . . . . . . . . . . .</span><span class=\"ds-v\">15s 21c</span></div><div class=\"ds-gline ds-pencil\"><span class=\"ds-l\">Tuesday</span><span class=\"ds-lead\">. . . . . . . . . . . . . . . . . . . . . . . .</span><span class=\"ds-v\">?</span></div><div class=\"ds-gline\"><span class=\"ds-l\">Total</span><span class=\"ds-lead\"></span><span class=\"ds-v\"><span class=\"ds-ruled\">1g 50s 02c</span></span></div></div>",
+      "css": ".ds-ledger { background: #1c1611; color: #ffffff; padding: 8px 12px 8px 22px; width: 300px; border-left: 1px solid rgba(168, 50, 42, 0.8); font-family: 'Arial Narrow', 'Nimbus Sans Narrow', 'Liberation Sans Narrow', sans-serif; font-size: 13px; } .ds-gline { display: flex; align-items: center; gap: 6px; height: 20px; white-space: nowrap; } .ds-gline.ds-head { border-bottom: 1px solid #332d23; align-items: flex-end; } .ds-gline.ds-head .ds-l { font-family: 'Friz Quadrata TT', serif; font-size: 14px; } .ds-l { flex: none; } .ds-lead { flex: 1 1 0; min-width: 0; overflow: hidden; color: #9a9a9a; font-size: 11px; letter-spacing: 1px; } .ds-v { flex: none; text-align: right; } .ds-ruled { display: inline-block; padding: 0 2px 1px; border-bottom: 4px double currentColor; line-height: 1.1; } .ds-pencil, .ds-pencil .ds-v { color: #9a9a9a; }"
+    },
+    {
+      "name": "Item row",
+      "kind": "card",
+      "refersTo": "row",
+      "description": "A watchlist row (style.css .irow): name, last ask, change and age on a ruled line; hover fill; a stale ask in pencil; the selected row ringed in 1 px ink, no tint and no side bar (R10).",
+      "html": "<div class=\"ds-list\"><div class=\"ds-irow ds-selected\"><span class=\"ds-name\">Copper Ore</span><span class=\"ds-ask\">21c</span><span class=\"ds-chg\">+5%</span><span class=\"ds-age\">4m</span></div><div class=\"ds-irow ds-stale\"><span class=\"ds-name\">Light Leather</span><span class=\"ds-ask\">1s 12c</span><span class=\"ds-chg ds-down\">-8%</span><span class=\"ds-age\">5h</span></div></div>",
+      "css": ".ds-list { background: #1c1611; width: 280px; padding: 4px 0; font-family: 'Arial Narrow', 'Nimbus Sans Narrow', 'Liberation Sans Narrow', sans-serif; font-size: 13px; } .ds-irow { display: grid; grid-template-columns: 1fr 64px 36px 28px; gap: 8px; align-items: center; height: 24px; padding: 0 8px; border-bottom: 1px solid rgba(166, 142, 100, 0.45); color: #ffffff; cursor: pointer; } .ds-irow:hover { background: #2c281f; } .ds-irow.ds-selected { box-shadow: inset 0 0 0 1px #ffffff; } .ds-irow:focus-visible { outline: 1px solid #e2b55c; outline-offset: -1px; } .ds-ask, .ds-chg, .ds-age { text-align: right; } .ds-chg { color: #ffd100; } .ds-chg.ds-down { color: #e4705f; } .ds-age { font-size: 11px; color: #ffd100; } .ds-stale .ds-ask { color: #9a9a9a; }"
+    },
+    {
+      "name": "Frame",
+      "kind": "custom",
+      "refersTo": "frame",
+      "description": "The profession window's metal and rock (U.binding on U.chrome, ADR 0085's 2026-10-17 amendment), \"Market\" centred in gold in its band, over two insets; the dark dialog in its gold border where that art is missing; flat stand-ins for the client's art.",
+      "html": "<div class=\"ds-cover\"><div class=\"ds-plate\">Market</div><div class=\"ds-page\">Inset</div></div>",
+      "css": ".ds-cover { background: #1a1712; padding: 6px; box-shadow: inset 0 0 0 2px #c9a24a; } .ds-plate { background: #2a2318; color: #ffd100; border-bottom: 1px solid #6b5220; font: 12px/19px 'Friz Quadrata TT', serif; text-align: center; } .ds-page { background: #1c1611; border: 1px solid #4a4234; color: #ffffff; padding: 4px 8px; margin-top: 1px; font: 13px 'Arial Narrow', sans-serif; }"
+    }
+  ],
+  "narrative": {
+    "northStar": "A page of the classic client",
+    "overview": "Market's window is the profession window's own frame: its stone and metal border over the rock, a centred gold title in the band, two dark insets, the recipe list's header bars, red buttons, bottom tabs, and white words for what Market saw beside grey words, with their reason, for what it did not. Beside the Tailoring frame (the live reference, R13) it reads as the same craftsman's work; Market's identity is the Ink Rule, not a costume. One look (`MATERIALS.dark`); views pass token and kind names, never colours. Density is a two-page spread per view at 13 px body type. Everything is drawn with client widgets, client fonts and guarded client art; no art file or font ships.",
+    "keyCharacteristics": [
+      "The profession window's frame (R15): its metal border and title band, close button and bottom tabs; two insets with a gap. The dark dialog is the fallback.",
+      "White for what Market saw, grey with its reason for what it did not, \u2020 for AHledger; red only for losses.",
+      "Client fonts only: Friz Quadrata headings and labels, Arial Narrow figures and cells.",
+      "Classic controls: `UIPanelButtonTemplate` actions, `PanelTabButtonTemplate` tabs, the classic dark dropdown list, the classic scroll bar, the size grabber.",
+      "No shadows, no gradients, no radius; depth is the client's own art.",
+      "Hover lies beneath the words; every control answers clicks across at least 24 units (gamepad cursor)."
+    ],
+    "rules": [
+      {
+        "name": "The Ink Rule",
+        "body": "White is what Market saw; grey is what it did not, with its reason (ADR 0047 LM4, LM12; R13). The text model and the chart display list name each value's ink; no painter guesses. Every ink reads at least 4.5:1 on `ground`, `panel`, `raised` and `hover` (flat and added at 0.7), pencil at least 3:1 on the ground; the chart's carries and the \"Last seen\" rule read 3:1 after their alpha (part `materials-contrast`). A pencil figure always has a reason word beside it. Red is only for a loss.",
+        "section": "colors"
+      },
+      {
+        "name": "The One-Table Rule",
+        "body": "Every colour, face and piece of client art comes from the one entry in `U.STYLE.materials` (ADR 0085). A source test fails on any colour outside it; the token check refuses a second look.",
+        "section": "colors"
+      },
+      {
+        "name": "The Classic-Up Rule",
+        "body": "Start from the classic client and build up; never take from retail and build down (Shane's doctrine, 2026-10-11). A new control is a classic control with a facelift.",
+        "section": "colors"
+      },
+      {
+        "name": "The One-Register Rule",
+        "body": "The window and the world are one register (R13). The world frames wear the tooltip-border family (`U.classicBackdrop`: the client's tooltip border and background on the `menu` fill at 0.92, Market's `menu` panel where `BackdropTemplate` is missing): the Scan bar, the alert banner (`GameFontNormal` over `GameFontHighlight`), the guide tracker, and the bag value tab and its panel. The dropdown list and GameTooltip are dark; popups use the client's frame templates.",
+        "section": "colors"
+      },
+      {
+        "name": "The Client-Faces Rule",
+        "body": "Only the client's fonts. A face the client lacks falls back to Friz Quadrata (`SetFont` returns false); the preview's stand-ins are layout evidence only.",
+        "section": "typography"
+      },
+      {
+        "name": "The Plain-Glyph Rule",
+        "body": "Player text is ASCII plus `\u00b7`, `\u2014`, `\u2013`, `\u00d7` and the footnote dagger `\u2020`; a cut reads \"...\" (ADR 0037 phase A, ADR 0047 LM13).",
+        "section": "typography"
+      },
+      {
+        "name": "The No-Fake-Depth Rule",
+        "body": "Client bevels or nothing. The preview's box-shadows (the Details slip, the tooltip stand-in, the coin discs) are not in the addon and are not part of the system.",
+        "section": "elevation"
+      }
+    ],
+    "dos": [
+      "**Do** take every colour, face and art key from `U.STYLE.materials`, and add a token to both looks.",
+      "**Do** name each value's ink in the text model or display list; pencil for carried, estimated, unknown or old.",
+      "**Do** say why an unknown is unknown in plain words: \"?\" for a day with no record, \"open your bank to count\", \"not bought on AH \u2014 no cost\" (LM15, LM24).",
+      "**Do** use the client's templates and art: `UIPanelButtonTemplate`, `UIPanelCloseButton`, the size grabber, the scroll-down arrow, quality colours, coin icons on standalone figures.",
+      "**Do** give every control and row a 24-unit target (`U.reach`, LM22, LM30).",
+      "**Do** footnote an AHledger figure with \u2020 and its table age at the page's foot (LM13, LM33)."
+    ],
+    "donts": [
+      "**Don't** use fluorescent or off-palette accents, gradient or glass shading, or pointed and pill shapes (doctrine).",
+      "**Don't** draw flat, borderless web panels, or copy a retail widget where a classic one exists.",
+      "**Don't** use red for anything but a loss and the margin rule.",
+      "**Don't** ship art or fonts, or name a look inside a view.",
+      "**Don't** put a coin icon in a row, column or axis; rows use compact coin letters.",
+      "**Don't** put `\u00b7` in a title, label or button, or use glyphs outside the plain set."
+    ],
+    "notCanonized": "Not canonized (craft-floor defects the build carries, not rules): none."
+  }
+}

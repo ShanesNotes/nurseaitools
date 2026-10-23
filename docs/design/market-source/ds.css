@@ -1,0 +1,64 @@
+/* Market design-system cards. Tokens mirror addon/market/UI.lua MATERIALS and TYPE through
+   .impeccable/design.json (ADR 0085). Faces are the client's: Friz Quadrata and Arial Narrow;
+   the browser falls back to nearby faces. */
+:root {
+  --ground:#1c1611; --panel:#211a14; --raised:#221f18; --hover:#2c281f; --rule:#332d23;
+  --text:#ffffff; --soft:#a49d89; --muted:#ffd100; --pencil:#9a9a9a; --accent:#e2b55c; --line:#e2b55c;
+  --up:#72c48e; --down:#e4705f; --fresh:#72c48e; --buy:#6a95d8; --sale:#c9925a;
+  --gold:#ffd700; --silver:#c7c7cf; --copper:#eda55f;
+  --frame:#1a1712; --edge:#4a4234; --bar:#2a2318; --heading:#ffd100; --trim:#c9a24a; --trimDark:#6b5220;
+  --tab:#1c1912; --button:#ffd100; --skill:#2f237c; --menu:#0b0a08; --menuEdge:#8e8671; --menuText:#ece5d3;
+  --objective:#eeeeee; --complete:#28ff28; --orange:#ff8040; --yellow:#ffff00; --green:#40bf40; --gray:#808080;
+  --q0:#9d9d9d; --q1:#ffffff; --q2:#1eff00; --q3:#0070dd; --q4:#a335ee; --q5:#ff8000;
+  --f-display:"Friz Quadrata","Friz Quadrata TT","Palatino Linotype","Book Antiqua",Georgia,serif; /* @kind font */
+  --f-body:"Arial Narrow","Liberation Sans Narrow","Roboto Condensed","Helvetica Neue",Arial,sans-serif; /* @kind font */
+  --pace1:#28ff28; --pace2:#40bf40; --pace3:#ffff00; --pace4:#ff6a50; --pace5:#d42a1e;
+  --s-xs:2px; --s-s:4px; --s-m:8px; --s-l:12px; --s-xl:16px;
+}
+html,body{margin:0;background:#2b2419 url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='8' height='8'%3E%3Crect width='8' height='8' fill='%232b2419'/%3E%3Crect x='4' y='4' width='1' height='1' fill='%23352c1f'/%3E%3C/svg%3E");color:var(--text);font:13px/1.25 var(--f-body)}
+body{padding:24px}
+.card-note{font:12px/1.4 var(--f-body);color:#d9d0b8;max-width:720px;margin:0 0 16px}
+.card-note b{color:var(--heading);font-weight:normal}
+.card-note code{color:var(--menuText);background:#15110c;padding:0 4px;border-radius:2px}
+.card-row{display:flex;gap:24px;flex-wrap:wrap;align-items:flex-start;margin-bottom:24px}
+.caption{font:11px/1.3 var(--f-body);color:#c9bfa5;margin:6px 0 0;max-width:420px}
+.caption.pass{color:var(--up)} .caption.fail{color:var(--down)}
+/* ink */
+.ink{color:var(--text)} .pencil{color:var(--pencil)} .soft{color:var(--soft)} .gold-ink{color:var(--heading)}
+.up{color:var(--up)} .down{color:var(--down)} .menuText{color:var(--menuText)}
+.q0{color:var(--q0)} .q1{color:var(--q1)} .q2{color:var(--q2)} .q3{color:var(--q3)} .q4{color:var(--q4)}
+.obj{color:var(--objective)} .done{color:var(--complete)}
+/* coins: the client's gold/silver/copper letters with small dots */
+.coin{white-space:nowrap}
+.coin i{display:inline-block;width:8px;height:8px;border-radius:50%;margin:0 3px 0 1px;vertical-align:-1px}
+.coin .g i{background:var(--gold)} .coin .s i{background:var(--silver)} .coin .c i{background:var(--copper)}
+/* the client's dark dialog frame */
+.frame{background:var(--frame);border:1px solid var(--edge);box-shadow:inset 0 0 0 1px #0d0b08,0 6px 18px rgba(0,0,0,.6);position:relative}
+.frame .title{height:19px;background:var(--bar);color:var(--heading);font:14px/19px var(--f-display);text-align:center;border-bottom:1px solid var(--edge)}
+.frame .close{position:absolute;right:4px;top:1px;width:16px;height:16px;border-radius:3px;background:#8c1d16;border:1px solid #c53a2b;color:#fff;font:bold 11px/15px var(--f-body);text-align:center}
+.inset{background:var(--ground);border:1px solid #0d0b08;box-shadow:inset 0 0 0 1px var(--rule)}
+.section{height:20px;background:var(--bar);color:var(--heading);font:14px/20px var(--f-display);padding:0 8px;border-bottom:1px solid var(--edge);display:flex;justify-content:space-between;align-items:center}
+.section .right{font:11px/20px var(--f-body);color:var(--soft)}
+.btn{display:inline-block;height:20px;padding:0 8px;background:linear-gradient(#b32d1f,#7a1810);border:1px solid #d5503f;border-radius:3px;color:var(--button);font:11px/20px var(--f-display);box-shadow:inset 0 1px 0 rgba(255,255,255,.15)}
+.btn.quiet{background:var(--raised);border-color:var(--edge);color:var(--text)}
+.chk{display:inline-block;width:14px;height:14px;border:1px solid var(--menuEdge);background:var(--menu);border-radius:2px;vertical-align:-3px;margin-right:6px;position:relative}
+.chk.on::after{content:"";position:absolute;left:3px;top:0;width:5px;height:9px;border:solid var(--heading);border-width:0 2px 2px 0;transform:rotate(40deg)}
+.row{height:20px;line-height:20px;padding:0 6px;display:flex;justify-content:space-between;white-space:nowrap}
+.row.hover{background:var(--hover)} .row.sel{box-shadow:inset 0 -1px 0 var(--heading)}
+.tabs{display:flex;gap:2px;padding:0 10px}
+.tab{height:28px;padding:0 14px;background:var(--tab);border:1px solid var(--edge);border-top:0;color:var(--heading);font:14px/28px var(--f-display);border-radius:0 0 6px 6px}
+.tab.sel{background:var(--raised);color:var(--text)}
+/* GameTooltip stand-in: the client's dark tooltip */
+.tip{background:rgba(8,8,16,.92);border:1px solid #3c3c66;box-shadow:inset 0 0 0 1px #0b0b16;padding:8px 10px;width:300px;font:13px/1.35 var(--f-body);color:var(--text)}
+.tip .name{font:15px/1.2 var(--f-display);margin-bottom:2px}
+.tip .l{display:flex;justify-content:space-between;gap:12px}
+.tip .sell{color:var(--text)} .tip .vendor{color:#d9d9d9}
+.tip hr{border:0;border-top:1px solid #2a2a44;margin:5px 0}
+.tip .market{margin-top:4px}
+/* quest-tracker look (ObjectiveTrackerFrame) */
+.tracker{width:260px;font-family:var(--f-display);text-shadow:1px 1px 1px #000}
+.tracker .head{color:var(--heading);font-size:13px;display:flex;justify-content:space-between;border-bottom:1px solid rgba(255,209,0,.35);padding-bottom:2px;margin-bottom:4px}
+.tracker .block{margin-bottom:8px}
+.tracker .bt{color:var(--heading);font-size:12px;margin-bottom:2px;display:flex;justify-content:space-between}
+.tracker .ln{color:var(--objective);font-size:10px;line-height:14px;padding-left:10px}
+.tracker .ln.done{color:var(--complete)} .tracker .ln.gray{color:var(--gray)}
