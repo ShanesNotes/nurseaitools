@@ -1,8 +1,3 @@
-"""Usage: python3 build.py && node serve.mjs &  then  python3 shoot.py [base]
-
-Writes full-page PNGs and prints scrollWidth. Exits 1 if a page is wider than its viewport.
-SHOTS sets the output directory. COLOR_SCHEME is light or dark. CHROME is the browser binary.
-"""
 import os
 import sys
 

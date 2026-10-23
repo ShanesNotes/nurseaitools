@@ -1,5 +1,4 @@
 #!/usr/bin/env python3
-"""Type a query on the home page and record the count. The preview must already be up."""
 import os
 import sys
 

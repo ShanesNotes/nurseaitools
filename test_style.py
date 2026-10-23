@@ -1,4 +1,3 @@
-"""The shipped look keeps the Market token structure and clears 4.5:1 in both themes. Run: python3 test_style.py"""
 import base64
 import html
 import json
@@ -57,7 +56,6 @@ def check(ok, message):
 
 
 def rules(css, media=""):
-    """Yield (media, selector, [(property, value)]) for every rule, descending into @media."""
     i = 0
     while i < len(css):
         open_at = css.find("{", i)
@@ -193,7 +191,6 @@ for path, file in fonts.items():
     else:
         check("SIL Open Font License" in file.get("text", ""), f"{path} is missing the OFL text")
 
-# Scale: every size, space, radius and color comes from :root.
 for media, selector, decls in STYLED:
     for prop, value in decls:
         where = f"{selector} {{{prop}:{value}}}"
@@ -213,7 +210,6 @@ for media, selector, decls in STYLED:
 for name in ("display", "title", "body", "figure", "lead", "small", "micro", "button-size", "tracker-head", "tracker-line"):
     check(TOKENS.get(name) in FONT_SIZES, f"--{name} is {TOKENS.get(name)}")
 
-# Keyboard: a skip link first, a main to land on, and one accent ring.
 focusable = re.compile(r"<(?:a|button|input|select|textarea|summary)\b[^>]*>")
 for path, page in ALL_PAGES.items():
     first = focusable.search(page.split("<body>", 1)[1])
@@ -226,7 +222,6 @@ for media, selector, decls in STYLED:
         if prop.startswith("outline"):
             check(selector == ":focus-visible", f"{selector} restyles the focus outline: {prop}:{value}")
 
-# Copy: no banned pitch, no emoji, no em dash or curly quote anywhere a reader or a script sees.
 for name, raw in [*ALL_PAGES.items(), *SCRIPTS.items(), ("style", CSS)]:
     for m in BANNED.finditer(raw):
         check(False, f"{name}: banned word {m.group(0)!r}")
@@ -235,7 +230,6 @@ for name, raw in [*ALL_PAGES.items(), *SCRIPTS.items(), ("style", CSS)]:
     for m in SLOP_PUNCT.finditer(raw):
         check(False, f"{name}: U+{ord(m.group(0)):04X} in shipped copy")
 
-# Content survives: every tool page carries every fact and the full reality check.
 tool_pages = [p for p in PAGES if p.startswith("/tools/")]
 check(len(tool_pages) == len(TOOLS), f"{len(tool_pages)} tool pages for {len(TOOLS)} tools")
 for t in TOOLS:
