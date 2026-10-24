@@ -231,7 +231,8 @@ PHI='<section class=rule aria-labelledby=phi-h><h2 id=phi-h>One rule before any 
 SP=[("/students/best-free-ai","Best free AI for nursing students"),("/students/ai-care-plan-tools","AI care plan tools"),("/students/nclex-ai-tutors","NCLEX AI tutors compared")]
 def stu(path,title,desc,body):
     side='<p class=back><a href="/students">Back to the students hub</a></p>' if path!="/students" else ""
-    P_[path]=page(title+" | Nurse AI Tools",desc,side+body+NEWS,path)
+    P_[path]=page(title+" | Nurse AI Tools",desc,side+body+(related(path) if path!="/students" else "")+NEWS,path)
+exec(open('landing.py').read())
 stu("/students","AI tools for nursing students and new grads","AI study tools, care plan helpers and NCLEX AI tutors for nursing students and new grads, with an RN reality check on each.",
  f'<section class=deck><h1>AI for nursing students and new grads</h1><p class=lede>Care plans, pharm, NCLEX, your first year on the floor. Here is which AI tools actually help, and where they can steer you wrong.</p>{RULE}</section><div class=prose><h2>Guides</h2><ul class=guides>'+"".join(f'<li><a href="{p}">{t}</a></li>' for p,t in SP)+f'</ul>{PHI}</div><section aria-label="Student tools">'+picks([t["name"] for t in tools if t["category"] in (E,K)])+'</section>')
 stu("/students/best-free-ai","Best free AI for nursing students (2026)","Free and free-tier AI tools nursing students use for studying, flashcards, lecture notes and NCLEX practice, with honest caveats.",
