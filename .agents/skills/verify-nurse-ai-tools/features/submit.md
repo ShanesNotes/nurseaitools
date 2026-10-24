@@ -10,17 +10,12 @@ The submit page is a form. A successful post is reviewed later. The preview does
 
 ## How to get to it (user POV)
 
-Choose Submit a tool in the header, or the submit door on home. The path is `/submit`.
+Choose Submit a tool in the header. The path is `/submit`.
 
-## Driving it with the preview
+## Driving it
 
-Preconditions:
-
-- The preview is up.
-
-- **Record.** Run `python3 shoot.py`. `shots/submit-desktop.png` and `shots/submit-mobile.png` show the form. scrollWidth is `ok`.
-- **Validate.** `npm test` walks the form from idle through error and success without a browser.
+`verify.py` checks status, head tags, and the style audit on `/submit`. `npm test` walks the form machine from idle through error and success without a browser. The skill does not post a submission.
 
 ## Gotchas
 
-A POST to `/api/submit` can return a message, and the stub database does not keep the row. A live Kit call does not happen. Both are verified-unreachable from this preview.
+A live Kit call never happens from a submission, and the review queue is not part of this check.

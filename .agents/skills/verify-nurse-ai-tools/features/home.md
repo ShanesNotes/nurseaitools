@@ -1,27 +1,23 @@
 # Home directory
 
-The home page is the directory. A nurse reads the brand line, picks a door, or searches and filters the list.
+The home page is the directory. A nurse reads the title, then searches and filters the list of every tool.
 
 ## Sub-features
 
-- `home-read` shows the title, the brand line, and the three doors.
+- `home-read` shows the title and the tool count from the build.
 - `home-search` narrows the list as the query is typed.
-- `home-empty` shows the empty state when nothing matches.
+- `home-filter` narrows the list by category.
+- `home-empty` shows the empty state when nothing matches, and Clear restores the list.
 
 ## How to get to it (user POV)
 
-Open `/`.
+Open `/`, or choose Directory in the header.
 
-## Driving it with the preview
+## Driving it
 
-Preconditions:
+`verify.py` checks that the count reads `<N> tools` and that there are N rows, where N is the length of `tools.json`. It types `abridge` and expects exactly the rows whose name, vendor, or description contain it. It picks the tool page's category and expects the same row count as `tools.json`. It types a nonsense query, expects the empty state, then clicks Clear and expects N rows again.
 
-- `node serve.mjs` is serving the worker just built.
-- `curl -sf http://localhost:8787/` contains the brand line.
-
-- **Read.** Run `python3 shoot.py`. `shots/home-desktop.png` and `shots/home-mobile.png` show the title and the brand line. scrollWidth is `ok`.
-- **Search.** Run `python3 .agents/skills/verify-nurse-ai-tools/drive_home.py`. The printed `after` count is smaller than `before`, and `shots/verify/home-search.png` shows the query `abridge`.
-- **Empty.** The node catalog tests cover a query that matches nothing. This browser script does not.
+`drive_home.py` is the small manual version of the search drive, for a preview you started yourself.
 
 ## Gotchas
 

@@ -4,22 +4,17 @@ A tool page is one listing. The reality check is the part a nurse came to read.
 
 ## Sub-features
 
-- `tool-facts` shows the name, vendor, reality check, and the long HIPAA line.
+- `tool-facts` shows the name, vendor, what it does, and the RN reality check.
 - `tool-source` links to the vendor site.
 
 ## How to get to it (user POV)
 
-Open a tool from the directory, or go to `/tools/abridge-for-nurses`.
+Open a tool from the directory, or go to `/tools/<slug>`.
 
-## Driving it with the preview
+## Driving it
 
-Preconditions:
-
-- The preview is up.
-
-- **Record.** Run `python3 shoot.py`. `shots/tool-desktop.png` and `shots/tool-mobile.png` show Abridge for Nurses. scrollWidth is `ok`.
-- **Facts.** `python3 test_style.py` fails if a tool page drops a fact field.
+Over HTTP, `verify.py` loads every `/tools/<slug>` in `tools.json` and checks status 200, head tags, one `h1`, and a title that names the tool. In the browser it opens one page, the first Education / NCLEX tool unless `--tool` says otherwise, and checks the `h1`, the vendor, the description, the reality check, and that the official site link matches `tools.json`.
 
 ## Gotchas
 
-`shoot.py` always opens Abridge for Nurses. Other tools are checked as HTML by `test_style.py`, not as screenshots.
+Only one tool page is screenshotted. `test_style.py` checks every tool page's facts as HTML.

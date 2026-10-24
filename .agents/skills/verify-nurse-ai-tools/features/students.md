@@ -10,16 +10,12 @@ The students hub is the long-form page for students and new grads. It links thre
 
 ## How to get to it (user POV)
 
-Choose Students in the header, or the students door on home. The path is `/students`.
+Choose Students in the header. The path is `/students`.
 
-## Driving it with the preview
+## Driving it
 
-Preconditions:
-
-- The preview is up.
-
-- **Record.** Run `python3 shoot.py`. `shots/students-desktop.png` and `shots/students-mobile.png` show the hub. scrollWidth is `ok`.
+`verify.py` checks `/students` and each guide in the sitemap for status 200 and head tags, and runs the style audit on `/students` at both widths.
 
 ## Gotchas
 
-The three guide pages are not separate screenshots. `test_style.py` checks that those paths exist.
+The guide pages get HTTP checks only, not browser drives.

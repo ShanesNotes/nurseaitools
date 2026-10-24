@@ -30,6 +30,14 @@ npm test
 
 `node --test` runs `test/*.test.js` against the same `web/*.js` files the browser loads. To type-check the JSDoc types in `web/` and `test/`, run `npm run check`.
 
+To prove a change end to end on this machine, run the verification skill. It builds, runs both suites, serves the worker with `wrangler dev --local` and a fresh local D1, drives the site in Chrome, and prints `VERIFY PASS` or `VERIFY FAIL`:
+
+```sh
+/workspace/.pwvenv/bin/python .agents/skills/verify-nurse-ai-tools/verify.py
+```
+
+See `.agents/skills/verify-nurse-ai-tools/SKILL.md`.
+
 ## Run the site locally
 
 `wrangler dev` serves `dist/worker.js` as it is on disk. It does not run the build, so build first:
