@@ -960,5 +960,57 @@
   "what": "AI operations platform for hospital staffing offices: predictive scheduling, a staffing command center, and flow and capacity optimization.",
   "ehr": "Not publicly listed; check with vendor",
   "hipaa": "Not publicly stated on vendor homepage; verify with vendor."
+ },
+ {
+  "built": "Nurses",
+  "hstat": "Not for patient info",
+  "fit": "Education only",
+  "slug": "gclex",
+  "name": "GCLEX",
+  "vendor": "GCLEX",
+  "url": "https://gclex.app",
+  "category": "Education / NCLEX",
+  "what": "NCLEX-RN study app for iPhone, Mac and web: 2,000 NCLEX-style questions, an NGN unfolding patient simulator, clinical games (ECG rhythms, dosage calc, ABGs) and an AI nurse tutor that knows your quiz history. Free tier; Plus $29.99/mo; Pro with the AI tutor and AI question sets $39.99/mo (3-day trial).",
+  "ehr": "Not publicly listed; check with vendor",
+  "hipaa": "Study tool: never enter real patient information (PHI). Use made-up or de-identified cases only."
+ },
+ {
+  "built": "Nurses",
+  "hstat": "Not for patient info",
+  "fit": "Education only",
+  "slug": "nurseready",
+  "name": "NurseReady",
+  "vendor": "Suter Studios",
+  "url": "https://www.nurseready.app",
+  "category": "Education / NCLEX",
+  "what": "AI NCLEX-RN and NCLEX-PN prep: 2,000+ AI-generated questions in all 5 NGN item types, a free no-signup question generator, 24 virtual patient simulations and an AI coach that explains answers. Free daily plan; full access $19.99 for 30 days or $29.99 for 60 days, one-time.",
+  "ehr": "Not publicly listed; check with vendor",
+  "hipaa": "Study tool: never enter real patient information (PHI). Use made-up or de-identified cases only."
+ },
+ {
+  "built": "Nurses",
+  "hstat": "Not for patient info",
+  "fit": "Education only",
+  "slug": "nursequizai",
+  "name": "NurseQuizAI",
+  "vendor": "NurseQuizAI",
+  "url": "https://nursequizai.com",
+  "category": "Study & care plans",
+  "what": "Upload your own lecture slides or notes (PDF, PPT) and it generates NCLEX-style quizzes, including SATA and NGN formats, with AI rationales and flashcards. Free plan with a daily quiz limit; paid plans raise the limits.",
+  "ehr": "Not publicly listed; check with vendor",
+  "hipaa": "Study tool: never enter real patient information (PHI). Use made-up or de-identified cases only."
+ },
+ {
+  "built": "Nurses",
+  "hstat": "Not for patient info",
+  "fit": "Education only",
+  "slug": "nclex-it-ngnsimulation",
+  "name": "NCLEX IT (ngnsimulation)",
+  "vendor": "ngnsimulation Labs",
+  "url": "https://ngnsimulation.com/products/nclex-it",
+  "category": "Education / NCLEX",
+  "what": "AI tutor built for the Next Generation NCLEX (NGN): case study, bowtie and trend items, coaching across the six Clinical Judgment Measurement Model steps, and CAT-style readiness scoring. Free to start; Premium priced in-product; schools can license it with per-student competency reports for faculty. Built in Alberta, Canada. Not the same product as NCLEXIT.",
+  "ehr": "Not publicly listed; check with vendor",
+  "hipaa": "Study tool: never enter real patient information (PHI). Use made-up or de-identified cases only."
  }
 ]

@@ -16,4 +16,5 @@ R={
 "Wellsheet":(Ph,DK),"Epic generative AI (summaries & handoff)":(B,DK),"Innovaccer":(U,DK),"Notable":(U,DK),
 "ClinicalKey Nursing AI":(N,U),"Epic Chart with Art (nursing ambient)":(N,BS),"AvaSure":(N,BS),"Stryker SmartCare (care.ai)":(N,BS),"UbiSim":(N,ED),
 "Abridge for Nurses":(N,BS),"hellocare.ai":(N,BS),"Vitalize":(U,DK),
+"GCLEX":(N,ED),"NurseReady":(N,ED),"NurseQuizAI":(N,ED),"NCLEX IT (ngnsimulation)":(N,ED),
 }
