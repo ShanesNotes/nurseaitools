@@ -43,13 +43,13 @@ python3 shoot.py
 python3 .agents/skills/verify-nurse-ai-tools/drive_home.py
 ```
 
-`npm test` drives the catalog and form state machines in Node. `test_style.py` checks tokens, both themes, contrast, type size, tap-target rules, and page copy. `shoot.py` opens home, one tool page, the students hub, and submit at 1280 and 390 and fails if `scrollWidth` exceeds the viewport. `drive_home.py` types `abridge` into the home search and checks that the count changes.
+`npm test` drives the catalog and form state machines in Node. `test_style.py` checks tokens, both themes, contrast, type size, tap-target rules, and page copy. `shoot.py` opens home, one tool page (GCLEX), the students hub, and submit at 1280 and 390 and fails if `scrollWidth` exceeds the viewport. It also shoots the directory in view and the newsletter signup section. `drive_home.py` types `abridge` into the home search and checks that the count changes.
 
 `COLOR_SCHEME=dark python3 shoot.py` repeats the shots in the dark theme. `SHOTS` sets the directory. The default is `shots/`.
 
 ## Evidence
 
-`shoot.py` writes `shots/home-desktop.png`, `shots/home-mobile.png`, `shots/tool-desktop.png`, `shots/tool-mobile.png`, `shots/students-desktop.png`, `shots/students-mobile.png`, `shots/submit-desktop.png`, and `shots/submit-mobile.png`.
+`shoot.py` writes `shots/home-desktop.png`, `shots/home-mobile.png`, `shots/tool-desktop.png`, `shots/tool-mobile.png`, `shots/students-desktop.png`, `shots/students-mobile.png`, `shots/submit-desktop.png`, `shots/submit-mobile.png`, `shots/directory-desktop.png`, `shots/directory-mobile.png`, `shots/signup-desktop.png`, and `shots/signup-mobile.png`.
 
 `drive_home.py` writes `shots/verify/home-search.png` and prints the count before and after the query.
 

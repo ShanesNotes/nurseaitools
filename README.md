@@ -88,7 +88,7 @@ npx wrangler secret put KIT_TAG_ID
 
 ### Design
 
-The look is documented in `DESIGN.md`. The tokens live on `:root` in the CSS string in `build.py`. The site loads no webfont; it uses the system monospace stack. To check the look after an edit, run:
+The look is documented in `DESIGN.md`. The tokens live on `:root` in the CSS string in `build.py`. The worker serves Host Grotesk and JetBrains Mono from `fonts/` at `/fonts/*`, with their OFL licenses. To check the look after an edit, run:
 
 ```sh
 python3 test_style.py
