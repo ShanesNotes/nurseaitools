@@ -1,5 +1,8 @@
 uploads/
 pages/
 node_modules/
+__pycache__/
 .wrangler/
-.claude/
+.claude/*
+!.claude/skills
+shots/
