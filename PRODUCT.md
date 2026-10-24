@@ -40,7 +40,7 @@ Search and filter UI states are explicit: idle, filtering, empty results. Newsle
 
 Name: Nurse AI Tools. The owner asked for a look that is distinctive, credible, and handcrafted, like a serious clinical reference that also has personality, and said the current site looks like generic AI slop. That character is binding.
 
-The owner later replaced the retro-futurist pin with the design system of marketforever.dev: dark, flat, one monospace face, plus four sparse accent edges (red, blue, green, yellow). It must still read as a credible clinical reference. Contrast, focus states, and the 390px phone layout are required. `DESIGN.md` documents the system and `test_style.py` checks it.
+The October 2026 dark-only, one-monospace reading is recorded in DECISIONS.md and is no longer the system. The site keeps the Market token structure, type roles, spacing scale, and ink rules in `docs/design/market-source/DESIGN.md`, tuned for long-form nursing text. It is light first, dark when the device asks for it, with Host Grotesk for words, JetBrains Mono for figures, square frames, and no shadow. Contrast, focus states, and the 390px phone layout are required. `DESIGN.md` documents the tuned values and `test_style.py` checks them.
 
 ## Evidence on Hand
 

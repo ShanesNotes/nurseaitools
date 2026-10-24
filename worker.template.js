@@ -4,8 +4,14 @@ const PAGES = __PAGES__;
 const NOT_FOUND = __NOT_FOUND__;
 const SITEMAP = __SITEMAP__;
 const SCRIPTS = __SCRIPTS__;
+const FONTS = __FONTS__;
 const HTML = { 'content-type': 'text/html;charset=utf-8', 'cache-control': 'public,max-age=300' };
 const SCRIPT = { 'content-type': 'text/javascript;charset=utf-8', 'cache-control': 'public,max-age=300' };
+
+function fontBody(file) {
+  if (file.b64) return Uint8Array.from(atob(file.b64), (c) => c.charCodeAt(0));
+  return file.text;
+}
 
 export default {
   async fetch(req, env, ctx) {
@@ -24,6 +30,11 @@ export default {
     }
 
     if (SCRIPTS[p]) return new Response(SCRIPTS[p], { headers: SCRIPT });
+    if (FONTS[p]) {
+      const file = FONTS[p];
+      const cache = file.b64 ? 'public,max-age=31536000,immutable' : 'public,max-age=86400';
+      return new Response(fontBody(file), { headers: { 'content-type': file.type, 'cache-control': cache } });
+    }
     if (p === '/sitemap.xml') return new Response(SITEMAP, { headers: { 'content-type': 'application/xml' } });
     if (p === '/robots.txt') return new Response('User-agent: *\nAllow: /\nSitemap: __BASE__/sitemap.xml\n');
     if (p === '/22108e5ac38312c5b3b7a578b9d42a4b.txt') return new Response('22108e5ac38312c5b3b7a578b9d42a4b', { headers: { 'content-type': 'text/plain;charset=utf-8' } });
