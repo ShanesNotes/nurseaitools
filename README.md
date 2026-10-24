@@ -16,9 +16,9 @@ npm install
 python3 build.py
 ```
 
-The build prints `78 tools 85 pages <n> bytes`. It writes `dist/worker.js`, `tools.json`, and the worker embedded in `deploy.js`.
+The build prints `78 tools 89 pages <n> bytes`. It writes `dist/worker.js`, `tools.json`, and the worker embedded in `deploy.js`.
 
-Edit tool facts in `tools.py` and the reality check judgments in `reality.py`. Edit markup and CSS in `build.py`. Edit browser behavior in `web/`.
+Edit tool facts in `tools.py` and the reality check judgments in `reality.py`. The NCLEX and student landing pages are in `landing.py`; every tool claim there is a quote the build checks against `tools.json`. Edit markup and CSS in `build.py`. Edit browser behavior in `web/`.
 
 To add a checkbox filter, add a row to `TRAITS` in `build.py`. The browser code needs no change.
 
