@@ -4,7 +4,7 @@
  "planned_url": null,
  "domain_to_consider": null,
  "storage": "Cloudflare D1 'nurseaitools' (tables subscribers, submissions), schema.sql",
- "tool_count": 74,
+ "tool_count": 78,
  "sources_method": "Each tool's official URL fetched 2026-10-15 (HTTP 200, or 403 bot block on real vendor sites: UpToDate, Osmosis, Kaplan, OpenEvidence, Claude, Perplexity). EHR integrations are well-known ones or names found on the vendor homepage ('per vendor site'). HIPAA = vendor homepage mentions HIPAA; BAA never asserted. RN ratings all pending.",
  "extra_sources": [
   "https://support.microsoft.com/en-us/dragon-copilot/nurses/overview-of-the-dragon-copilot-experience-for-nurses",
