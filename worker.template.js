@@ -1,10 +1,12 @@
 import { formAt, decide, encodeReply } from '../web/contract.js';
+import { isForumPath, forum } from '../server/forum.js';
 
 const PAGES = __PAGES__;
 const NOT_FOUND = __NOT_FOUND__;
 const SITEMAP = __SITEMAP__;
 const SCRIPTS = __SCRIPTS__;
 const FONTS = __FONTS__;
+const SHELL = __SHELL__;
 const HTML = { 'content-type': 'text/html;charset=utf-8', 'cache-control': 'public,max-age=300' };
 const SCRIPT = { 'content-type': 'text/javascript;charset=utf-8', 'cache-control': 'public,max-age=300' };
 
@@ -18,6 +20,7 @@ export default {
     const u = new URL(req.url);
     if (u.hostname === 'www.nurseaitools.com') { u.hostname = 'nurseaitools.com'; return Response.redirect(u.toString(), 301); }
     const p = u.pathname.replace(/\/+$/, '') || '/';
+    if (isForumPath(p)) return forum(req, env, p, { shell: SHELL, notFound: NOT_FOUND });
 
     const form = req.method === 'POST' ? formAt(p) : null;
     if (form) {

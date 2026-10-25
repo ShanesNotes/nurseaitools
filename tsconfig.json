@@ -3,6 +3,7 @@
     "allowJs": true,
     "checkJs": true,
     "noEmit": true,
+    "skipLibCheck": true,
     "strict": true,
     "noUncheckedIndexedAccess": true,
     "target": "es2022",
@@ -11,5 +12,5 @@
     "lib": ["es2022", "dom", "dom.iterable"],
     "types": ["node"]
   },
-  "include": ["web/**/*.js", "test/**/*.js"]
+  "include": ["web/**/*.js", "server/**/*.js", "test/**/*.js"]
 }
