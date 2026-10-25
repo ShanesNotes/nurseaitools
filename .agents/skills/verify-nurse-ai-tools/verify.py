@@ -18,7 +18,9 @@ import sys
 import tempfile
 import time
 import urllib.error
+import urllib.parse
 import urllib.request
+import http.client
 
 ROOT = os.path.abspath(os.path.join(os.path.dirname(__file__), "..", "..", ".."))
 LIVE = "https://nurseaitools.com"
@@ -105,6 +107,20 @@ def get(url):
         return err.code, dict(err.headers), err.read().decode("utf-8", "replace")
 
 
+def raw(url, host):
+    """GET without following redirects, with a Host header, so www and workers.dev can be faked locally."""
+    u = urllib.parse.urlsplit(url)
+    c = http.client.HTTPConnection(u.hostname, u.port, timeout=15)
+    c.request("GET", u.path + (("?" + u.query) if u.query else ""), headers={"Host": host, "user-agent": "verify-nurse-ai-tools"})
+    r = c.getresponse()
+    out = r.status, {k.lower(): v for k, v in r.getheaders()}, r.read().decode("utf-8", "replace")
+    c.close()
+    return out
+
+
+CANON = re.compile(r'<link rel=canonical href="([^"]*)"')
+
+
 tools = json.load(open(os.path.join(ROOT, "tools.json")))
 N = len(tools)
 # The NCLEX guides from landing.py. A guide missing from the sitemap fails the students checks below.
@@ -183,8 +199,10 @@ try:
     missing = [g for g in GUIDES if g not in paths]
     check("http: the four NCLEX guides are in the sitemap", not missing, f"missing {missing}" if missing else "")
     bad = []
+    served = {}
     for p in paths:
         st, _, html = get(base + p)
+        served[p] = CANON.findall(html)
         title = re.search(r"<title>([^<]+)</title>", html)
         problems = [x for x, ok in (
             (f"status {st}", st == 200),
@@ -204,6 +222,60 @@ try:
     check("http: /tools is 404, the directory lives on /", st == 404, f"status {st}. If a /tools route has shipped on purpose, update this check and SKILL.md")
     st, _, robots = get(base + "/robots.txt")
     check("http: /robots.txt 200 and names the sitemap", st == 200 and "sitemap.xml" in robots.lower(), f"status {st}")
+    # 4b. Canonicals. Search Console labels trailing-slash, query, and other-host copies
+    # "Alternate page with proper canonical". That is fine as long as every indexable page
+    # names itself on the apex and the sitemap lists exactly those URLs.
+    built = open(os.path.join(ROOT, "dist", "worker.js")).read()
+    built_pages = json.loads(re.search(r"^const PAGES = (\{.*\});$", built, re.M).group(1))
+    not_found = json.loads(re.search(r"^const NOT_FOUND = (\".*\");$", built, re.M).group(1))
+    bad = []
+    for p, html in built_pages.items():
+        found = CANON.findall(html)
+        c = urllib.parse.urlsplit(found[0]) if len(found) == 1 else None
+        og = re.search(r'<meta property=og:url content="([^"]*)"', html)
+        problems = [x for x, ok in (
+            (f"{len(found)} canonicals", len(found) == 1 and len(re.findall(r"rel=.?canonical", html)) == 1),
+            (f"points to {found[0] if found else None}", found == [LIVE + p]),
+            ("not https apex", c and c.scheme == "https" and c.netloc == "nurseaitools.com"),
+            ("has query or fragment", c and not c.query and not c.fragment),
+            ("trailing slash", c and (c.path == "/" or not c.path.endswith("/"))),
+            ("og:url differs", og and found and og.group(1) == found[0]),
+            ("noindex", not re.search(r"noindex", html, re.I)),
+        ) if not ok]
+        if problems:
+            bad.append(f"{p} ({', '.join(problems)})")
+    check("canonical: every built page has one canonical, to itself on " + LIVE, not bad, f"{len(built_pages)} pages in dist/worker.js" + ("; " + "; ".join(bad[:5]) if bad else ""))
+    locs = re.findall(r"<loc>([^<]+)</loc>", sm)
+    canon_set = {LIVE + p for p in built_pages}
+    check("canonical: sitemap URLs equal the built pages' canonicals", len(locs) == len(set(locs)) and set(locs) == canon_set,
+          f"{len(locs)} urls, {len(set(locs))} unique, {len(canon_set)} canonicals"
+          + (f"; only in sitemap {sorted(set(locs) - canon_set)[:3]}; only built {sorted(canon_set - set(locs))[:3]}" if set(locs) != canon_set else ""))
+    mism = [(p, served.get(p)) for p in paths if served.get(p) != [LIVE + p]]
+    check("canonical: each served sitemap page's canonical equals its sitemap URL", not mism, f"{len(paths)} pages" + (f"; {mism[:3]}" if mism else ""))
+    bad = []
+    for p in paths:
+        for v in ([p + "/", p + "//", p + "/?utm_source=verify"] if p != "/" else []) + [p + "?q=verify"]:
+            st, _, html = get(base + v)
+            if st != 200 or CANON.findall(html) != [LIVE + p]:
+                bad.append(f"{v} ({st}, {CANON.findall(html)})")
+    check("canonical: trailing-slash and query copies are 200 and point at the clean URL", not bad, f"{len(paths)} pages x 4 variants" + ("; " + "; ".join(bad[:3]) if bad else ""))
+    st, h, _ = raw(base + "/students/?q=verify", "www.nurseaitools.com")
+    loc = urllib.parse.urlsplit(h.get("location", ""))
+    check("canonical: www 301s to the apex, keeping path and query", st == 301 and loc.netloc == "nurseaitools.com" and loc.path == "/students/" and loc.query == "q=verify",
+          f"{st} -> {h.get('location')}. The scheme follows the request (http here); live https was not checked by this script")
+    st, _, html = raw(base + "/students", "nurseaitools.verify.workers.dev")
+    check("canonical: a workers.dev copy points at the apex", st == 200 and CANON.findall(html) == [LIVE + "/students"], f"{st}, {CANON.findall(html)}. workers_dev = true in wrangler.toml")
+    offsite = sorted({(p, a) for p, html in built_pages.items() for a in re.findall(r'<a [^>]*href="?([^" >]+)', html)
+                      if (a.startswith("/") and not a.startswith("//") and ("?" in a or (a != "/" and a.split("#")[0].endswith("/"))))
+                      or re.match(r"(https?:)?//(www\.)?nurseaitools\.com", a)})
+    check("canonical: internal links use the canonical form", not offsite, f"{len(built_pages)} pages" + (f"; {offsite[:5]}" if offsite else ""))
+    st, _, html = get(base + "/no-such-page-verify")
+    if CANON.findall(html):
+        note("canonical: the 404 page declares no canonical", f"known site bug: it says canonical {CANON.findall(html)}. Harmless while it is served as {st}, which Google drops, but build.py should pass no canonical for NOT_FOUND")
+    else:
+        check("canonical: the 404 page declares no canonical", st == 404, f"status {st}")
+    check("canonical: the built 404 body matches what is served", CANON.findall(not_found) == CANON.findall(html))
+
     for s in sorted(set(re.findall(r'src="(/js/[^"]+)"|href="(/js/[^"]+)"', get(base + "/")[2]))):
         src = s[0] or s[1]
         st, h, _ = get(base + src)
