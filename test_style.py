@@ -21,6 +21,12 @@ SCRIPTS = const("SCRIPTS")
 ALL_PAGES = {**PAGES, "404": const("NOT_FOUND")}
 CSS = re.search(r"<style>(.*?)</style>", PAGES["/"], re.S).group(1)
 TOOLS = json.loads((ROOT / "tools.json").read_text(encoding="utf-8"))
+FIGS = [
+    ("nurses", sum(t["built"] == "Nurses" for t in TOOLS), "are built for nurses"),
+    ("hipaa", sum(t["hstat"] == "Mentions HIPAA" for t in TOOLS), "mention HIPAA on their website"),
+    ("bedside", sum(t["fit"] == "Bedside/mobile workflow" for t in TOOLS), "fit a bedside or mobile workflow"),
+    ("unknown", sum(t["hstat"] == "Unknown" for t in TOOLS), "do not state a HIPAA status on their homepage"),
+]
 
 BANNED = re.compile(
     r"\b(?:unlock|elevate|seamless|powerful|robust|next-gen|journey|dashboard|empower|effortless|"
@@ -29,22 +35,26 @@ BANNED = re.compile(
 )
 EMOJI = re.compile("[\U0001F000-\U0001FAFF☀-➿️‍]")
 SLOP_PUNCT = re.compile("[—–“”‘’]")
-FONT_SIZES = {"12px", "14px", "15px", "18px"}
-SPACES = {"0", "auto", "2px", "4px", "8px", "12px", "16px"}
+TYPE = {
+    "display": "clamp(44px,7.4vw,112px)", "headline": "clamp(36px,4.6vw,64px)", "proof": "clamp(36px,5vw,72px)",
+    "title": "28px", "lead": "clamp(20px,1.8vw,24px)", "body": "18px", "figure": "15px", "small": "15px", "micro": "12px",
+    "button-size": "18px",
+}
+FONT_SIZES = set(TYPE.values())
+SPACES = {"0", "auto", "2px", "4px", "8px", "12px", "16px", "24px", "32px", "48px", "64px", "96px"}
 GROUNDS = ("ground", "panel", "raised", "hover", "bar")
-TEXT = ("text", "soft", "pencil", "heading", "buy")
+TEXT = ("text", "soft", "pencil", "accent")
 LIGHT = {
-    "ground": "#f6f1e8", "panel": "#efe8db", "raised": "#fffaf3", "hover": "#e9e1d2", "rule": "#8a7d68",
-    "text": "#1c1611", "soft": "#5c5348", "pencil": "#5e584e", "heading": "#6e4e0c", "muted": "#6e4e0c",
-    "accent": "#6e4e0c", "buy": "#1e3f86", "up": "#1f6b3a", "down": "#8d2c1e", "edge": "#6b5e4a",
-    "bar": "#dfd3bc", "menu": "#1c1611", "menuText": "#ece5d3", "frame": "#e7dfd0",
+    "ground": "#f6f1e8", "panel": "#efe8db", "raised": "#fffaf3", "hover": "#e9e1d2", "bar": "#dfd3bc",
+    "rule": "#8a7d68", "edge": "#6b5e4a", "text": "#1c1611", "soft": "#5c5348", "pencil": "#5e584e",
+    "accent": "#1f5550", "menu": "#1c1611", "menuText": "#ece5d3", "bandSoft": "#b9b09c",
 }
 DARK = {
-    "ground": "#1c1611", "panel": "#211a14", "raised": "#221f18", "hover": "#2c281f", "rule": "#7d7262",
-    "text": "#ffffff", "soft": "#a49d89", "pencil": "#9a9a9a", "heading": "#ffd100", "muted": "#ffd100",
-    "accent": "#e2b55c", "buy": "#6a95d8", "up": "#72c48e", "down": "#e4705f", "edge": "#7d7262",
-    "bar": "#2a2318", "menu": "#0b0a08", "menuText": "#ece5d3", "frame": "#1a1712",
+    "ground": "#1c1611", "panel": "#211a14", "raised": "#221f18", "hover": "#2c281f", "bar": "#2a2318",
+    "rule": "#7d7262", "edge": "#7d7262", "text": "#ffffff", "soft": "#a49d89", "pencil": "#9a9a9a",
+    "accent": "#7dbab0", "menu": "#0b0a08", "menuText": "#ece5d3", "bandSoft": "#b9b09c",
 }
+NEUTRAL_CHROMA = 40
 DISPLAY = '"Host Grotesk","Helvetica Neue",Arial,sans-serif'
 
 failures = []
@@ -126,9 +136,10 @@ check(TOKENS.get("f-display") == DISPLAY, "the statement face is not Host Grotes
 check(TOKENS.get("f-body") == DISPLAY, "the reading face is not Host Grotesk")
 check("JetBrains Mono" in TOKENS.get("f-figure", ""), "figures are not JetBrains Mono")
 check(TOKENS.get("reach") == "44px", "reach is not 44px")
-check(TOKENS.get("body") == "18px" and TOKENS.get("micro") == "12px" and TOKENS.get("tracker-line") == "12px",
-      "the type floor moved")
-for name in ("s-xs", "s-s", "s-m", "s-l", "s-xl"):
+for name, size in TYPE.items():
+    check(TOKENS.get(name) == size, f"--{name} is {TOKENS.get(name)}, want {size}")
+    check(min(int(n) for n in re.findall(r"(\d+)px", size)) >= 12, f"--{name} can render under 12px")
+for name in ("s-xs", "s-s", "s-m", "s-l", "s-xl", "s-2xl", "s-3xl", "s-4xl", "s-5xl", "s-6xl", "section"):
     check(TOKENS.get(name) in SPACES, f"--{name} left the spacing scale")
 body = dict(next(d for m, s, d in STYLED if s == "body"))
 check(body.get("font-variant-ligatures") == "none", "ligatures are not off")
@@ -138,9 +149,12 @@ faces = [dict(d).get("font-family", "").strip('"') for m, s, d in STYLED if s ==
 check(faces.count("Host Grotesk") == 3 and faces.count("JetBrains Mono") == 2 and "Fragment Mono" not in faces,
       f"font faces are {faces}")
 
-pairs, loose_colors, grounds = [], set(), set(GROUNDS)
+pairs, loose_colors, grounds, band_colors = [], set(), set(GROUNDS), set()
 for media, selector, decls in STYLED:
     d = dict(decls)
+    if selector.startswith(".news ") and token_of(d.get("color", "")) and not d.get("background"):
+        band_colors.add(token_of(d["color"]))
+        continue
     fore = token_of(d.get("color", ""))
     back = token_of(d.get("background", d.get("background-color", "")))
     if fore and back:
@@ -156,24 +170,27 @@ for theme, got in THEMES.items():
         for back in sorted(grounds):
             value = ratio(got[fore], got[back])
             check(value >= 4.5, f"{theme} --{fore} on --{back} is {value:.2f}:1")
+    for fore in sorted(band_colors):
+        value = ratio(got[fore], got["menu"])
+        check(value >= 4.5, f"{theme} band --{fore} on --menu is {value:.2f}:1")
     for selector, fore, back in pairs:
         value = ratio(got[fore], got[back])
         check(value >= 4.5, f"{theme} {selector}: --{fore} on --{back} is {value:.2f}:1")
-    for name in ("edge", "up", "down"):
+    for name in ("edge", "accent", "pencil"):
         for back in ("ground", "raised", "bar"):
             value = ratio(got[name], got[back])
             check(value >= 3.0, f"{theme} --{name} on --{back} is {value:.2f}:1, under the 3:1 edge floor")
 check(any(f == "menuText" and b == "menu" for s, f, b in pairs), "no menu button pair found")
 
-edge_rules = set()
-for media, selector, decls in STYLED:
-    for prop, value in decls:
-        for name in ("up", "down"):
-            if f"var(--{name})" not in value:
-                continue
-            edge_rules.add((selector, name))
-            check(re.fullmatch(r"border(-(top|right|bottom|left))?(-color)?", prop), f"{selector}: --{name} used in {prop}")
-for name in ("up", "down", "buy", "heading"):
+hues = set()
+for theme, got in THEMES.items():
+    for name, value in got.items():
+        if re.fullmatch(r"#[0-9a-fA-F]{6}", value):
+            channels = [int(value[i:i + 2], 16) for i in (1, 3, 5)]
+            if max(channels) - min(channels) > NEUTRAL_CHROMA:
+                hues.add(name)
+check(hues == {"accent"}, f"tokens with a hue are {sorted(hues)}, want only --accent")
+for name in ("accent", "pencil"):
     check(f"var(--{name})" in CSS, f"--{name} is declared but never drawn")
 
 fonts = const("FONTS")
@@ -202,13 +219,11 @@ for media, selector, decls in STYLED:
         elif prop == "font-size":
             check(real in FONT_SIZES, f"font size {real}: {where}")
         elif prop == "font" and real != "inherit":
-            size = re.match(r"(?:\d{3}\s+)?(\d+px)", real)
+            size = re.match(r"(?:\d{3}\s+)?(clamp\([^)]*\)|\d+px)", real)
             check(size and size.group(1) in FONT_SIZES, f"font size in {real}: {where}")
         elif re.fullmatch(r"(padding|margin)(-(top|right|bottom|left|inline|block)(-(start|end))?)?|gap|row-gap|column-gap", prop):
             for part in real.split():
                 check(part in SPACES, f"spacing {part}: {where}")
-for name in ("display", "title", "body", "figure", "lead", "small", "micro", "button-size", "tracker-head", "tracker-line"):
-    check(TOKENS.get(name) in FONT_SIZES, f"--{name} is {TOKENS.get(name)}")
 
 focusable = re.compile(r"<(?:a|button|input|select|textarea|summary)\b[^>]*>")
 for path, page in ALL_PAGES.items():
@@ -220,7 +235,8 @@ check(rings and rings[0].get("outline", "").replace(" ", "") == "var(--ring)soli
 for media, selector, decls in STYLED:
     for prop, value in decls:
         if prop.startswith("outline"):
-            check(selector == ":focus-visible", f"{selector} restyles the focus outline: {prop}:{value}")
+            ok = selector == ":focus-visible" or (selector.endswith(" :focus-visible") and prop == "outline-color")
+            check(ok, f"{selector} restyles the focus outline: {prop}:{value}")
 
 for name, raw in [*ALL_PAGES.items(), *SCRIPTS.items(), ("style", CSS)]:
     for m in BANNED.finditer(raw):
@@ -242,8 +258,10 @@ for hook in ("data-catalog", "data-filter-query", "data-filter-category", "data-
     check(hook in home, f"home is missing {hook}")
 check(home.count("data-card") == len(TOOLS), "home does not list every tool")
 check("AI should run the rules in the background so nurses can run the care." in home, "home is missing the brand line")
-check("Students and new grads" in home, "home does not offer the students door")
-for selector in ("button", "input:not([type=checkbox]),select,textarea", ".mast nav a", ".skip", ".toggle", ".doors a"):
+check('<a href="/students">' in home, "home does not link the students hub")
+for name, value, label in FIGS:
+    check(f"<b>{value}</b><span>{label}</span>" in home, f"home figure {label!r} is not {value}")
+for selector in ("button", "input:not([type=checkbox]),select,textarea", ".mast nav a", ".skip", ".toggle", ".acts a"):
     decls = [dict(d) for m, s, d in STYLED if s == selector]
     check(any(item.get("min-height") == "var(--reach)" for item in decls), f"{selector} is under 44px")
 check('action="/api/submit"' in PAGES.get("/submit", ""), "the submit form is gone")
@@ -260,4 +278,4 @@ if failures:
     print(f"FAIL {len(failures)}")
     sys.exit(1)
 print(f"ok {len(ALL_PAGES)} pages, {len(TOOLS)} tools, {len(loose_colors)} text colors on {len(grounds)} grounds, "
-      f"{len(pairs)} painted pairs, loss and gain edges in {len(edge_rules)} rules")
+      f"{len(pairs)} painted pairs, one accent")
