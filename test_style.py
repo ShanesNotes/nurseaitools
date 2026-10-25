@@ -43,19 +43,18 @@ TYPE = {
 FONT_SIZES = set(TYPE.values())
 SPACES = {"0", "auto", "2px", "4px", "8px", "12px", "16px", "24px", "32px", "48px", "64px", "96px"}
 GROUNDS = ("ground", "panel", "raised", "hover", "bar")
-TEXT = ("text", "soft", "pencil", "heading", "buy")
+TEXT = ("text", "soft", "pencil", "accent")
 LIGHT = {
-    "ground": "#f6f1e8", "panel": "#efe8db", "raised": "#fffaf3", "hover": "#e9e1d2", "rule": "#8a7d68",
-    "text": "#1c1611", "soft": "#5c5348", "pencil": "#5e584e", "heading": "#6e4e0c", "muted": "#6e4e0c",
-    "accent": "#6e4e0c", "buy": "#1e3f86", "up": "#1f6b3a", "down": "#8d2c1e", "edge": "#6b5e4a",
-    "bar": "#dfd3bc", "menu": "#1c1611", "menuText": "#ece5d3", "frame": "#e7dfd0",
+    "ground": "#f6f1e8", "panel": "#efe8db", "raised": "#fffaf3", "hover": "#e9e1d2", "bar": "#dfd3bc",
+    "rule": "#8a7d68", "edge": "#6b5e4a", "text": "#1c1611", "soft": "#5c5348", "pencil": "#5e584e",
+    "accent": "#1f5550", "menu": "#1c1611", "menuText": "#ece5d3", "bandSoft": "#b9b09c",
 }
 DARK = {
-    "ground": "#1c1611", "panel": "#211a14", "raised": "#221f18", "hover": "#2c281f", "rule": "#7d7262",
-    "text": "#ffffff", "soft": "#a49d89", "pencil": "#9a9a9a", "heading": "#ffd100", "muted": "#ffd100",
-    "accent": "#e2b55c", "buy": "#6a95d8", "up": "#72c48e", "down": "#e4705f", "edge": "#7d7262",
-    "bar": "#2a2318", "menu": "#0b0a08", "menuText": "#ece5d3", "frame": "#1a1712",
+    "ground": "#1c1611", "panel": "#211a14", "raised": "#221f18", "hover": "#2c281f", "bar": "#2a2318",
+    "rule": "#7d7262", "edge": "#7d7262", "text": "#ffffff", "soft": "#a49d89", "pencil": "#9a9a9a",
+    "accent": "#7dbab0", "menu": "#0b0a08", "menuText": "#ece5d3", "bandSoft": "#b9b09c",
 }
+NEUTRAL_CHROMA = 40
 DISPLAY = '"Host Grotesk","Helvetica Neue",Arial,sans-serif'
 
 failures = []
@@ -177,21 +176,21 @@ for theme, got in THEMES.items():
     for selector, fore, back in pairs:
         value = ratio(got[fore], got[back])
         check(value >= 4.5, f"{theme} {selector}: --{fore} on --{back} is {value:.2f}:1")
-    for name in ("edge", "up", "down"):
+    for name in ("edge", "accent", "pencil"):
         for back in ("ground", "raised", "bar"):
             value = ratio(got[name], got[back])
             check(value >= 3.0, f"{theme} --{name} on --{back} is {value:.2f}:1, under the 3:1 edge floor")
 check(any(f == "menuText" and b == "menu" for s, f, b in pairs), "no menu button pair found")
 
-edge_rules = set()
-for media, selector, decls in STYLED:
-    for prop, value in decls:
-        for name in ("up", "down"):
-            if f"var(--{name})" not in value:
-                continue
-            edge_rules.add((selector, name))
-            check(re.fullmatch(r"border(-(top|right|bottom|left))?(-color)?", prop), f"{selector}: --{name} used in {prop}")
-for name in ("up", "down", "buy", "heading"):
+hues = set()
+for theme, got in THEMES.items():
+    for name, value in got.items():
+        if re.fullmatch(r"#[0-9a-fA-F]{6}", value):
+            channels = [int(value[i:i + 2], 16) for i in (1, 3, 5)]
+            if max(channels) - min(channels) > NEUTRAL_CHROMA:
+                hues.add(name)
+check(hues == {"accent"}, f"tokens with a hue are {sorted(hues)}, want only --accent")
+for name in ("accent", "pencil"):
     check(f"var(--{name})" in CSS, f"--{name} is declared but never drawn")
 
 fonts = const("FONTS")
@@ -279,4 +278,4 @@ if failures:
     print(f"FAIL {len(failures)}")
     sys.exit(1)
 print(f"ok {len(ALL_PAGES)} pages, {len(TOOLS)} tools, {len(loose_colors)} text colors on {len(grounds)} grounds, "
-      f"{len(pairs)} painted pairs, loss and gain edges in {len(edge_rules)} rules")
+      f"{len(pairs)} painted pairs, one accent")

@@ -21,7 +21,7 @@ Studied live on 2026-10-24 at 1440 and 390 wide, in headless Chromium, with comp
    *Ours:* one line per idea. Cut every sentence that restates the one before it.
 
 7. **Color belongs to sections, not words.** Text is one near-black ink, with secondary text at 86% of it. Color comes as whole flat grounds per section: white, then pink, green, and black. There are no accent colors inside running text.
-   *Ours:* paper ink on warm paper, one inverted ink band for the reality-check explainer, and the Market rule that red means harm and green means a stated HIPAA posture. Nothing else is colored.
+   *Ours:* paper ink on warm paper, one inverted ink band for the newsletter, and one accent, spruce, for links, focus, and the reality-check column rule. Everything else is a warm neutral.
 
 8. **Room to breathe.** Sections are 150 to 250px apart at 1440. Content sits in a 1240px column with 100px margins, and blocks are placed on a grid with deliberate empty columns.
    *Ours:* a spacing scale that reaches 96px and 128px for sections, and a 12-column grid where the reading column stays near 62ch.
