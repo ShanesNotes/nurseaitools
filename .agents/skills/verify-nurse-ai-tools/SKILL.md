@@ -59,6 +59,8 @@ Every shot except the home pair is full page. `shots/` is gitignored. Copy what 
 
 Quote in the PR: the revision line, the `VERIFY PASS` line, the command, and any SKIP lines.
 
+A change to this skill keeps a small copy of its own proof in `evidence/<date>-<revision>/`: the output, `report.json`, and a few shots. Site changes do not commit evidence here.
+
 ## Cleanup
 
 The script stops the server it started by process group. The temp D1 dir and the server log under `/tmp/nai-verify-*` are left for inspection and are safe to delete. It never kills other `node` or `wrangler` processes.
