@@ -11,7 +11,7 @@ The home page is the directory. A nurse reads the title, then searches and filte
 
 ## How to get to it (user POV)
 
-Open `/`, or choose Directory in the header.
+Open `/`, or choose Directory in the header. The directory lives on `/`. There is no `/tools` index: `/tools` is 404 for now, and `verify.py` checks that. Only `/tools/<slug>` pages exist.
 
 ## Driving it
 
