@@ -593,7 +593,7 @@
   "vendor": "Andor Health",
   "url": "https://andorhealth.com",
   "category": "Patient communication",
-  "what": "AI-powered virtual care and care-team collaboration platform (ThinkAndor).",
+  "what": "AI virtual care and care-team platform (ThinkAndor). Runs virtual nursing workflows inside the EHR (the platform behind MUSC's virtual nursing program) and, as of Oct 2026, is Epic Toolbox designated for ambient nursing flowsheet documentation in Epic Rover.",
   "ehr": "Epic, Oracle Health (Cerner) (per vendor site)",
   "hipaa": "Vendor website mentions HIPAA (checked Oct 2026). BAA availability not confirmed here; ask the vendor."
  },
@@ -958,6 +958,19 @@
   "url": "https://www.vitalize.care",
   "category": "Scheduling & staffing",
   "what": "AI operations platform for hospital staffing offices: predictive scheduling, a staffing command center, and flow and capacity optimization.",
+  "ehr": "Not publicly listed; check with vendor",
+  "hipaa": "Not publicly stated on vendor homepage; verify with vendor."
+ },
+ {
+  "built": "Unknown",
+  "hstat": "Unknown",
+  "fit": "Desk or charting only",
+  "slug": "healthleap",
+  "name": "Healthleap",
+  "vendor": "Healthleap",
+  "url": "https://healthleap.ai",
+  "category": "Clinical decision support",
+  "what": "Reads every adult inpatient chart overnight (notes, labs, vitals, weights, diet orders) and writes a risk score into the EHR flowsheet each morning. Starts with malnutrition screening for dietitians; delirium screening is live at some sites, with aspiration, pressure injury and heart failure readmission models in validation. Flags patients for review, does not diagnose. Sold to hospitals.",
   "ehr": "Not publicly listed; check with vendor",
   "hipaa": "Not publicly stated on vendor homepage; verify with vendor."
  },
