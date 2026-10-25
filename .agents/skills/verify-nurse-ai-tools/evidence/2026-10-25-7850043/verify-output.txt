@@ -1,0 +1,235 @@
+PASS build: python3 build.py exits 0: 79 tools 90 pages 2108318 bytes
+PASS build: tool count matches tools.json: build says 79, tools.json has 79
+PASS unit: npm test: pass 43, fail 0
+PASS unit: python3 test_style.py: ok 91 pages, 79 tools, 4 text colors on 5 grounds, 9 painted pairs, one accent
+PASS serve: local D1 seeded from schema.sql: /tmp/nai-verify-d1-j6j2w0d_
+PASS serve: npx wrangler dev answers on http://127.0.0.1:44079: log /tmp/nai-verify-44079.log
+PASS http: /sitemap.xml 200: 90 urls
+PASS http: the four NCLEX guides are in the sitemap
+PASS http: every sitemap page is 200 with title, description, canonical, one h1: 90 pages
+PASS http: each tool title names its tool: 79 tools
+PASS http: unknown path is 404: status 404
+PASS http: /tools is 404, the directory lives on /: status 404. If a /tools route has shipped on purpose, update this check and SKILL.md
+PASS http: /robots.txt 200 and names the sitemap: status 200
+PASS canonical: every built page has one canonical, to itself on https://nurseaitools.com: 90 pages in dist/worker.js
+PASS canonical: sitemap URLs equal the built pages' canonicals: 90 urls, 90 unique, 90 canonicals
+PASS canonical: each served sitemap page's canonical equals its sitemap URL: 90 pages
+PASS canonical: trailing-slash and query copies are 200 and point at the clean URL: 90 pages x 4 variants
+PASS canonical: www 301s to the apex, keeping path and query: 301 -> http://nurseaitools.com/students/?q=verify. The scheme follows the request (http here); live https was not checked by this script
+PASS canonical: a workers.dev copy points at the apex: 200, ['https://nurseaitools.com/students']. workers_dev = true in wrangler.toml
+PASS canonical: internal links use the canonical form: 90 pages
+SKIP canonical: the 404 page declares no canonical: known site bug: it says canonical ['https://nurseaitools.com/']. Harmless while it is served as 404, which Google drops, but build.py should pass no canonical for NOT_FOUND
+PASS canonical: the built 404 body matches what is served
+PASS http: /js/catalog.js 200 javascript: status 200
+PASS http: /js/contract.js 200 javascript: status 200
+PASS http: /js/form.js 200 javascript: status 200
+PASS http: /js/fsm.js 200 javascript: status 200
+PASS http: /js/page.js 200 javascript: status 200
+PASS http: self-hosted fonts 200: 5 faces
+PASS home: title present: Nurse AI Tools: AI tools for nurses
+PASS home: count reads tools.json total: '79 tools'
+PASS home: one directory row per tool: 79 rows, 79 tools
+PASS home: every tool name is in the directory: 79 names
+PASS directory: search narrows to matching rows: '2 of 79 tools', 2 visible, 2 expected from tools.json
+PASS directory: category filter matches tools.json: Education / NCLEX: 16 visible, 16 in tools.json
+PASS directory: empty state shows when nothing matches
+PASS directory: clear restores every row
+PASS directory: no script errors
+PASS tool: /tools/uworld-nursing h1 is the tool name: 'UWorld Nursing'
+PASS tool: vendor, what it does, and RN reality check shown
+PASS tool: official site link matches tools.json: https://nursing.uworld.com
+PASS students: /students has one visible h1: ['AI for nursing students and new grads']
+PASS students: /students tool links name tools in tools.json: 23 tool links
+PASS students: /students every on-site link is 200: 34 links
+PASS students: /students has the newsletter form
+PASS students: hub links all four NCLEX guides
+PASS students: /students no script errors
+PASS students: /students/best-ai-nclex-prep has one visible h1: ['Best AI NCLEX prep tools']
+PASS students: /students/best-ai-nclex-prep tool links name tools in tools.json: 16 tool links
+PASS students: /students/best-ai-nclex-prep every on-site link is 200: 26 links
+PASS students: /students/best-ai-nclex-prep has the newsletter form
+PASS students: /students/best-ai-nclex-prep no script errors
+PASS students: /students/free-nclex-prep has one visible h1: ['Free NCLEX prep tools']
+PASS students: /students/free-nclex-prep tool links name tools in tools.json: 6 tool links
+PASS students: /students/free-nclex-prep every on-site link is 200: 16 links
+PASS students: /students/free-nclex-prep has the newsletter form
+PASS students: /students/free-nclex-prep no script errors
+PASS students: /students/ngn-practice-tools has one visible h1: ['NGN practice tools']
+PASS students: /students/ngn-practice-tools tool links name tools in tools.json: 5 tool links
+PASS students: /students/ngn-practice-tools every on-site link is 200: 15 links
+PASS students: /students/ngn-practice-tools has the newsletter form
+PASS students: /students/ngn-practice-tools no script errors
+PASS students: /students/chatgpt-for-nclex has one visible h1: ['Using ChatGPT for NCLEX prep safely']
+PASS students: /students/chatgpt-for-nclex tool links name tools in tools.json: 11 tool links
+PASS students: /students/chatgpt-for-nclex every on-site link is 200: 21 links
+PASS students: /students/chatgpt-for-nclex has the newsletter form
+PASS students: /students/chatgpt-for-nclex no script errors
+PASS signup: newsletter form on home posts to /api/subscribe: 1 forms
+PASS signup: local subscribe succeeds: posted 1, "You're subscribed. Thanks!"
+PASS signup: bad address is refused before it is sent: posted 0, 'Please enter a valid email.'
+PASS signup: local subscribe succeeds from /students/best-ai-nclex-prep mobile dark: posted 1, "You're subscribed. Thanks!"
+PASS signup: both rows stored in local D1, nothing else: rows ['verify+1792970457@example.invalid', 'verify+1792970459-phone@example.invalid']
+PASS style: one visible h1 / desktop light: 1 visible
+PASS style: no sideways scroll / desktop light: scrollWidth 1280
+PASS style: text >= 12px / desktop light
+PASS style: controls >= 44px, links meet 24px target spacing / desktop light
+PASS style: text contrast >= 4.5:1 / desktop light: 670 text nodes
+PASS style: one visible h1 /tools/uworld-nursing desktop light: 1 visible
+PASS style: no sideways scroll /tools/uworld-nursing desktop light: scrollWidth 1280
+PASS style: text >= 12px /tools/uworld-nursing desktop light
+PASS style: controls >= 44px, links meet 24px target spacing /tools/uworld-nursing desktop light
+PASS style: text contrast >= 4.5:1 /tools/uworld-nursing desktop light: 35 text nodes
+PASS style: one visible h1 /students desktop light: 1 visible
+PASS style: no sideways scroll /students desktop light: scrollWidth 1280
+PASS style: text >= 12px /students desktop light
+PASS style: controls >= 44px, links meet 24px target spacing /students desktop light
+PASS style: text contrast >= 4.5:1 /students desktop light: 214 text nodes
+PASS style: one visible h1 /students/best-ai-nclex-prep desktop light: 1 visible
+PASS style: no sideways scroll /students/best-ai-nclex-prep desktop light: scrollWidth 1280
+PASS style: text >= 12px /students/best-ai-nclex-prep desktop light
+PASS style: controls >= 44px, links meet 24px target spacing /students/best-ai-nclex-prep desktop light
+PASS style: text contrast >= 4.5:1 /students/best-ai-nclex-prep desktop light: 165 text nodes
+PASS style: one visible h1 /students/free-nclex-prep desktop light: 1 visible
+PASS style: no sideways scroll /students/free-nclex-prep desktop light: scrollWidth 1280
+PASS style: text >= 12px /students/free-nclex-prep desktop light
+PASS style: controls >= 44px, links meet 24px target spacing /students/free-nclex-prep desktop light
+PASS style: text contrast >= 4.5:1 /students/free-nclex-prep desktop light: 126 text nodes
+PASS style: one visible h1 /students/ngn-practice-tools desktop light: 1 visible
+PASS style: no sideways scroll /students/ngn-practice-tools desktop light: scrollWidth 1280
+PASS style: text >= 12px /students/ngn-practice-tools desktop light
+PASS style: controls >= 44px, links meet 24px target spacing /students/ngn-practice-tools desktop light
+PASS style: text contrast >= 4.5:1 /students/ngn-practice-tools desktop light: 119 text nodes
+PASS style: one visible h1 /students/chatgpt-for-nclex desktop light: 1 visible
+PASS style: no sideways scroll /students/chatgpt-for-nclex desktop light: scrollWidth 1280
+PASS style: text >= 12px /students/chatgpt-for-nclex desktop light
+PASS style: controls >= 44px, links meet 24px target spacing /students/chatgpt-for-nclex desktop light
+PASS style: text contrast >= 4.5:1 /students/chatgpt-for-nclex desktop light: 108 text nodes
+PASS style: one visible h1 /submit desktop light: 1 visible
+PASS style: no sideways scroll /submit desktop light: scrollWidth 1280
+PASS style: text >= 12px /submit desktop light
+PASS style: controls >= 44px, links meet 24px target spacing /submit desktop light
+PASS style: text contrast >= 4.5:1 /submit desktop light: 14 text nodes
+PASS style: one visible h1 / mobile light: 1 visible
+PASS style: no sideways scroll / mobile light: scrollWidth 390
+PASS style: text >= 12px / mobile light
+PASS style: controls >= 44px, links meet 24px target spacing / mobile light
+PASS style: text contrast >= 4.5:1 / mobile light: 901 text nodes
+PASS style: one visible h1 /tools/uworld-nursing mobile light: 1 visible
+PASS style: no sideways scroll /tools/uworld-nursing mobile light: scrollWidth 390
+PASS style: text >= 12px /tools/uworld-nursing mobile light
+PASS style: controls >= 44px, links meet 24px target spacing /tools/uworld-nursing mobile light
+PASS style: text contrast >= 4.5:1 /tools/uworld-nursing mobile light: 35 text nodes
+PASS style: one visible h1 /students mobile light: 1 visible
+PASS style: no sideways scroll /students mobile light: scrollWidth 390
+PASS style: text >= 12px /students mobile light
+PASS style: controls >= 44px, links meet 24px target spacing /students mobile light
+PASS style: text contrast >= 4.5:1 /students mobile light: 277 text nodes
+PASS style: one visible h1 /students/best-ai-nclex-prep mobile light: 1 visible
+PASS style: no sideways scroll /students/best-ai-nclex-prep mobile light: scrollWidth 390
+PASS style: text >= 12px /students/best-ai-nclex-prep mobile light
+PASS style: controls >= 44px, links meet 24px target spacing /students/best-ai-nclex-prep mobile light
+PASS style: text contrast >= 4.5:1 /students/best-ai-nclex-prep mobile light: 180 text nodes
+PASS style: one visible h1 /students/free-nclex-prep mobile light: 1 visible
+PASS style: no sideways scroll /students/free-nclex-prep mobile light: scrollWidth 390
+PASS style: text >= 12px /students/free-nclex-prep mobile light
+PASS style: controls >= 44px, links meet 24px target spacing /students/free-nclex-prep mobile light
+PASS style: text contrast >= 4.5:1 /students/free-nclex-prep mobile light: 138 text nodes
+PASS style: one visible h1 /students/ngn-practice-tools mobile light: 1 visible
+PASS style: no sideways scroll /students/ngn-practice-tools mobile light: scrollWidth 390
+PASS style: text >= 12px /students/ngn-practice-tools mobile light
+PASS style: controls >= 44px, links meet 24px target spacing /students/ngn-practice-tools mobile light
+PASS style: text contrast >= 4.5:1 /students/ngn-practice-tools mobile light: 128 text nodes
+PASS style: one visible h1 /students/chatgpt-for-nclex mobile light: 1 visible
+PASS style: no sideways scroll /students/chatgpt-for-nclex mobile light: scrollWidth 390
+PASS style: text >= 12px /students/chatgpt-for-nclex mobile light
+PASS style: controls >= 44px, links meet 24px target spacing /students/chatgpt-for-nclex mobile light
+PASS style: text contrast >= 4.5:1 /students/chatgpt-for-nclex mobile light: 111 text nodes
+PASS style: one visible h1 /submit mobile light: 1 visible
+PASS style: no sideways scroll /submit mobile light: scrollWidth 390
+PASS style: text >= 12px /submit mobile light
+PASS style: controls >= 44px, links meet 24px target spacing /submit mobile light
+PASS style: text contrast >= 4.5:1 /submit mobile light: 14 text nodes
+PASS style: one visible h1 / desktop dark: 1 visible
+PASS style: no sideways scroll / desktop dark: scrollWidth 1280
+PASS style: text >= 12px / desktop dark
+PASS style: controls >= 44px, links meet 24px target spacing / desktop dark
+PASS style: text contrast >= 4.5:1 / desktop dark: 670 text nodes
+PASS style: one visible h1 /tools/uworld-nursing desktop dark: 1 visible
+PASS style: no sideways scroll /tools/uworld-nursing desktop dark: scrollWidth 1280
+PASS style: text >= 12px /tools/uworld-nursing desktop dark
+PASS style: controls >= 44px, links meet 24px target spacing /tools/uworld-nursing desktop dark
+PASS style: text contrast >= 4.5:1 /tools/uworld-nursing desktop dark: 35 text nodes
+PASS style: one visible h1 /students desktop dark: 1 visible
+PASS style: no sideways scroll /students desktop dark: scrollWidth 1280
+PASS style: text >= 12px /students desktop dark
+PASS style: controls >= 44px, links meet 24px target spacing /students desktop dark
+PASS style: text contrast >= 4.5:1 /students desktop dark: 214 text nodes
+PASS style: one visible h1 /students/best-ai-nclex-prep desktop dark: 1 visible
+PASS style: no sideways scroll /students/best-ai-nclex-prep desktop dark: scrollWidth 1280
+PASS style: text >= 12px /students/best-ai-nclex-prep desktop dark
+PASS style: controls >= 44px, links meet 24px target spacing /students/best-ai-nclex-prep desktop dark
+PASS style: text contrast >= 4.5:1 /students/best-ai-nclex-prep desktop dark: 165 text nodes
+PASS style: one visible h1 /students/free-nclex-prep desktop dark: 1 visible
+PASS style: no sideways scroll /students/free-nclex-prep desktop dark: scrollWidth 1280
+PASS style: text >= 12px /students/free-nclex-prep desktop dark
+PASS style: controls >= 44px, links meet 24px target spacing /students/free-nclex-prep desktop dark
+PASS style: text contrast >= 4.5:1 /students/free-nclex-prep desktop dark: 126 text nodes
+PASS style: one visible h1 /students/ngn-practice-tools desktop dark: 1 visible
+PASS style: no sideways scroll /students/ngn-practice-tools desktop dark: scrollWidth 1280
+PASS style: text >= 12px /students/ngn-practice-tools desktop dark
+PASS style: controls >= 44px, links meet 24px target spacing /students/ngn-practice-tools desktop dark
+PASS style: text contrast >= 4.5:1 /students/ngn-practice-tools desktop dark: 119 text nodes
+PASS style: one visible h1 /students/chatgpt-for-nclex desktop dark: 1 visible
+PASS style: no sideways scroll /students/chatgpt-for-nclex desktop dark: scrollWidth 1280
+PASS style: text >= 12px /students/chatgpt-for-nclex desktop dark
+PASS style: controls >= 44px, links meet 24px target spacing /students/chatgpt-for-nclex desktop dark
+PASS style: text contrast >= 4.5:1 /students/chatgpt-for-nclex desktop dark: 108 text nodes
+PASS style: one visible h1 /submit desktop dark: 1 visible
+PASS style: no sideways scroll /submit desktop dark: scrollWidth 1280
+PASS style: text >= 12px /submit desktop dark
+PASS style: controls >= 44px, links meet 24px target spacing /submit desktop dark
+PASS style: text contrast >= 4.5:1 /submit desktop dark: 14 text nodes
+PASS style: one visible h1 / mobile dark: 1 visible
+PASS style: no sideways scroll / mobile dark: scrollWidth 390
+PASS style: text >= 12px / mobile dark
+PASS style: controls >= 44px, links meet 24px target spacing / mobile dark
+PASS style: text contrast >= 4.5:1 / mobile dark: 901 text nodes
+PASS style: one visible h1 /tools/uworld-nursing mobile dark: 1 visible
+PASS style: no sideways scroll /tools/uworld-nursing mobile dark: scrollWidth 390
+PASS style: text >= 12px /tools/uworld-nursing mobile dark
+PASS style: controls >= 44px, links meet 24px target spacing /tools/uworld-nursing mobile dark
+PASS style: text contrast >= 4.5:1 /tools/uworld-nursing mobile dark: 35 text nodes
+PASS style: one visible h1 /students mobile dark: 1 visible
+PASS style: no sideways scroll /students mobile dark: scrollWidth 390
+PASS style: text >= 12px /students mobile dark
+PASS style: controls >= 44px, links meet 24px target spacing /students mobile dark
+PASS style: text contrast >= 4.5:1 /students mobile dark: 277 text nodes
+PASS style: one visible h1 /students/best-ai-nclex-prep mobile dark: 1 visible
+PASS style: no sideways scroll /students/best-ai-nclex-prep mobile dark: scrollWidth 390
+PASS style: text >= 12px /students/best-ai-nclex-prep mobile dark
+PASS style: controls >= 44px, links meet 24px target spacing /students/best-ai-nclex-prep mobile dark
+PASS style: text contrast >= 4.5:1 /students/best-ai-nclex-prep mobile dark: 180 text nodes
+PASS style: one visible h1 /students/free-nclex-prep mobile dark: 1 visible
+PASS style: no sideways scroll /students/free-nclex-prep mobile dark: scrollWidth 390
+PASS style: text >= 12px /students/free-nclex-prep mobile dark
+PASS style: controls >= 44px, links meet 24px target spacing /students/free-nclex-prep mobile dark
+PASS style: text contrast >= 4.5:1 /students/free-nclex-prep mobile dark: 138 text nodes
+PASS style: one visible h1 /students/ngn-practice-tools mobile dark: 1 visible
+PASS style: no sideways scroll /students/ngn-practice-tools mobile dark: scrollWidth 390
+PASS style: text >= 12px /students/ngn-practice-tools mobile dark
+PASS style: controls >= 44px, links meet 24px target spacing /students/ngn-practice-tools mobile dark
+PASS style: text contrast >= 4.5:1 /students/ngn-practice-tools mobile dark: 128 text nodes
+PASS style: one visible h1 /students/chatgpt-for-nclex mobile dark: 1 visible
+PASS style: no sideways scroll /students/chatgpt-for-nclex mobile dark: scrollWidth 390
+PASS style: text >= 12px /students/chatgpt-for-nclex mobile dark
+PASS style: controls >= 44px, links meet 24px target spacing /students/chatgpt-for-nclex mobile dark
+PASS style: text contrast >= 4.5:1 /students/chatgpt-for-nclex mobile dark: 111 text nodes
+PASS style: one visible h1 /submit mobile dark: 1 visible
+PASS style: no sideways scroll /submit mobile dark: scrollWidth 390
+PASS style: text >= 12px /submit mobile dark
+PASS style: controls >= 44px, links meet 24px target spacing /submit mobile dark
+PASS style: text contrast >= 4.5:1 /submit mobile dark: 14 text nodes
+PASS safety: the browser made no off-box requests
+
+revision 7850043, harness wrangler, 43s, evidence shots/verify/
+VERIFY PASS: 231 passed, 1 skipped
