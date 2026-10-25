@@ -60,7 +60,7 @@ function discussIndex() {
     title: 'Discuss | Nurse AI Tools',
     desc: 'An open forum for nurses, nursing students and new grads to talk about AI at work and in school.',
     path: '/discuss',
-    body: '<section class=deck><h1>Discuss</h1><p class=lede>An open floor for nurses, students and new grads to talk about AI on the job and in school.</p></section>'
+    body: '<section class=deck><p class=kicker>Forum / open to nurses and students</p><h1>Discuss</h1><p class=lede>An open floor for nurses, students and new grads to talk about AI on the job and in school.</p></section>'
       + '<div class=prose><h2>Threads</h2><p data-forum-empty>No threads yet.</p></div>',
   };
 }
