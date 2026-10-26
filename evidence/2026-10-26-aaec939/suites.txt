@@ -1,0 +1,240 @@
+79 tools 90 pages 2108455 bytes
+
+> test
+> node --test
+
+TAP version 13
+# Subtest: starts idle
+ok 1 - starts idle
+  ---
+  duration_ms: 1.916228
+  ...
+# Subtest: a trait filter shows matching rows in page order
+ok 2 - a trait filter shows matching rows in page order
+  ---
+  duration_ms: 0.345242
+  ...
+# Subtest: a category narrows a trait filter
+ok 3 - a category narrows a trait filter
+  ---
+  duration_ms: 0.16101
+  ...
+# Subtest: turning a trait on twice keeps one copy of it
+ok 4 - turning a trait on twice keeps one copy of it
+  ---
+  duration_ms: 0.240318
+  ...
+# Subtest: turning the last trait off returns to idle
+ok 5 - turning the last trait off returns to idle
+  ---
+  duration_ms: 0.126209
+  ...
+# Subtest: a query matches trimmed and case-insensitive
+ok 6 - a query matches trimmed and case-insensitive
+  ---
+  duration_ms: 0.117114
+  ...
+# Subtest: a query no row contains is empty
+ok 7 - a query no row contains is empty
+  ---
+  duration_ms: 0.191303
+  ...
+# Subtest: a blank query with no other filter is idle
+ok 8 - a blank query with no other filter is idle
+  ---
+  duration_ms: 0.11289
+  ...
+# Subtest: clear from empty returns to idle
+ok 9 - clear from empty returns to idle
+  ---
+  duration_ms: 0.216337
+  ...
+# Subtest: drive renders once per change and skips an event that leaves the catalog idle
+ok 10 - drive renders once per change and skips an event that leaves the catalog idle
+  ---
+  duration_ms: 0.41919
+  ...
+# Subtest: bad JSON is refused and saves nothing
+ok 11 - bad JSON is refused and saves nothing
+  ---
+  duration_ms: 1.951541
+  ...
+# Subtest: JSON null, numbers, booleans, and strings are refused instead of crashing
+ok 12 - JSON null, numbers, booleans, and strings are refused instead of crashing
+  ---
+  duration_ms: 0.184998
+  ...
+# Subtest: a JSON array takes the field path and fails the field check
+ok 13 - a JSON array takes the field path and fails the field check
+  ---
+  duration_ms: 0.41528
+  ...
+# Subtest: the honeypot runs before the email check
+ok 14 - the honeypot runs before the email check
+  ---
+  duration_ms: 0.174521
+  ...
+# Subtest: a filled honeypot on the submit form saves nothing
+ok 15 - a filled honeypot on the submit form saves nothing
+  ---
+  duration_ms: 0.161237
+  ...
+# Subtest: an invalid email is refused with the form copy
+ok 16 - an invalid email is refused with the form copy
+  ---
+  duration_ms: 0.213136
+  ...
+# Subtest: a valid email is normalized and saved
+ok 17 - a valid email is normalized and saved
+  ---
+  duration_ms: 0.206925
+  ...
+# Subtest: a submission without an http URL is refused
+ok 18 - a submission without an http URL is refused
+  ---
+  duration_ms: 0.221645
+  ...
+# Subtest: a valid submission is trimmed and saved
+ok 19 - a valid submission is trimmed and saved
+  ---
+  duration_ms: 0.23366
+  ...
+# Subtest: submission fields are cut to their column limits
+ok 20 - submission fields are cut to their column limits
+  ---
+  duration_ms: 0.396933
+  ...
+# Subtest: a refusal encodes as status 400 with an error body
+ok 21 - a refusal encodes as status 400 with an error body
+  ---
+  duration_ms: 40.117495
+  ...
+# Subtest: an acceptance encodes as status 200 with a message body
+ok 22 - an acceptance encodes as status 200 with a message body
+  ---
+  duration_ms: 0.424672
+  ...
+# Subtest: form paths route to their form and nothing else does
+ok 23 - form paths route to their form and nothing else does
+  ---
+  duration_ms: 0.27773
+  ...
+# Subtest: send posts the raw fields as JSON to the form endpoint
+ok 24 - send posts the raw fields as JSON to the form endpoint
+  ---
+  duration_ms: 1.169939
+  ...
+# Subtest: a failed reply with no error string reads "Something went wrong."
+ok 25 - a failed reply with no error string reads "Something went wrong."
+  ---
+  duration_ms: 0.471647
+  ...
+# Subtest: an ok reply with an unreadable body reads "Thanks!"
+ok 26 - an ok reply with an unreadable body reads "Thanks!"
+  ---
+  duration_ms: 1.530893
+  ...
+# Subtest: a valid signup walks idle, validating, submitting, success
+ok 27 - a valid signup walks idle, validating, submitting, success
+  ---
+  duration_ms: 42.439832
+  ...
+# Subtest: a valid tool submission ends in success with the server message
+ok 28 - a valid tool submission ends in success with the server message
+  ---
+  duration_ms: 0.836831
+  ...
+# Subtest: an invalid email stops in error without a request
+ok 29 - an invalid email stops in error without a request
+  ---
+  duration_ms: 0.465105
+  ...
+# Subtest: a server refusal ends in error with the server copy
+ok 30 - a server refusal ends in error with the server copy
+  ---
+  duration_ms: 0.524908
+  ...
+# Subtest: a network failure ends in error with a message
+ok 31 - a network failure ends in error with a message
+  ---
+  duration_ms: 0.529576
+  ...
+# Subtest: a second submit while submitting is ignored and sends one request
+ok 32 - a second submit while submitting is ignored and sends one request
+  ---
+  duration_ms: 0.605502
+  ...
+# Subtest: an edit after an error clears it and a corrected submit succeeds
+ok 33 - an edit after an error clears it and a corrected submit succeeds
+  ---
+  duration_ms: 1.619976
+  ...
+# Subtest: a blank tool name names that field and sends nothing
+ok 34 - a blank tool name names that field and sends nothing
+  ---
+  duration_ms: 0.364852
+  ...
+# Subtest: a url that does not start with http names that field
+ok 35 - a url that does not start with http names that field
+  ---
+  duration_ms: 0.316121
+  ...
+# Subtest: a submission missing the name and the url names both fields
+ok 36 - a submission missing the name and the url names both fields
+  ---
+  duration_ms: 0.332074
+  ...
+# Subtest: next returns the same object for an event the state ignores
+ok 37 - next returns the same object for an event the state ignores
+  ---
+  duration_ms: 0.168486
+  ...
+# Subtest: each landing page is 200 with its own title, description, canonical, h1, and the newsletter form
+ok 38 - each landing page is 200 with its own title, description, canonical, h1, and the newsletter form
+  ---
+  duration_ms: 45.165354
+  ...
+# Subtest: every quote on a landing page is copied from a tools.json entry
+ok 39 - every quote on a landing page is copied from a tools.json entry
+  ---
+  duration_ms: 3.683157
+  ...
+# Subtest: landing pages link only to tool pages that exist
+ok 40 - landing pages link only to tool pages that exist
+  ---
+  duration_ms: 2.179593
+  ...
+# Subtest: the students hub, the older guides, and the sitemap link every landing page
+ok 41 - the students hub, the older guides, and the sitemap link every landing page
+  ---
+  duration_ms: 1.50478
+  ...
+# Subtest: the worker keeps the public routes
+ok 42 - the worker keeps the public routes
+  ---
+  duration_ms: 1.29266
+  ...
+# Subtest: a trailing slash on a GET or HEAD redirects to the clean path, keeping the query
+ok 43 - a trailing slash on a GET or HEAD redirects to the clean path, keeping the query
+  ---
+  duration_ms: 0.150867
+  ...
+# Subtest: a subscriber is sent to Kit only after the insert, and only when the key is set
+ok 44 - a subscriber is sent to Kit only after the insert, and only when the key is set
+  ---
+  duration_ms: 0.165928
+  ...
+1..44
+# tests 44
+# suites 0
+# pass 44
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 199.362935
+
+> check
+> tsc -p tsconfig.json
+
+ok 91 pages, 79 tools, 4 text colors on 5 grounds, 9 painted pairs, one accent
