@@ -53,7 +53,10 @@ The forms write to a local D1 database. To create its tables, run this once:
 
 ```sh
 npx wrangler d1 execute nurseaitools --local --file schema.sql
+npx wrangler d1 migrations apply nurseaitools --local
 ```
+
+The second command creates the forum tables from `migrations/`. The forum lives at `/discuss`. Its server code is `server/forum.js`. Pages are filled in at request time from the `page()` shell that build.py writes as `SHELL`. See `docs/adr/0001-forum-router-and-sessions.md`.
 
 ## Deploy
 
@@ -62,7 +65,7 @@ python3 build.py
 npx wrangler deploy
 ```
 
-`wrangler.toml` deploys the worker `nurseaitools` with the D1 binding `DB` on the database `nurseaitools`. The worker imports `web/contract.js`, and wrangler bundles that import. Do not set `no_bundle = true`, because the import then fails.
+`wrangler.toml` deploys the worker `nurseaitools` with the D1 binding `DB` on the database `nurseaitools`. The worker imports `web/contract.js` and `server/forum.js`, and wrangler bundles those imports. Do not set `no_bundle = true`, because the import then fails.
 
 Apply `schema.sql` once on the remote database if the tables are not already there:
 
@@ -77,7 +80,7 @@ npx wrangler secret put KIT_API_KEY
 npx wrangler secret put KIT_TAG_ID
 ```
 
-`deploy.js` is a second deploy path for a connector that uploads one module through the Cloudflare API with no bundler. `build.py` writes the worker into it with `web/contract.js` inlined in place of the import. Run the build before you use it.
+`deploy.js` is a second deploy path for a connector that uploads one module through the Cloudflare API with no bundler. `build.py` writes the worker into it with every module the template imports (`web/contract.js`, `server/forum.js`) inlined in place of its import. Those modules must not import anything themselves, and the build fails if they do. Run the build before you use it.
 
 ## Reference
 
