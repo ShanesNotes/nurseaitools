@@ -278,10 +278,9 @@ try:
                       or re.match(r"(https?:)?//(www\.)?nurseaitools\.com", a)})
     check("canonical: internal links use the canonical form", not offsite, f"{len(built_pages)} pages" + (f"; {offsite[:5]}" if offsite else ""))
     st, _, html = get(base + "/no-such-page-verify")
-    if CANON.findall(html):
-        note("canonical: the 404 page declares no canonical", f"known site bug: it says canonical {CANON.findall(html)}. Harmless while it is served as {st}, which Google drops, but build.py should pass no canonical for NOT_FOUND")
-    else:
-        check("canonical: the 404 page declares no canonical", st == 404, f"status {st}")
+    check("canonical: the 404 page is 404 with no canonical, noindex, and no current nav item",
+          st == 404 and not CANON.findall(html) and "<meta name=robots content=noindex>" in html and not re.search(r"<a [^>]*aria-current", html),
+          f"status {st}, canonical {CANON.findall(html)}, noindex {'noindex' in html}, current nav {bool(re.search(r"<a [^>]*aria-current", html))}")
     check("canonical: the built 404 body matches what is served", CANON.findall(not_found) == CANON.findall(html))
 
     for s in sorted(set(re.findall(r'src="(/js/[^"]+)"|href="(/js/[^"]+)"', get(base + "/")[2]))):

@@ -40,7 +40,7 @@ Options:
    - For every page, `<path>/`, `<path>//` and `<path>/?utm_source=verify` answer 301 to `<path>`, keeping the query. `<path>?q=verify` and `<path>?utm_source=verify` are 200 copies whose canonical is the clean URL. The worker ignores the query.
    - `Host: www.nurseaitools.com` gets a 301 to the apex with the path and query kept. A `*.workers.dev` host (`workers_dev = true`) serves copies that point at the apex.
    - No internal `<a href>` uses a trailing slash, a query, or an absolute `nurseaitools.com` or `www` link.
-   - The 404 page should declare no canonical. Today it says canonical `/`, so this check is a SKIP with that reason. It is harmless while the status is 404. When `build.py` drops it, the check turns into a PASS on its own.
+   - The 404 page answers 404, declares no canonical and no `og:url`, says `noindex`, and marks no nav item current.
 6. **Home and directory.** The count reads `<N> tools` and there are N rows, one per name in `tools.json`. Search `abridge` narrows to exactly the rows whose name, vendor, or description match. The category filter shows the same number of rows as `tools.json` has in that category. A nonsense query shows the empty state, and Clear brings back every row. No script errors.
 7. **Tool page.** The `h1` is the tool name. The vendor, description, and RN reality check are shown. The official site link matches `tools.json`.
 8. **Students.** In Chrome at 1280 wide, `/students` and each NCLEX guide (`/students/best-ai-nclex-prep`, `/students/free-nclex-prep`, `/students/ngn-practice-tools`, `/students/chatgpt-for-nclex`) has exactly one visible `h1`. It has at least one tool link, and every `/tools/<slug>` link names a slug in `tools.json`. Every on-site link answers 200. It has the newsletter form and no script errors. The hub links all four guides.
@@ -90,7 +90,7 @@ node serve.mjs            # http://localhost:8787, or PORT=<n> node serve.mjs
 - `serve.mjs` and wrangler both read `dist/worker.js` once at start. Rebuild, then restart.
 - A fresh checkout has no `node_modules`. Without `npm install`, `npx wrangler` finds a newer global wrangler on the box. Its workerd may not support the worker's `compatibility_date`. The server never answers, and the log says `requires compatibility date "2026-10-01"`. Run `npm install`, which pins wrangler 3, and rerun. This is setup, not a site bug.
 - The box runs other lanes, and Chrome has run out of memory here when one tab audited every page. The style pass opens a fresh tab per page. If you see `Target crashed`, check `free -g` before you suspect the site.
-- The fonts check used to be the run's one skip, because the old design loaded no webfont. The Market redesign self-hosts its fonts, so it now runs, and it now passes. A normal wrangler run has one skip, the 404 canonical in step 5. Any other SKIP line means something changed. Explain it in the PR.
+- The fonts check used to be the run's one skip, because the old design loaded no webfont. The Market redesign self-hosts its fonts, so it now runs, and it now passes. A normal wrangler run has no skips. The 404 canonical used to be one; the 404 page now declares none. Any SKIP line means something changed. Explain it in the PR.
 
 ## What this does not check
 

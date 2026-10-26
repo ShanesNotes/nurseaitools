@@ -272,6 +272,10 @@ for path, page in PAGES.items():
     for tag in (f'<link rel=canonical href="{BASE}{path}">', "<title>", "<meta name=description", "<meta property=og:title",
                 "<meta property=og:description", f'<meta property=og:url content="{BASE}{path}">'):
         check(tag in page, f"{path} is missing {tag}")
+not_found = ALL_PAGES["404"]
+check("rel=canonical" not in not_found and "og:url" not in not_found, "the 404 page declares a canonical or og:url")
+check("<meta name=robots content=noindex>" in not_found, "the 404 page is not noindex")
+check(not re.search(r"<a [^>]*aria-current", not_found), "the 404 page marks a nav item current")
 
 if failures:
     print("\n".join(failures))
