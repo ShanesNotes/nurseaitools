@@ -1,0 +1,25 @@
+$ python3 .agents/skills/verify-nurse-ai-tools/live_check.py
+PASS apex serves the site: GET https://nurseaitools.com/ -> 200
+PASS workers.dev does not serve the site: GET https://nurseaitools.lectionary-web.workers.dev/ -> 404 error 1042
+LIVE PASS: 2 passed
+exit=0
+
+$ negative control: same script with WORKERS_DEV pointed at https://nurseaitools.com/ (a host that serves the site)
+PASS apex serves the site: GET https://nurseaitools.com/ -> 200
+FAIL workers.dev does not serve the site: GET https://nurseaitools.com/ -> 200
+LIVE FAIL: workers.dev does not serve the site. If workers.dev is serving, the last deploy turned the subdomain on; see SKILL.md.
+exit=1
+
+$ node --test test/deploy.test.js, with deploy.js from main 5eacc92 (before the fix)
+ok 1 - wrangler.toml keeps workers.dev off
+not ok 2 - deploy.js uploads the worker, then turns the workers.dev subdomain and its previews off
+not ok 3 - deploy.js never sends enabled: true to any endpoint
+# pass 1
+# fail 2
+
+$ node --test test/deploy.test.js, at f009127
+ok 1 - wrangler.toml keeps workers.dev off
+ok 2 - deploy.js uploads the worker, then turns the workers.dev subdomain and its previews off
+ok 3 - deploy.js never sends enabled: true to any endpoint
+# pass 3
+# fail 0
