@@ -13,6 +13,10 @@ test('the worker keeps the public routes', () => {
   assert.match(worker, /new Response\('22108e5ac38312c5b3b7a578b9d42a4b'/);
 });
 
+test('a trailing slash on a GET or HEAD redirects to the clean path, keeping the query', () => {
+  assert.match(worker, /if \(p !== u\.pathname && \(req\.method === 'GET' \|\| req\.method === 'HEAD'\)\) \{ u\.pathname = p; return Response\.redirect\(u\.toString\(\), 301\); \}/);
+});
+
 test('a subscriber is sent to Kit only after the insert, and only when the key is set', () => {
   assert.match(worker, /await persist\(env\.DB, save/);
   assert.match(worker, /save\.kind === 'subscriber' && env\.KIT_API_KEY\) ctx\.waitUntil\(kitAdd\(env, save\.email\)\.catch\(\(\) => \{\}\)\)/);

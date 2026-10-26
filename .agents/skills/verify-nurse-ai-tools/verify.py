@@ -254,11 +254,19 @@ try:
     check("canonical: each served sitemap page's canonical equals its sitemap URL", not mism, f"{len(paths)} pages" + (f"; {mism[:3]}" if mism else ""))
     bad = []
     for p in paths:
-        for v in ([p + "/", p + "//", p + "/?utm_source=verify"] if p != "/" else []) + [p + "?q=verify"]:
+        for v in ([p + "/", p + "//", p + "/?utm_source=verify"] if p != "/" else []):
+            st, h, _ = raw(base + v, f"127.0.0.1:{port}")
+            loc = urllib.parse.urlsplit(h.get("location", ""))
+            if st != 301 or loc.path != p or loc.query != urllib.parse.urlsplit(v).query:
+                bad.append(f"{v} ({st} -> {h.get('location')})")
+    check("canonical: trailing-slash copies 301 to the clean path, keeping the query", not bad, f"{len(paths)} pages x 3 variants" + ("; " + "; ".join(bad[:3]) if bad else ""))
+    bad = []
+    for p in paths:
+        for v in [p + "?q=verify", p + "?utm_source=verify"]:
             st, _, html = get(base + v)
             if st != 200 or CANON.findall(html) != [LIVE + p]:
                 bad.append(f"{v} ({st}, {CANON.findall(html)})")
-    check("canonical: trailing-slash and query copies are 200 and point at the clean URL", not bad, f"{len(paths)} pages x 4 variants" + ("; " + "; ".join(bad[:3]) if bad else ""))
+    check("canonical: query copies are 200 and point at the clean URL", not bad, f"{len(paths)} pages x 2 variants" + ("; " + "; ".join(bad[:3]) if bad else ""))
     st, h, _ = raw(base + "/students/?q=verify", "www.nurseaitools.com")
     loc = urllib.parse.urlsplit(h.get("location", ""))
     check("canonical: www 301s to the apex, keeping path and query", st == 301 and loc.netloc == "nurseaitools.com" and loc.path == "/students/" and loc.query == "q=verify",

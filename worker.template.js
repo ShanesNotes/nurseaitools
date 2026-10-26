@@ -18,6 +18,8 @@ export default {
     const u = new URL(req.url);
     if (u.hostname === 'www.nurseaitools.com') { u.hostname = 'nurseaitools.com'; return Response.redirect(u.toString(), 301); }
     const p = u.pathname.replace(/\/+$/, '') || '/';
+    // One URL per page: /students/ and /students// redirect to /students, keeping the query.
+    if (p !== u.pathname && (req.method === 'GET' || req.method === 'HEAD')) { u.pathname = p; return Response.redirect(u.toString(), 301); }
 
     const form = req.method === 'POST' ? formAt(p) : null;
     if (form) {
