@@ -6,3 +6,5 @@ __pycache__/
 .claude/*
 !.claude/skills
 shots/
+e2e-results*/
+playwright-report/
