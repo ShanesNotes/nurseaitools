@@ -1,10 +1,18 @@
 // Serves the local build for the e2e suite the same way verify.py does:
 // a fresh local D1 in a temp dir, seeded from schema.sql, and wrangler dev --local on 127.0.0.1.
 // Cloudflare and Kit credentials are removed from the env, so nothing here can reach a remote account.
+// Wrangler also loads .dev.vars and .env on its own, so a Kit key in either file stops the run, as in verify.py.
 import { spawn, spawnSync } from 'node:child_process';
-import { mkdtempSync, writeFileSync } from 'node:fs';
+import { existsSync, mkdtempSync, readFileSync, writeFileSync } from 'node:fs';
 import { tmpdir } from 'node:os';
 import { join } from 'node:path';
+
+for (const f of ['.dev.vars', '.env']) {
+  if (existsSync(f) && readFileSync(f, 'utf8').includes('KIT_API_KEY')) {
+    console.error(`${f} sets KIT_API_KEY, so a local signup would reach Kit. Remove it and rerun.`);
+    process.exit(1);
+  }
+}
 
 const port = process.env.E2E_PORT || '8812';
 const env = Object.fromEntries(Object.entries(process.env).filter(([k]) => !/^(CF_|CLOUDFLARE_|KIT_)/.test(k)));
