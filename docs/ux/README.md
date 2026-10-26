@@ -28,8 +28,8 @@ See the PR for the exact runs: head sha, command, and counts.
 
 | Mode | Result |
 | --- | --- |
-| Local, main build | All stories pass except the 12 open checks, which fail as expected in all four projects |
-| Live, read-only (25cf14a) | Same: every open check reproduces on live. No POST left the browser |
+| Local, main build (`npm run e2e`) | 156 tests: 100 passed, 48 expected failures (the 12 open checks x 4 projects), 8 skipped (live-only), 0 unexpected. 2.3 min, 2 workers |
+| Live, read-only (`npm run e2e:live`, deploy 25cf14a) | 156 tests: 104 passed, 48 expected failures, 4 skipped (local-only signup), 0 unexpected. Every open check reproduces on live. No POST left the browser |
 | Fix branches | `SN-2.c` and `SN-3.c` pass against [#34](https://github.com/ShanesNotes/nurseaitools/pull/34) in all four projects |
 
 ## Severity
