@@ -24,7 +24,7 @@ test.describe('ED-2 arrive on the care plan guide from search', () => {
 
 test.describe('ED-3 find a page for educators', () => {
   test('ED-3.a the nav has an entry for educators or leaders', async ({ page }) => {
-    test.fail(true, 'Open: only Students has an entry point. See the persona entry points epic.');
+    test.fail(true, 'Open: only Students has an entry point. See the persona entry points epic. #11');
     await page.goto('/');
     await expect(page.locator('.mast nav')).toContainText(/educator|leader|manager/i);
   });

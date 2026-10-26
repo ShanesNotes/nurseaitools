@@ -5,7 +5,7 @@
   "scripts": {
     "build": "python3 build.py",
     "test": "node --test",
-    "check": "tsc -p tsconfig.json",
+    "check": "tsc -p tsconfig.json && tsc -p e2e/tsconfig.json",
     "e2e": "playwright test",
     "e2e:live": "E2E_LIVE=1 playwright test",
     "dev": "wrangler dev",

@@ -45,7 +45,7 @@ Walked on Oct 25, 2026 at `e41961a` (main), local build, headless Chrome at 390 
 - `SN-1.b` The h1 is the tool name.
 - `SN-1.c` The RN reality check (Built for, HIPAA status, Bedside fit) is on the page with three values.
 - `SN-1.d` No sideways scroll at 390, in light and dark.
-- `SN-1.e` A trailing-slash copy (`/tools/<slug>/`) leads to the clean URL. **Open:** today it is a 200 copy, not a 301. See the SEO issue and the trailing-slash PR.
+- `SN-1.e` A trailing-slash copy (`/tools/<slug>/`) leads to the clean URL. **Open ([#26](https://github.com/ShanesNotes/nurseaitools/issues/26)):** today it is a 200 copy, not a 301. See the SEO issue and the trailing-slash PR.
 
 ### SN-2. Find nurse-built tools for charting
 
@@ -62,8 +62,8 @@ Walked on Oct 25, 2026 at `e41961a` (main), local build, headless Chrome at 390 
 
 - `SN-2.a` "Browse 79 tools" moves focus to the directory.
 - `SN-2.b` Category plus trait narrows the rows and the count reads `<n> of 79 tools`.
-- `SN-2.c` After opening a tool and pressing Back, the visible rows match the filters shown in the controls. **Open:** the controls are restored but every row shows.
-- `SN-2.d` Searching `charting` finds at least one ambient documentation tool. **Open:** 0 results, because search reads only the name, vendor and description.
+- `SN-2.c` After opening a tool and pressing Back, the visible rows match the filters shown in the controls. **Open ([#13](https://github.com/ShanesNotes/nurseaitools/issues/13)):** the controls are restored but every row shows.
+- `SN-2.d` Searching `charting` finds at least one ambient documentation tool. **Open ([#18](https://github.com/ShanesNotes/nurseaitools/issues/18)):** 0 results, because search reads only the name, vendor and description.
 
 ### SN-3. Read a tool page on a phone
 
@@ -78,8 +78,8 @@ Walked on Oct 25, 2026 at `e41961a` (main), local build, headless Chrome at 390 
 
 - `SN-3.a` The official site link matches `tools.json`, opens in a new tab, and has `rel` with `noopener`.
 - `SN-3.b` The EHR and HIPAA / BAA rows are present.
-- `SN-3.c` "Back to the directory" returns to the directory list, not the top of the hero. **Open.**
-- `SN-3.d` The page links at least one other tool in the same category. **Open:** a tool page is a dead end.
+- `SN-3.c` "Back to the directory" returns to the directory list, not the top of the hero. **Open ([#21](https://github.com/ShanesNotes/nurseaitools/issues/21)).**
+- `SN-3.d` The page links at least one other tool in the same category. **Open ([#22](https://github.com/ShanesNotes/nurseaitools/issues/22)):** a tool page is a dead end.
 
 ### SN-4. Decide whether to trust the HIPAA line
 
@@ -93,9 +93,9 @@ Walked on Oct 25, 2026 at `e41961a` (main), local build, headless Chrome at 390 
 **Acceptance checks**
 
 - `SN-4.a` The HIPAA / BAA row says the BAA is not confirmed.
-- `SN-4.b` The filter that selects these tools does not promise more than the data. **Open:** it is labeled "HIPAA-ready", but the data only says the vendor website mentions HIPAA.
-- `SN-4.c` Every tool page shows when the listing was checked, including one whose HIPAA status is Unknown (`/tools/abridge`). **Open:** only the "Mentions HIPAA" line carries "(checked Oct 2026)". Tools with Unknown or "Not for patient info" show no date anywhere on the page.
-- `SN-4.d` The tool page links to how listings work (`/about`). **Open.**
+- `SN-4.b` The filter that selects these tools does not promise more than the data. **Open ([#14](https://github.com/ShanesNotes/nurseaitools/issues/14)):** it is labeled "HIPAA-ready", but the data only says the vendor website mentions HIPAA.
+- `SN-4.c` Every tool page shows when the listing was checked, including one whose HIPAA status is Unknown (`/tools/abridge`). **Open ([#15](https://github.com/ShanesNotes/nurseaitools/issues/15)):** only the "Mentions HIPAA" line carries "(checked Oct 2026)". Tools with Unknown or "Not for patient info" show no date anywhere on the page.
+- `SN-4.d` The tool page links to how listings work (`/about`). **Open ([#16](https://github.com/ShanesNotes/nurseaitools/issues/16)).**
 
 ### SN-5. Sign up for the weekly note from a tool page
 
@@ -127,7 +127,7 @@ Walked on Oct 25, 2026 at `e41961a` (main), local build, headless Chrome at 390 
 
 - `NM-1.a` Home has one h1, a meta description, and a self canonical.
 - `NM-1.b` The category list includes "Scheduling & staffing".
-- `NM-1.c` A deep link with a query, `/?q=scheduling`, opens with the search filled in and the list narrowed. **Open:** the query is ignored. (Search Console already lists `?q=` copies, so someone shares these links.)
+- `NM-1.c` A deep link with a query, `/?q=scheduling`, opens with the search filled in and the list narrowed. **Open ([#20](https://github.com/ShanesNotes/nurseaitools/issues/20)):** the query is ignored. (Search Console already lists `?q=` copies, so someone shares these links.)
 
 ### NM-2. Shortlist tools for one problem
 
@@ -140,7 +140,7 @@ Walked on Oct 25, 2026 at `e41961a` (main), local build, headless Chrome at 390 
 **Acceptance checks**
 
 - `NM-2.a` The category filter shows exactly the rows `tools.json` has in that category.
-- `NM-2.b` A two-word query matches rows containing both words in any order. **Open:** search is an exact-phrase match, so `nclex free` finds 0.
+- `NM-2.b` A two-word query matches rows containing both words in any order. **Open ([#19](https://github.com/ShanesNotes/nurseaitools/issues/19)):** search is an exact-phrase match, so `nclex free` finds 0.
 - `NM-2.c` A nonsense query shows the empty state, and "Clear filters" brings every row back.
 
 ### NM-3. Compare two tools
@@ -268,7 +268,7 @@ Walked on Oct 25, 2026 at `e41961a` (main), local build, headless Chrome at 390 
 
 **Acceptance checks**
 
-- `ED-3.a` The site nav has an entry for educators or leaders. **Open:** only Students exists. See the persona entry points epic.
+- `ED-3.a` The site nav has an entry for educators or leaders. **Open ([#11](https://github.com/ShanesNotes/nurseaitools/issues/11)):** only Students exists. See the persona entry points epic.
 
 ---
 
@@ -281,4 +281,4 @@ These hold on every story's pages, and the suite runs them on each page it visit
 - `ALL.c` Exactly one visible h1.
 - `ALL.d` No sideways scroll at 390 or 1280.
 - `ALL.e` Every button, field and select is at least 44px tall.
-- `ALL.f` The 404 page answers 404, has no canonical, says noindex, and does not mark a nav item current. **Open** until the 404 PR merges.
+- `ALL.f` The 404 page answers 404, has no canonical, says noindex, and does not mark a nav item current. **Open ([#25](https://github.com/ShanesNotes/nurseaitools/issues/25))** until the 404 PR merges.

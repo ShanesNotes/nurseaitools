@@ -11,7 +11,7 @@ test.describe('NM-1 arrive from search on a category need', () => {
   });
 
   test('NM-1.c a ?q= deep link opens with the search filled in', async ({ page }) => {
-    test.fail(true, 'Open: the query string is ignored.');
+    test.fail(true, 'Open: the query string is ignored. #20');
     await page.goto('/?q=scheduling');
     await page.waitForLoadState('networkidle');
     await expect(page.locator('[data-filter-query]')).toHaveValue('scheduling');
@@ -30,7 +30,7 @@ test.describe('NM-2 shortlist tools for one problem', () => {
   });
 
   test('NM-2.b a two-word query matches both words in any order', async ({ page }) => {
-    test.fail(true, 'Open: search is an exact-phrase match.');
+    test.fail(true, 'Open: search is an exact-phrase match. #19');
     await page.fill('[data-filter-query]', 'nclex free');
     await expect(rows(page).first()).toBeVisible();
   });
