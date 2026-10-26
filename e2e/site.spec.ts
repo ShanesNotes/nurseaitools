@@ -9,7 +9,6 @@ for (const path of ['/', '/students', '/about', '/submit', '/students/ngn-practi
 }
 
 test('ALL.f the 404 page is 404, noindex, with no canonical and no current nav item', async ({ page }) => {
-  test.fail(true, 'Open until the 404 PR merges: canonical "/", no noindex, and Directory is marked current. #25');
   const res = await page.goto('/no-such-page-e2e');
   expect(res?.status()).toBe(404);
   await expect(page.locator('link[rel=canonical]')).toHaveCount(0);

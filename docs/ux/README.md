@@ -16,7 +16,7 @@ npm run e2e -- -g SN-2      # one story
 npm run e2e:live            # read-only against https://nurseaitools.com
 ```
 
-- **Local** (default). `playwright.config.ts` starts `python3 build.py && node e2e/serve.mjs`. `serve.mjs` seeds a temp D1 from `schema.sql` and runs `wrangler dev --local` on 127.0.0.1, with `CF_*`, `CLOUDFLARE_*` and `KIT_*` removed from the env, as `verify.py` does. The browser aborts and reports any request that leaves the local server. Signups go to the local D1 only.
+- **Local** (default). `playwright.config.ts` starts `python3 build.py && node e2e/serve.mjs`. `serve.mjs` seeds a temp D1 from `schema.sql` and runs `wrangler dev --local` on 127.0.0.1, with `CF_*`, `CLOUDFLARE_*` and `KIT_*` removed from the env, as `verify.py` does. Wrangler reads `.dev.vars` and `.env` itself, so `serve.mjs` refuses to start if either sets `KIT_API_KEY`. The browser aborts and reports any request that leaves the local server. Signups go to the local D1 only.
 - **Live** (`E2E_LIVE=1`). GET and navigation only. Every non-GET request is aborted in the browser before it leaves, and the test fails if one was attempted. Signup specs fill the field and stop before Subscribe. `ALL.a` proves the guard by trying a `POST /api/submit` and checking that it was blocked. Live loads Cloudflare Web Analytics; the suite blocks that beacon too and does not count it as a failure.
 - Four projects: `phone-light`, `phone-dark` (390x844), `desktop-light`, `desktop-dark` (1280x800). Two workers, so a busy box is not overloaded. Chrome is `/usr/bin/google-chrome` or `$CHROME`; nothing is downloaded.
 - Other env: `E2E_PORT` (default 8812), `E2E_BASE_URL` (use a server that is already running), `E2E_WORKERS`.
@@ -30,6 +30,7 @@ See the PR for the exact runs: head sha, command, and counts.
 | --- | --- |
 | Local, main build (`npm run e2e`) | 156 tests: 100 passed, 48 expected failures (the 12 open checks x 4 projects), 8 skipped (live-only), 0 unexpected. 2.3 min, 2 workers |
 | Live, read-only (`npm run e2e:live`, deploy 25cf14a) | 156 tests: 104 passed, 48 expected failures, 4 skipped (local-only signup), 0 unexpected. Every open check reproduces on live. No POST left the browser |
+| Local, rebased on main 78c622f (`npm run e2e`) | 156 tests: 104 passed, 44 expected failures (11 open checks x 4 projects; `ALL.f` now passes after #32), 8 skipped, 0 unexpected |
 | Fix branches | `SN-2.c` and `SN-3.c` pass against [#34](https://github.com/ShanesNotes/nurseaitools/pull/34) in all four projects |
 
 ## Severity
@@ -55,7 +56,7 @@ See the PR for the exact runs: head sha, command, and counts.
 | S3 | [#22](https://github.com/ShanesNotes/nurseaitools/issues/22) Tool page is a dead end | SN-3.d | main + live | epic [#12](https://github.com/ShanesNotes/nurseaitools/issues/12) |
 | S3 | [#23](https://github.com/ShanesNotes/nurseaitools/issues/23) Phone: filters scroll away in 79 rows | ST-2 | main + live | epic [#9](https://github.com/ShanesNotes/nurseaitools/issues/9) |
 | S3 | [#24](https://github.com/ShanesNotes/nurseaitools/issues/24) Home newsletter after all 79 rows | SN-5 | main + live | epic [#10](https://github.com/ShanesNotes/nurseaitools/issues/10) |
-| S4 | [#25](https://github.com/ShanesNotes/nurseaitools/issues/25) 404: canonical "/", no noindex, Directory current | ALL.f | main + live | [#32](https://github.com/ShanesNotes/nurseaitools/pull/32) |
+| S4 | [#25](https://github.com/ShanesNotes/nurseaitools/issues/25) 404: canonical "/", no noindex, Directory current | ALL.f | fixed on main | [#32](https://github.com/ShanesNotes/nurseaitools/pull/32) |
 | S4 | [#26](https://github.com/ShanesNotes/nurseaitools/issues/26) Search Console "Alternate page with proper canonical" explained | SN-1.e | live | [#33](https://github.com/ShanesNotes/nurseaitools/pull/33), [#36](https://github.com/ShanesNotes/nurseaitools/pull/36) |
 | S4 | [#27](https://github.com/ShanesNotes/nurseaitools/issues/27) Sitemap lastmod fixed at 2026-10-17 | NM-1 | main + live | proposed |
 | S4 | [#28](https://github.com/ShanesNotes/nurseaitools/issues/28) Empty state wording, no next step | NM-2 | main + live | epic [#9](https://github.com/ShanesNotes/nurseaitools/issues/9) |

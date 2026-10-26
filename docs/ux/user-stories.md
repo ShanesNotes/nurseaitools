@@ -281,4 +281,4 @@ These hold on every story's pages, and the suite runs them on each page it visit
 - `ALL.c` Exactly one visible h1.
 - `ALL.d` No sideways scroll at 390 or 1280.
 - `ALL.e` Every button, field and select is at least 44px tall.
-- `ALL.f` The 404 page answers 404, has no canonical, says noindex, and does not mark a nav item current. **Open ([#25](https://github.com/ShanesNotes/nurseaitools/issues/25))** until the 404 PR merges.
+- `ALL.f` The 404 page answers 404, has no canonical, says noindex, and does not mark a nav item current. Fixed on main by [#32](https://github.com/ShanesNotes/nurseaitools/pull/32) ([#25](https://github.com/ShanesNotes/nurseaitools/issues/25)).
