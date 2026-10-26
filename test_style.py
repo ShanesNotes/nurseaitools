@@ -238,7 +238,8 @@ for media, selector, decls in STYLED:
             ok = selector == ":focus-visible" or (selector.endswith(" :focus-visible") and prop == "outline-color")
             check(ok, f"{selector} restyles the focus outline: {prop}:{value}")
 
-for name, raw in [*ALL_PAGES.items(), *SCRIPTS.items(), ("style", CSS)]:
+SERVER = {p.name: p.read_text(encoding="utf-8") for p in sorted((ROOT / "server").glob("*.js"))}
+for name, raw in [*ALL_PAGES.items(), *SCRIPTS.items(), *SERVER.items(), ("style", CSS)]:
     for m in BANNED.finditer(raw):
         check(False, f"{name}: banned word {m.group(0)!r}")
     for m in EMOJI.finditer(raw):

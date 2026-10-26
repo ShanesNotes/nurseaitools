@@ -118,6 +118,17 @@ def raw(url, host):
     return out
 
 
+def post(url, origin):
+    headers = {"user-agent": "verify-nurse-ai-tools", "content-type": "application/json"}
+    if origin:
+        headers["origin"] = origin
+    try:
+        with urllib.request.urlopen(urllib.request.Request(url, data=b"{}", headers=headers, method="POST"), timeout=15) as r:
+            return r.status
+    except urllib.error.HTTPError as err:
+        return err.code
+
+
 CANON = re.compile(r'<link rel=canonical href="([^"]*)"')
 
 
@@ -156,6 +167,9 @@ log = open(os.path.join(tempfile.gettempdir(), f"nai-verify-{port}.log"), "w")
 if args.harness == "wrangler":
     seed = run(["npx", "wrangler", "d1", "execute", "nurseaitools", "--local", "--persist-to", persist, "--file", "schema.sql"], env=local_env())
     check("serve: local D1 seeded from schema.sql", seed.returncode == 0, persist)
+    mig = run(["npx", "wrangler", "d1", "migrations", "apply", "nurseaitools", "--local", "--persist-to", persist], env=local_env(), stdin=subprocess.DEVNULL)
+    applied = re.findall(r"(\d{4}_\w+\.sql)\s*│\s*✅", mig.stdout)
+    check("serve: migrations apply cleanly to the local D1", mig.returncode == 0 and applied == sorted(os.listdir(os.path.join(ROOT, "migrations"))), f"applied {applied}")
     cmd = ["npx", "wrangler", "dev", "--local", "--persist-to", persist, "--ip", "127.0.0.1", "--port", str(port),
            "--inspector-port", str(free_port()), "--show-interactive-dev-session=false"]
 else:
@@ -264,7 +278,7 @@ try:
     check("canonical: www 301s to the apex, keeping path and query", st == 301 and loc.netloc == "nurseaitools.com" and loc.path == "/students/" and loc.query == "q=verify",
           f"{st} -> {h.get('location')}. The scheme follows the request (http here); live https was not checked by this script")
     st, _, html = raw(base + "/students", "nurseaitools.verify.workers.dev")
-    check("canonical: a workers.dev copy points at the apex", st == 200 and CANON.findall(html) == [LIVE + "/students"], f"{st}, {CANON.findall(html)}. workers_dev = true in wrangler.toml")
+    check("canonical: a workers.dev copy points at the apex", st == 200 and CANON.findall(html) == [LIVE + "/students"], f"{st}, {CANON.findall(html)}. Faked with a Host header; wrangler.toml sets workers_dev = false")
     offsite = sorted({(p, a) for p, html in built_pages.items() for a in re.findall(r'<a [^>]*href="?([^" >]+)', html)
                       if (a.startswith("/") and not a.startswith("//") and ("?" in a or (a != "/" and a.split("#")[0].endswith("/"))))
                       or re.match(r"(https?:)?//(www\.)?nurseaitools\.com", a)})
@@ -274,6 +288,14 @@ try:
           st == 404 and not CANON.findall(html) and "<meta name=robots content=noindex>" in html and not re.search(r"<a [^>]*aria-current", html),
           f"status {st}, canonical {CANON.findall(html)}, noindex {'noindex' in html}, current nav {bool(re.search(r"<a [^>]*aria-current", html))}")
     check("canonical: the built 404 body matches what is served", CANON.findall(not_found) == CANON.findall(html))
+    st, h, forum = get(base + "/discuss")
+    check("forum: /discuss 200, one h1, the empty state, the site stylesheet",
+          st == 200 and len(re.findall(r"<h1[ >]", forum)) == 1 and "data-forum-empty" in forum
+          and re.search(r"<style>(.*?)</style>", forum, re.S).group(1) == re.search(r"<style>(.*?)</style>", get(base + "/")[2], re.S).group(1),
+          f"status {st}, cache {h.get('cache-control', h.get('Cache-Control'))}")
+    codes = {o: post(base + "/api/forum/threads", o) for o in (base, "https://evil.example", None)}
+    check("forum: unauthenticated POST /api/forum/threads is 401", codes[base] == 401, f"status {codes[base]}")
+    check("forum: POST with a foreign or missing Origin is 403", codes["https://evil.example"] == 403 and codes[None] == 403, f"foreign {codes['https://evil.example']}, missing {codes[None]}")
 
     for s in sorted(set(re.findall(r'src="(/js/[^"]+)"|href="(/js/[^"]+)"', get(base + "/")[2]))):
         src = s[0] or s[1]
@@ -428,10 +450,10 @@ try:
 
         # 9. Layout, type size, control size, and contrast on rendered pages.
         audit_js = open(os.path.join(os.path.dirname(__file__), "audit.js")).read()
-        targets = ["/", "/tools/" + tool["slug"], "/students"] + GUIDES + ["/submit"]
+        targets = ["/", "/tools/" + tool["slug"], "/students"] + GUIDES + ["/submit", "/discuss"]
         for scheme in [s for s in args.schemes.split(",") if s]:
             for vname, w, h in (("desktop", 1280, 800), ("mobile", 390, 844)):
-                shots = {"/": "home", "/tools/" + tool["slug"]: "tool", "/students": "students"} if scheme == "light" or len(args.schemes.split(",")) == 1 else {}
+                shots = {"/": "home", "/tools/" + tool["slug"]: "tool", "/students": "students", "/discuss": "discuss"} if scheme == "light" or len(args.schemes.split(",")) == 1 else {}
                 for p in targets:
                     # A fresh tab per page keeps Chrome small. The box runs other lanes and a reused tab has crashed here.
                     pg = new_page(w, h, scheme)

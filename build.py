@@ -282,16 +282,26 @@ sm='<?xml version="1.0" encoding="UTF-8"?><urlset xmlns="http://www.sitemaps.org
 json.dump(tools,open("tools.json","w"),indent=1)
 
 TEMPLATE=open("worker.template.js").read()
-VALUES={"PAGES":json.dumps(P_),"NOT_FOUND":json.dumps(NOT_FOUND),"SITEMAP":json.dumps(sm),"SCRIPTS":json.dumps(SCRIPTS),"FONTS":json.dumps(FONTS),"BASE":BASE}
-def fill(src): return re.sub(r"__(PAGES|NOT_FOUND|SITEMAP|SCRIPTS|FONTS|BASE)__",lambda m:VALUES[m.group(1)],src)
+SHELL=page("%%TITLE%%","%%DESC%%","%%BODY%%","%%PATH%%")
+VALUES={"PAGES":json.dumps(P_),"NOT_FOUND":json.dumps(NOT_FOUND),"SITEMAP":json.dumps(sm),"SCRIPTS":json.dumps(SCRIPTS),"FONTS":json.dumps(FONTS),"SHELL":json.dumps(SHELL),"BASE":BASE}
+def fill(src): return re.sub(r"__(PAGES|NOT_FOUND|SITEMAP|SCRIPTS|FONTS|SHELL|BASE)__",lambda m:VALUES[m.group(1)],src)
 W=fill(TEMPLATE)
+os.makedirs("dist",exist_ok=True)
 open("dist/worker.js","w").write(W); print(len(tools),"tools",len(P_),"pages",len(W),"bytes")
 
-IMPORT="import { formAt, decide, encodeReply } from '../web/contract.js';\n"
-contract=open("web/contract.js").read()
-assert TEMPLATE.count(IMPORT)==1 and not re.search(r"^\s*import\b",contract,re.M)
-inlined=re.sub(r"^export ","",contract,flags=re.M)
-assert not re.search(r"^\s*export\b",inlined,re.M)
+# deploy.js is one module with no bundler: paste each module the template imports, exports removed.
+IMPORTS=re.findall(r"^import \{[^}]*\} from '\.\./([\w/]+\.js)';\n",TEMPLATE,re.M)
+assert IMPORTS and len(IMPORTS)==len(re.findall(r"^\s*import\b",TEMPLATE,re.M))
+code=TEMPLATE; names=re.findall(r"^(?:async )?(?:function|const|let|class) (\w+)",TEMPLATE,re.M)
+for path in IMPORTS:
+    src=open(path).read()
+    assert not re.search(r"^\s*import\b",src,re.M), path+" must not import"
+    inlined=re.sub(r"^export ","",src,flags=re.M)
+    assert not re.search(r"^\s*export\b",inlined,re.M), path
+    names+=re.findall(r"^(?:async )?(?:function|const|let|class) (\w+)",inlined,re.M)
+    code=re.sub(r"^import \{[^}]*\} from '\.\./"+re.escape(path)+"';\n",lambda m:inlined+"\n",code,count=1,flags=re.M)
+dupes=sorted({n for n in names if names.count(n)>1})
+assert not dupes, "inlined modules share a scope; rename "+", ".join(dupes)
 D=open("deploy.js").read(); start=D.index("const code=")+len("const code=")
 _,end=json.JSONDecoder().raw_decode(D,start)
-open("deploy.js","w").write(D[:start]+json.dumps(fill(TEMPLATE.replace(IMPORT,inlined+"\n")))+D[end:])
+open("deploy.js","w").write(D[:start]+json.dumps(fill(code))+D[end:])
