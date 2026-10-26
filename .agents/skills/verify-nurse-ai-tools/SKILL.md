@@ -93,9 +93,24 @@ node serve.mjs            # http://localhost:8787, or PORT=<n> node serve.mjs
 - The box runs other lanes, and Chrome has run out of memory here when one tab audited every page. The style pass opens a fresh tab per page. If you see `Target crashed`, check `free -g` before you suspect the site.
 - The fonts check used to be the run's one skip, because the old design loaded no webfont. The Market redesign self-hosts its fonts, so it now runs, and it now passes. A normal wrangler run has no skips. The 404 canonical used to be one; the 404 page now declares none. Any SKIP line means something changed. Explain it in the PR.
 
+## After a deploy
+
+`verify.py` never touches the live site. The one live step is run by hand after every deploy:
+
+```bash
+python3 .agents/skills/verify-nurse-ai-tools/live_check.py    # or: npm run check:live
+```
+
+It sends two plain HTTPS GETs. It makes no Cloudflare API call and needs no token. It prints `LIVE PASS` or `LIVE FAIL` and exits 0 or 1.
+
+- `https://nurseaitools.com/` returns 200 with the site's markup.
+- `https://nurseaitools.lectionary-web.workers.dev/` does not serve the site. Today it returns 404 with Cloudflare error 1042. It passes on any 4xx or 5xx, or on no reply, as long as the body has none of the site's markup. A 2xx or 3xx fails.
+
+Why: production deploys upload `deploy.js` through the Cloudflare API, which does not read `wrangler.toml`. Until this change, `deploy.js` POSTed `{enabled:true}` to the script's `/subdomain`, so every deploy turned workers.dev back on, even with `workers_dev = false`. `build.py` now writes `{enabled:<workers_dev>, previews_enabled:<workers_dev>}` from `wrangler.toml`, and `test/deploy.test.js` runs `deploy.js` against a fake client and fails if any request turns the subdomain on. If `LIVE FAIL` says workers.dev is serving, check the subdomain body in the `deploy.js` that was used, then redeploy from a fresh `python3 build.py`.
+
 ## What this does not check
 
 - A live Kit signup. No Kit key reaches the local worker. Verified-unreachable.
-- The remote D1 database and a deployed worker. This skill has no deploy path. Verified-unreachable.
+- The remote D1 database and a deployed worker. This skill has no deploy path. Verified-unreachable. `live_check.py` covers only the two host checks above.
 - Real phones and Safari. The phone pass is Chrome at 390 wide.
 - Live redirects. Locally the www 301 keeps the request's scheme (http). Whether the live zone sends `http://` to `https://` is a Cloudflare setting this skill cannot see. Verified-unreachable.
