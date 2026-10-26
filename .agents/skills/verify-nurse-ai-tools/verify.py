@@ -266,7 +266,7 @@ try:
     st, _, html = raw(base + "/students", "nurseaitools.verify.workers.dev")
     check("canonical: a workers.dev copy points at the apex", st == 200 and CANON.findall(html) == [LIVE + "/students"], f"{st}, {CANON.findall(html)}. workers_dev = true in wrangler.toml")
     offsite = sorted({(p, a) for p, html in built_pages.items() for a in re.findall(r'<a [^>]*href="?([^" >]+)', html)
-                      if (a.startswith("/") and not a.startswith("//") and ("?" in a or (a != "/" and a.split("#")[0].endswith("/"))))
+                      if (a.startswith("/") and not a.startswith("//") and ("?" in a or (a.split("#")[0] != "/" and a.split("#")[0].endswith("/"))))
                       or re.match(r"(https?:)?//(www\.)?nurseaitools\.com", a)})
     check("canonical: internal links use the canonical form", not offsite, f"{len(built_pages)} pages" + (f"; {offsite[:5]}" if offsite else ""))
     st, _, html = get(base + "/no-such-page-verify")

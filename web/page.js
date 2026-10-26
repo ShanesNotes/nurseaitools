@@ -59,6 +59,18 @@ function bindCatalog(root) {
   root.addEventListener('click', (e) => {
     if (e.target instanceof Element && e.target.closest('[data-filter-clear]')) void catalog.send({ type: 'clear' });
   });
+  // On Back, the browser restores the controls after this module has rendered the idle list.
+  // Replay what the controls say once the page is shown, so the list matches them.
+  // Read every control first: each send re-renders the controls from the machine.
+  window.addEventListener('pageshow', () => {
+    /** @type {import('./catalog.js').CatalogEvent[]} */
+    const events = [
+      { type: 'query', text: view.query.value },
+      { type: 'category', category: view.category.value || null },
+      ...view.traits.map((box) => ({ type: /** @type {const} */ ('trait'), trait: box.dataset.filterTrait ?? '', on: box.checked })),
+    ];
+    for (const event of events) void catalog.send(event);
+  });
 }
 
 /**
