@@ -278,7 +278,7 @@ try:
     check("canonical: www 301s to the apex, keeping path and query", st == 301 and loc.netloc == "nurseaitools.com" and loc.path == "/students/" and loc.query == "q=verify",
           f"{st} -> {h.get('location')}. The scheme follows the request (http here); live https was not checked by this script")
     st, _, html = raw(base + "/students", "nurseaitools.verify.workers.dev")
-    check("canonical: a workers.dev copy points at the apex", st == 200 and CANON.findall(html) == [LIVE + "/students"], f"{st}, {CANON.findall(html)}. workers_dev = true in wrangler.toml")
+    check("canonical: a workers.dev copy points at the apex", st == 200 and CANON.findall(html) == [LIVE + "/students"], f"{st}, {CANON.findall(html)}. Faked with a Host header; wrangler.toml sets workers_dev = false")
     offsite = sorted({(p, a) for p, html in built_pages.items() for a in re.findall(r'<a [^>]*href="?([^" >]+)', html)
                       if (a.startswith("/") and not a.startswith("//") and ("?" in a or (a != "/" and a.split("#")[0].endswith("/"))))
                       or re.match(r"(https?:)?//(www\.)?nurseaitools\.com", a)})

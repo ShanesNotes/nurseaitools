@@ -38,7 +38,7 @@ Options:
    - Every page in the built `PAGES` map in `dist/worker.js` has exactly one `rel=canonical`. It is `https://nurseaitools.com<its own path>`: https, apex, no query, no fragment, no trailing slash except `/`. `og:url` matches it, and there is no `noindex`.
    - The sitemap URLs are unique and are exactly the set of built canonicals. Each served sitemap page's canonical equals its `<loc>`.
    - For every page, `<path>/`, `<path>//`, `<path>/?utm_source=verify` and `<path>?q=verify` are 200 copies whose canonical is the clean URL. The worker strips trailing slashes and ignores the query; it does not redirect them.
-   - `Host: www.nurseaitools.com` gets a 301 to the apex with the path and query kept. A `*.workers.dev` host (`workers_dev = true`) serves copies that point at the apex.
+   - `Host: www.nurseaitools.com` gets a 301 to the apex with the path and query kept. A `*.workers.dev` host that reaches the worker serves copies that point at the apex. `wrangler.toml` sets `workers_dev = false`, so after a deploy the live worker has no `workers.dev` URL; the check still proves the worker code is safe if one is turned back on.
    - No internal `<a href>` uses a trailing slash, a query, or an absolute `nurseaitools.com` or `www` link.
    - The 404 page answers 404, declares no canonical and no `og:url`, says `noindex`, and marks no nav item current.
 6. **Home and directory.** The count reads `<N> tools` and there are N rows, one per name in `tools.json`. Search `abridge` narrows to exactly the rows whose name, vendor, or description match. The category filter shows the same number of rows as `tools.json` has in that category. A nonsense query shows the empty state, and Clear brings back every row. No script errors.
