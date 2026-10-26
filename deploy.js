@@ -2,5 +2,5 @@ async () => { const code="// @ts-check\n\n/**\n * @typedef {Readonly<Record<stri
 const body=['--'+b,'Content-Disposition: form-data; name="metadata"','Content-Type: application/json','',JSON.stringify(meta),'--'+b,'Content-Disposition: form-data; name="worker.js"; filename="worker.js"','Content-Type: application/javascript+module','',code,'--'+b+'--'].join('\r\n');
 const r=await cloudflare.request({method:'PUT',path:`/accounts/${accountId}/workers/scripts/nurseaitools`,body,contentType:'multipart/form-data; boundary='+b,rawBody:true});
 if(!r.success) return {step:'upload',e:r.errors};
-const s=await cloudflare.request({method:'POST',path:`/accounts/${accountId}/workers/scripts/nurseaitools/subdomain`,body:{enabled:true}});
+const s=await cloudflare.request({method:'POST',path:`/accounts/${accountId}/workers/scripts/nurseaitools/subdomain`,body:{enabled:false,previews_enabled:false}});
 return {upload:true,sub:s.success,se:s.errors}; }

@@ -1,4 +1,4 @@
-import base64,glob,html,json,os,re
+import base64,glob,html,json,os,re,tomllib
 exec(open('tools.py').read());exec(open('reality.py').read())
 BASE="https://nurseaitools.com"
 HIP={"deepscribe","nabla","navina","caregility","clinicalkey","lyrebird","tali.ai","sully","getfreed","hippocratic","care.coach","heidihealth","hyro","suki","artisight","andorhealth","abridge.com/platform/nursing","hellocare"}
@@ -304,4 +304,8 @@ dupes=sorted({n for n in names if names.count(n)>1})
 assert not dupes, "inlined modules share a scope; rename "+", ".join(dupes)
 D=open("deploy.js").read(); start=D.index("const code=")+len("const code=")
 _,end=json.JSONDecoder().raw_decode(D,start)
-open("deploy.js","w").write(D[:start]+json.dumps(fill(code))+D[end:])
+# The connector does not read wrangler.toml, so carry workers_dev into its subdomain call. Both flags, or previews stay on.
+on="true" if tomllib.load(open("wrangler.toml","rb")).get("workers_dev",True) else "false"
+tail,n=re.subn(r"(/subdomain`,body:)\{[^}]*\}",lambda m:m.group(1)+"{enabled:%s,previews_enabled:%s}"%(on,on),D[end:])
+assert n==1, "deploy.js must make exactly one subdomain call"
+open("deploy.js","w").write(D[:start]+json.dumps(fill(code))+tail)
