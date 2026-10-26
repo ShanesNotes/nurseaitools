@@ -264,6 +264,7 @@ for name, value, label in FIGS:
 for selector in ("button", "input:not([type=checkbox]),select,textarea", ".mast nav a", ".skip", ".toggle", ".acts a"):
     decls = [dict(d) for m, s, d in STYLED if s == selector]
     check(any(item.get("min-height") == "var(--reach)" for item in decls), f"{selector} is under 44px")
+check('data-filter-trait="hipaa">Mentions HIPAA</label>' in home, "the HIPAA filter is not labeled Mentions HIPAA, the words the data supports")
 check('action="/api/submit"' in PAGES.get("/submit", ""), "the submit form is gone")
 check("14 years of critical care" in PAGES.get("/about", ""), "the About page lost the RN fact")
 for path in ("/students", "/students/best-free-ai", "/students/ai-care-plan-tools", "/students/nclex-ai-tutors"):

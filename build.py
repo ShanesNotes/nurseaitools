@@ -15,7 +15,7 @@ for n,v,u,c,d,x in T:
     bf,fit=R[n]
     tools.append(dict(built=bf,hstat=hs,fit=fit,slug=slug(n),name=n,vendor=v,url=u,category=c,what=d,ehr=x or "Not publicly listed; check with vendor",hipaa=h))
 
-TRAITS=[{"key":"nurses","label":"Built for nurses","match":lambda t:t["built"]=="Nurses"},{"key":"hipaa","label":"HIPAA-ready","match":lambda t:t["hstat"]=="Mentions HIPAA"}]
+TRAITS=[{"key":"nurses","label":"Built for nurses","match":lambda t:t["built"]=="Nurses"},{"key":"hipaa","label":"Mentions HIPAA","match":lambda t:t["hstat"]=="Mentions HIPAA"}]
 BAYS=[("Built for","built"),("HIPAA status","hstat"),("Bedside fit","fit")]
 TONE={"Unknown":"caution","Not for patient info":"harm"}
 SCRIPTS={"/js/"+os.path.basename(f):open(f).read() for f in sorted(glob.glob("web/*.js"))}

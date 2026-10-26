@@ -20,7 +20,7 @@ Most clinical AI is built for physicians. This directory says, from public vendo
 
 ## Operating Context
 
-A nurse searches or filters the directory, opens a tool page, and may subscribe to a weekly note or submit a tool. Confirmed filters: Built for nurses, HIPAA-ready, and category. Confirmed categories, from the source list: Ambient documentation, Handoff & summaries, Clinical decision support, Education / NCLEX, Scheduling & staffing, Patient communication, General LLMs for nurses.
+A nurse searches or filters the directory, opens a tool page, and may subscribe to a weekly note or submit a tool. Confirmed filters: Built for nurses, Mentions HIPAA, and category. The second was labeled HIPAA-ready until Oct 25, 2026; it was renamed because the data only says the vendor site mentions HIPAA. Confirmed categories, from the source list: Ambient documentation, Handoff & summaries, Clinical decision support, Education / NCLEX, Scheduling & staffing, Patient communication, General LLMs for nurses.
 
 ## Capabilities and Constraints
 
@@ -28,7 +28,7 @@ Confirmed stack, already in the repo: `python3 build.py` emits `dist/worker.js`.
 
 Endpoints that must keep working: `POST /api/subscribe`, `POST /api/submit`, `GET /sitemap.xml`, `GET /robots.txt`, HTML pages, `www` to apex 301. Canonical origin `https://nurseaitools.com`.
 
-Reality-check values already in the data, not to be invented or renamed: Built for is Nurses, Physicians, Both, General, or Unknown. HIPAA status is Mentions HIPAA, Not for patient info, or Unknown. Bedside fit is Bedside/mobile workflow, Desk or charting only, Education only, or Unknown. The HIPAA-ready filter matches Mentions HIPAA. The string "BAA offered per vendor" appears in that filter and is never assigned. Built for nurses matches Built for equal to Nurses. Both and General do not count.
+Reality-check values already in the data, not to be invented or renamed: Built for is Nurses, Physicians, Both, General, or Unknown. HIPAA status is Mentions HIPAA, Not for patient info, or Unknown. Bedside fit is Bedside/mobile workflow, Desk or charting only, Education only, or Unknown. The Mentions HIPAA filter (key `hipaa`) matches Mentions HIPAA. The string "BAA offered per vendor" appears in that filter and is never assigned. Built for nurses matches Built for equal to Nurses. Both and General do not count.
 
 The short HIPAA badge and the long HIPAA sentence are different rules. Keep that split. Education tools show the badge "Not for patient info" and the long line "Not publicly stated on vendor homepage; verify with vendor." Only General LLMs get the consumer-PHI sentence. Do not reconcile them.
 
