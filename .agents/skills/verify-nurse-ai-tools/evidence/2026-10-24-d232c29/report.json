@@ -1,0 +1,1122 @@
+{
+ "revision": "d232c29",
+ "dirty": false,
+ "harness": "wrangler",
+ "results": [
+  {
+   "check": "build: python3 build.py exits 0",
+   "ok": true,
+   "detail": "78 tools 89 pages 1872991 bytes"
+  },
+  {
+   "check": "build: tool count matches tools.json",
+   "ok": true,
+   "detail": "build says 78, tools.json has 78"
+  },
+  {
+   "check": "unit: npm test",
+   "ok": true,
+   "detail": "pass 43, fail 0"
+  },
+  {
+   "check": "unit: python3 test_style.py",
+   "ok": true,
+   "detail": "ok 90 pages, 78 tools, 5 text colors on 5 grounds, 10 painted pairs, loss and gain edges in 4 rules"
+  },
+  {
+   "check": "serve: local D1 seeded from schema.sql",
+   "ok": true,
+   "detail": "/tmp/nai-verify-d1-u9qyeuhp"
+  },
+  {
+   "check": "serve: npx wrangler dev answers on http://127.0.0.1:52631",
+   "ok": true,
+   "detail": "log /tmp/nai-verify-52631.log"
+  },
+  {
+   "check": "http: /sitemap.xml 200",
+   "ok": true,
+   "detail": "89 urls"
+  },
+  {
+   "check": "http: the four NCLEX guides are in the sitemap",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "check": "http: every sitemap page is 200 with title, description, canonical, one h1",
+   "ok": true,
+   "detail": "89 pages"
+  },
+  {
+   "check": "http: each tool title names its tool",
+   "ok": true,
+   "detail": "78 tools"
+  },
+  {
+   "check": "http: unknown path is 404",
+   "ok": true,
+   "detail": "status 404"
+  },
+  {
+   "check": "http: /tools is 404, the directory lives on /",
+   "ok": true,
+   "detail": "status 404. If a /tools route has shipped on purpose, update this check and SKILL.md"
+  },
+  {
+   "check": "http: /robots.txt 200 and names the sitemap",
+   "ok": true,
+   "detail": "status 200"
+  },
+  {
+   "check": "http: /js/catalog.js 200 javascript",
+   "ok": true,
+   "detail": "status 200"
+  },
+  {
+   "check": "http: /js/contract.js 200 javascript",
+   "ok": true,
+   "detail": "status 200"
+  },
+  {
+   "check": "http: /js/form.js 200 javascript",
+   "ok": true,
+   "detail": "status 200"
+  },
+  {
+   "check": "http: /js/fsm.js 200 javascript",
+   "ok": true,
+   "detail": "status 200"
+  },
+  {
+   "check": "http: /js/page.js 200 javascript",
+   "ok": true,
+   "detail": "status 200"
+  },
+  {
+   "check": "http: self-hosted fonts 200",
+   "ok": true,
+   "detail": "5 faces"
+  },
+  {
+   "check": "home: title present",
+   "ok": true,
+   "detail": "Nurse AI Tools: AI tools for nurses"
+  },
+  {
+   "check": "home: count reads tools.json total",
+   "ok": true,
+   "detail": "'78 tools'"
+  },
+  {
+   "check": "home: one directory row per tool",
+   "ok": true,
+   "detail": "78 rows, 78 tools"
+  },
+  {
+   "check": "home: every tool name is in the directory",
+   "ok": true,
+   "detail": "78 names"
+  },
+  {
+   "check": "directory: search narrows to matching rows",
+   "ok": true,
+   "detail": "'2 of 78 tools', 2 visible, 2 expected from tools.json"
+  },
+  {
+   "check": "directory: category filter matches tools.json",
+   "ok": true,
+   "detail": "Education / NCLEX: 16 visible, 16 in tools.json"
+  },
+  {
+   "check": "directory: empty state shows when nothing matches",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "check": "directory: clear restores every row",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "check": "directory: no script errors",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "check": "tool: /tools/uworld-nursing h1 is the tool name",
+   "ok": true,
+   "detail": "'UWorld Nursing'"
+  },
+  {
+   "check": "tool: vendor, what it does, and RN reality check shown",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "check": "tool: official site link matches tools.json",
+   "ok": true,
+   "detail": "https://nursing.uworld.com"
+  },
+  {
+   "check": "students: /students has one visible h1",
+   "ok": true,
+   "detail": "['AI for nursing students and new grads']"
+  },
+  {
+   "check": "students: /students tool links name tools in tools.json",
+   "ok": true,
+   "detail": "23 tool links"
+  },
+  {
+   "check": "students: /students every on-site link is 200",
+   "ok": true,
+   "detail": "34 links"
+  },
+  {
+   "check": "students: /students has the newsletter form",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "check": "students: hub links all four NCLEX guides",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "check": "students: /students no script errors",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "check": "students: /students/best-ai-nclex-prep has one visible h1",
+   "ok": true,
+   "detail": "['Best AI NCLEX prep tools']"
+  },
+  {
+   "check": "students: /students/best-ai-nclex-prep tool links name tools in tools.json",
+   "ok": true,
+   "detail": "16 tool links"
+  },
+  {
+   "check": "students: /students/best-ai-nclex-prep every on-site link is 200",
+   "ok": true,
+   "detail": "26 links"
+  },
+  {
+   "check": "students: /students/best-ai-nclex-prep has the newsletter form",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "check": "students: /students/best-ai-nclex-prep no script errors",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "check": "students: /students/free-nclex-prep has one visible h1",
+   "ok": true,
+   "detail": "['Free NCLEX prep tools']"
+  },
+  {
+   "check": "students: /students/free-nclex-prep tool links name tools in tools.json",
+   "ok": true,
+   "detail": "6 tool links"
+  },
+  {
+   "check": "students: /students/free-nclex-prep every on-site link is 200",
+   "ok": true,
+   "detail": "16 links"
+  },
+  {
+   "check": "students: /students/free-nclex-prep has the newsletter form",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "check": "students: /students/free-nclex-prep no script errors",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "check": "students: /students/ngn-practice-tools has one visible h1",
+   "ok": true,
+   "detail": "['NGN practice tools']"
+  },
+  {
+   "check": "students: /students/ngn-practice-tools tool links name tools in tools.json",
+   "ok": true,
+   "detail": "5 tool links"
+  },
+  {
+   "check": "students: /students/ngn-practice-tools every on-site link is 200",
+   "ok": true,
+   "detail": "15 links"
+  },
+  {
+   "check": "students: /students/ngn-practice-tools has the newsletter form",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "check": "students: /students/ngn-practice-tools no script errors",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "check": "students: /students/chatgpt-for-nclex has one visible h1",
+   "ok": true,
+   "detail": "['Using ChatGPT for NCLEX prep safely']"
+  },
+  {
+   "check": "students: /students/chatgpt-for-nclex tool links name tools in tools.json",
+   "ok": true,
+   "detail": "11 tool links"
+  },
+  {
+   "check": "students: /students/chatgpt-for-nclex every on-site link is 200",
+   "ok": true,
+   "detail": "21 links"
+  },
+  {
+   "check": "students: /students/chatgpt-for-nclex has the newsletter form",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "check": "students: /students/chatgpt-for-nclex no script errors",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "check": "signup: newsletter form on home posts to /api/subscribe",
+   "ok": true,
+   "detail": "1 forms"
+  },
+  {
+   "check": "signup: local subscribe succeeds",
+   "ok": true,
+   "detail": "posted 1, \"You're subscribed. Thanks!\""
+  },
+  {
+   "check": "signup: bad address is refused before it is sent",
+   "ok": true,
+   "detail": "posted 0, 'Please enter a valid email.'"
+  },
+  {
+   "check": "signup: local subscribe succeeds from /students/best-ai-nclex-prep mobile dark",
+   "ok": true,
+   "detail": "posted 1, \"You're subscribed. Thanks!\""
+  },
+  {
+   "check": "signup: both rows stored in local D1, nothing else",
+   "ok": true,
+   "detail": "rows ['verify+1792899031@example.invalid', 'verify+1792899033-phone@example.invalid']"
+  },
+  {
+   "check": "style: one visible h1 / desktop light",
+   "ok": true,
+   "detail": "1 visible"
+  },
+  {
+   "check": "style: no sideways scroll / desktop light",
+   "ok": true,
+   "detail": "scrollWidth 1280"
+  },
+  {
+   "check": "style: text >= 12px / desktop light",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "check": "style: controls >= 44px, links meet 24px target spacing / desktop light",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "check": "style: text contrast >= 4.5:1 / desktop light",
+   "ok": true,
+   "detail": "654 text nodes"
+  },
+  {
+   "check": "style: one visible h1 /tools/uworld-nursing desktop light",
+   "ok": true,
+   "detail": "1 visible"
+  },
+  {
+   "check": "style: no sideways scroll /tools/uworld-nursing desktop light",
+   "ok": true,
+   "detail": "scrollWidth 1280"
+  },
+  {
+   "check": "style: text >= 12px /tools/uworld-nursing desktop light",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "check": "style: controls >= 44px, links meet 24px target spacing /tools/uworld-nursing desktop light",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "check": "style: text contrast >= 4.5:1 /tools/uworld-nursing desktop light",
+   "ok": true,
+   "detail": "35 text nodes"
+  },
+  {
+   "check": "style: one visible h1 /students desktop light",
+   "ok": true,
+   "detail": "1 visible"
+  },
+  {
+   "check": "style: no sideways scroll /students desktop light",
+   "ok": true,
+   "detail": "scrollWidth 1280"
+  },
+  {
+   "check": "style: text >= 12px /students desktop light",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "check": "style: controls >= 44px, links meet 24px target spacing /students desktop light",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "check": "style: text contrast >= 4.5:1 /students desktop light",
+   "ok": true,
+   "detail": "213 text nodes"
+  },
+  {
+   "check": "style: one visible h1 /students/best-ai-nclex-prep desktop light",
+   "ok": true,
+   "detail": "1 visible"
+  },
+  {
+   "check": "style: no sideways scroll /students/best-ai-nclex-prep desktop light",
+   "ok": true,
+   "detail": "scrollWidth 1280"
+  },
+  {
+   "check": "style: text >= 12px /students/best-ai-nclex-prep desktop light",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "check": "style: controls >= 44px, links meet 24px target spacing /students/best-ai-nclex-prep desktop light",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "check": "style: text contrast >= 4.5:1 /students/best-ai-nclex-prep desktop light",
+   "ok": true,
+   "detail": "164 text nodes"
+  },
+  {
+   "check": "style: one visible h1 /students/free-nclex-prep desktop light",
+   "ok": true,
+   "detail": "1 visible"
+  },
+  {
+   "check": "style: no sideways scroll /students/free-nclex-prep desktop light",
+   "ok": true,
+   "detail": "scrollWidth 1280"
+  },
+  {
+   "check": "style: text >= 12px /students/free-nclex-prep desktop light",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "check": "style: controls >= 44px, links meet 24px target spacing /students/free-nclex-prep desktop light",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "check": "style: text contrast >= 4.5:1 /students/free-nclex-prep desktop light",
+   "ok": true,
+   "detail": "125 text nodes"
+  },
+  {
+   "check": "style: one visible h1 /students/ngn-practice-tools desktop light",
+   "ok": true,
+   "detail": "1 visible"
+  },
+  {
+   "check": "style: no sideways scroll /students/ngn-practice-tools desktop light",
+   "ok": true,
+   "detail": "scrollWidth 1280"
+  },
+  {
+   "check": "style: text >= 12px /students/ngn-practice-tools desktop light",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "check": "style: controls >= 44px, links meet 24px target spacing /students/ngn-practice-tools desktop light",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "check": "style: text contrast >= 4.5:1 /students/ngn-practice-tools desktop light",
+   "ok": true,
+   "detail": "118 text nodes"
+  },
+  {
+   "check": "style: one visible h1 /students/chatgpt-for-nclex desktop light",
+   "ok": true,
+   "detail": "1 visible"
+  },
+  {
+   "check": "style: no sideways scroll /students/chatgpt-for-nclex desktop light",
+   "ok": true,
+   "detail": "scrollWidth 1280"
+  },
+  {
+   "check": "style: text >= 12px /students/chatgpt-for-nclex desktop light",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "check": "style: controls >= 44px, links meet 24px target spacing /students/chatgpt-for-nclex desktop light",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "check": "style: text contrast >= 4.5:1 /students/chatgpt-for-nclex desktop light",
+   "ok": true,
+   "detail": "107 text nodes"
+  },
+  {
+   "check": "style: one visible h1 /submit desktop light",
+   "ok": true,
+   "detail": "1 visible"
+  },
+  {
+   "check": "style: no sideways scroll /submit desktop light",
+   "ok": true,
+   "detail": "scrollWidth 1280"
+  },
+  {
+   "check": "style: text >= 12px /submit desktop light",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "check": "style: controls >= 44px, links meet 24px target spacing /submit desktop light",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "check": "style: text contrast >= 4.5:1 /submit desktop light",
+   "ok": true,
+   "detail": "14 text nodes"
+  },
+  {
+   "check": "style: one visible h1 / mobile light",
+   "ok": true,
+   "detail": "1 visible"
+  },
+  {
+   "check": "style: no sideways scroll / mobile light",
+   "ok": true,
+   "detail": "scrollWidth 390"
+  },
+  {
+   "check": "style: text >= 12px / mobile light",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "check": "style: controls >= 44px, links meet 24px target spacing / mobile light",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "check": "style: text contrast >= 4.5:1 / mobile light",
+   "ok": true,
+   "detail": "882 text nodes"
+  },
+  {
+   "check": "style: one visible h1 /tools/uworld-nursing mobile light",
+   "ok": true,
+   "detail": "1 visible"
+  },
+  {
+   "check": "style: no sideways scroll /tools/uworld-nursing mobile light",
+   "ok": true,
+   "detail": "scrollWidth 390"
+  },
+  {
+   "check": "style: text >= 12px /tools/uworld-nursing mobile light",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "check": "style: controls >= 44px, links meet 24px target spacing /tools/uworld-nursing mobile light",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "check": "style: text contrast >= 4.5:1 /tools/uworld-nursing mobile light",
+   "ok": true,
+   "detail": "35 text nodes"
+  },
+  {
+   "check": "style: one visible h1 /students mobile light",
+   "ok": true,
+   "detail": "1 visible"
+  },
+  {
+   "check": "style: no sideways scroll /students mobile light",
+   "ok": true,
+   "detail": "scrollWidth 390"
+  },
+  {
+   "check": "style: text >= 12px /students mobile light",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "check": "style: controls >= 44px, links meet 24px target spacing /students mobile light",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "check": "style: text contrast >= 4.5:1 /students mobile light",
+   "ok": true,
+   "detail": "276 text nodes"
+  },
+  {
+   "check": "style: one visible h1 /students/best-ai-nclex-prep mobile light",
+   "ok": true,
+   "detail": "1 visible"
+  },
+  {
+   "check": "style: no sideways scroll /students/best-ai-nclex-prep mobile light",
+   "ok": true,
+   "detail": "scrollWidth 390"
+  },
+  {
+   "check": "style: text >= 12px /students/best-ai-nclex-prep mobile light",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "check": "style: controls >= 44px, links meet 24px target spacing /students/best-ai-nclex-prep mobile light",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "check": "style: text contrast >= 4.5:1 /students/best-ai-nclex-prep mobile light",
+   "ok": true,
+   "detail": "179 text nodes"
+  },
+  {
+   "check": "style: one visible h1 /students/free-nclex-prep mobile light",
+   "ok": true,
+   "detail": "1 visible"
+  },
+  {
+   "check": "style: no sideways scroll /students/free-nclex-prep mobile light",
+   "ok": true,
+   "detail": "scrollWidth 390"
+  },
+  {
+   "check": "style: text >= 12px /students/free-nclex-prep mobile light",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "check": "style: controls >= 44px, links meet 24px target spacing /students/free-nclex-prep mobile light",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "check": "style: text contrast >= 4.5:1 /students/free-nclex-prep mobile light",
+   "ok": true,
+   "detail": "137 text nodes"
+  },
+  {
+   "check": "style: one visible h1 /students/ngn-practice-tools mobile light",
+   "ok": true,
+   "detail": "1 visible"
+  },
+  {
+   "check": "style: no sideways scroll /students/ngn-practice-tools mobile light",
+   "ok": true,
+   "detail": "scrollWidth 390"
+  },
+  {
+   "check": "style: text >= 12px /students/ngn-practice-tools mobile light",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "check": "style: controls >= 44px, links meet 24px target spacing /students/ngn-practice-tools mobile light",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "check": "style: text contrast >= 4.5:1 /students/ngn-practice-tools mobile light",
+   "ok": true,
+   "detail": "127 text nodes"
+  },
+  {
+   "check": "style: one visible h1 /students/chatgpt-for-nclex mobile light",
+   "ok": true,
+   "detail": "1 visible"
+  },
+  {
+   "check": "style: no sideways scroll /students/chatgpt-for-nclex mobile light",
+   "ok": true,
+   "detail": "scrollWidth 390"
+  },
+  {
+   "check": "style: text >= 12px /students/chatgpt-for-nclex mobile light",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "check": "style: controls >= 44px, links meet 24px target spacing /students/chatgpt-for-nclex mobile light",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "check": "style: text contrast >= 4.5:1 /students/chatgpt-for-nclex mobile light",
+   "ok": true,
+   "detail": "110 text nodes"
+  },
+  {
+   "check": "style: one visible h1 /submit mobile light",
+   "ok": true,
+   "detail": "1 visible"
+  },
+  {
+   "check": "style: no sideways scroll /submit mobile light",
+   "ok": true,
+   "detail": "scrollWidth 390"
+  },
+  {
+   "check": "style: text >= 12px /submit mobile light",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "check": "style: controls >= 44px, links meet 24px target spacing /submit mobile light",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "check": "style: text contrast >= 4.5:1 /submit mobile light",
+   "ok": true,
+   "detail": "14 text nodes"
+  },
+  {
+   "check": "style: one visible h1 / desktop dark",
+   "ok": true,
+   "detail": "1 visible"
+  },
+  {
+   "check": "style: no sideways scroll / desktop dark",
+   "ok": true,
+   "detail": "scrollWidth 1280"
+  },
+  {
+   "check": "style: text >= 12px / desktop dark",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "check": "style: controls >= 44px, links meet 24px target spacing / desktop dark",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "check": "style: text contrast >= 4.5:1 / desktop dark",
+   "ok": true,
+   "detail": "654 text nodes"
+  },
+  {
+   "check": "style: one visible h1 /tools/uworld-nursing desktop dark",
+   "ok": true,
+   "detail": "1 visible"
+  },
+  {
+   "check": "style: no sideways scroll /tools/uworld-nursing desktop dark",
+   "ok": true,
+   "detail": "scrollWidth 1280"
+  },
+  {
+   "check": "style: text >= 12px /tools/uworld-nursing desktop dark",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "check": "style: controls >= 44px, links meet 24px target spacing /tools/uworld-nursing desktop dark",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "check": "style: text contrast >= 4.5:1 /tools/uworld-nursing desktop dark",
+   "ok": true,
+   "detail": "35 text nodes"
+  },
+  {
+   "check": "style: one visible h1 /students desktop dark",
+   "ok": true,
+   "detail": "1 visible"
+  },
+  {
+   "check": "style: no sideways scroll /students desktop dark",
+   "ok": true,
+   "detail": "scrollWidth 1280"
+  },
+  {
+   "check": "style: text >= 12px /students desktop dark",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "check": "style: controls >= 44px, links meet 24px target spacing /students desktop dark",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "check": "style: text contrast >= 4.5:1 /students desktop dark",
+   "ok": true,
+   "detail": "213 text nodes"
+  },
+  {
+   "check": "style: one visible h1 /students/best-ai-nclex-prep desktop dark",
+   "ok": true,
+   "detail": "1 visible"
+  },
+  {
+   "check": "style: no sideways scroll /students/best-ai-nclex-prep desktop dark",
+   "ok": true,
+   "detail": "scrollWidth 1280"
+  },
+  {
+   "check": "style: text >= 12px /students/best-ai-nclex-prep desktop dark",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "check": "style: controls >= 44px, links meet 24px target spacing /students/best-ai-nclex-prep desktop dark",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "check": "style: text contrast >= 4.5:1 /students/best-ai-nclex-prep desktop dark",
+   "ok": true,
+   "detail": "164 text nodes"
+  },
+  {
+   "check": "style: one visible h1 /students/free-nclex-prep desktop dark",
+   "ok": true,
+   "detail": "1 visible"
+  },
+  {
+   "check": "style: no sideways scroll /students/free-nclex-prep desktop dark",
+   "ok": true,
+   "detail": "scrollWidth 1280"
+  },
+  {
+   "check": "style: text >= 12px /students/free-nclex-prep desktop dark",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "check": "style: controls >= 44px, links meet 24px target spacing /students/free-nclex-prep desktop dark",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "check": "style: text contrast >= 4.5:1 /students/free-nclex-prep desktop dark",
+   "ok": true,
+   "detail": "125 text nodes"
+  },
+  {
+   "check": "style: one visible h1 /students/ngn-practice-tools desktop dark",
+   "ok": true,
+   "detail": "1 visible"
+  },
+  {
+   "check": "style: no sideways scroll /students/ngn-practice-tools desktop dark",
+   "ok": true,
+   "detail": "scrollWidth 1280"
+  },
+  {
+   "check": "style: text >= 12px /students/ngn-practice-tools desktop dark",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "check": "style: controls >= 44px, links meet 24px target spacing /students/ngn-practice-tools desktop dark",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "check": "style: text contrast >= 4.5:1 /students/ngn-practice-tools desktop dark",
+   "ok": true,
+   "detail": "118 text nodes"
+  },
+  {
+   "check": "style: one visible h1 /students/chatgpt-for-nclex desktop dark",
+   "ok": true,
+   "detail": "1 visible"
+  },
+  {
+   "check": "style: no sideways scroll /students/chatgpt-for-nclex desktop dark",
+   "ok": true,
+   "detail": "scrollWidth 1280"
+  },
+  {
+   "check": "style: text >= 12px /students/chatgpt-for-nclex desktop dark",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "check": "style: controls >= 44px, links meet 24px target spacing /students/chatgpt-for-nclex desktop dark",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "check": "style: text contrast >= 4.5:1 /students/chatgpt-for-nclex desktop dark",
+   "ok": true,
+   "detail": "107 text nodes"
+  },
+  {
+   "check": "style: one visible h1 /submit desktop dark",
+   "ok": true,
+   "detail": "1 visible"
+  },
+  {
+   "check": "style: no sideways scroll /submit desktop dark",
+   "ok": true,
+   "detail": "scrollWidth 1280"
+  },
+  {
+   "check": "style: text >= 12px /submit desktop dark",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "check": "style: controls >= 44px, links meet 24px target spacing /submit desktop dark",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "check": "style: text contrast >= 4.5:1 /submit desktop dark",
+   "ok": true,
+   "detail": "14 text nodes"
+  },
+  {
+   "check": "style: one visible h1 / mobile dark",
+   "ok": true,
+   "detail": "1 visible"
+  },
+  {
+   "check": "style: no sideways scroll / mobile dark",
+   "ok": true,
+   "detail": "scrollWidth 390"
+  },
+  {
+   "check": "style: text >= 12px / mobile dark",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "check": "style: controls >= 44px, links meet 24px target spacing / mobile dark",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "check": "style: text contrast >= 4.5:1 / mobile dark",
+   "ok": true,
+   "detail": "882 text nodes"
+  },
+  {
+   "check": "style: one visible h1 /tools/uworld-nursing mobile dark",
+   "ok": true,
+   "detail": "1 visible"
+  },
+  {
+   "check": "style: no sideways scroll /tools/uworld-nursing mobile dark",
+   "ok": true,
+   "detail": "scrollWidth 390"
+  },
+  {
+   "check": "style: text >= 12px /tools/uworld-nursing mobile dark",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "check": "style: controls >= 44px, links meet 24px target spacing /tools/uworld-nursing mobile dark",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "check": "style: text contrast >= 4.5:1 /tools/uworld-nursing mobile dark",
+   "ok": true,
+   "detail": "35 text nodes"
+  },
+  {
+   "check": "style: one visible h1 /students mobile dark",
+   "ok": true,
+   "detail": "1 visible"
+  },
+  {
+   "check": "style: no sideways scroll /students mobile dark",
+   "ok": true,
+   "detail": "scrollWidth 390"
+  },
+  {
+   "check": "style: text >= 12px /students mobile dark",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "check": "style: controls >= 44px, links meet 24px target spacing /students mobile dark",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "check": "style: text contrast >= 4.5:1 /students mobile dark",
+   "ok": true,
+   "detail": "276 text nodes"
+  },
+  {
+   "check": "style: one visible h1 /students/best-ai-nclex-prep mobile dark",
+   "ok": true,
+   "detail": "1 visible"
+  },
+  {
+   "check": "style: no sideways scroll /students/best-ai-nclex-prep mobile dark",
+   "ok": true,
+   "detail": "scrollWidth 390"
+  },
+  {
+   "check": "style: text >= 12px /students/best-ai-nclex-prep mobile dark",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "check": "style: controls >= 44px, links meet 24px target spacing /students/best-ai-nclex-prep mobile dark",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "check": "style: text contrast >= 4.5:1 /students/best-ai-nclex-prep mobile dark",
+   "ok": true,
+   "detail": "179 text nodes"
+  },
+  {
+   "check": "style: one visible h1 /students/free-nclex-prep mobile dark",
+   "ok": true,
+   "detail": "1 visible"
+  },
+  {
+   "check": "style: no sideways scroll /students/free-nclex-prep mobile dark",
+   "ok": true,
+   "detail": "scrollWidth 390"
+  },
+  {
+   "check": "style: text >= 12px /students/free-nclex-prep mobile dark",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "check": "style: controls >= 44px, links meet 24px target spacing /students/free-nclex-prep mobile dark",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "check": "style: text contrast >= 4.5:1 /students/free-nclex-prep mobile dark",
+   "ok": true,
+   "detail": "137 text nodes"
+  },
+  {
+   "check": "style: one visible h1 /students/ngn-practice-tools mobile dark",
+   "ok": true,
+   "detail": "1 visible"
+  },
+  {
+   "check": "style: no sideways scroll /students/ngn-practice-tools mobile dark",
+   "ok": true,
+   "detail": "scrollWidth 390"
+  },
+  {
+   "check": "style: text >= 12px /students/ngn-practice-tools mobile dark",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "check": "style: controls >= 44px, links meet 24px target spacing /students/ngn-practice-tools mobile dark",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "check": "style: text contrast >= 4.5:1 /students/ngn-practice-tools mobile dark",
+   "ok": true,
+   "detail": "127 text nodes"
+  },
+  {
+   "check": "style: one visible h1 /students/chatgpt-for-nclex mobile dark",
+   "ok": true,
+   "detail": "1 visible"
+  },
+  {
+   "check": "style: no sideways scroll /students/chatgpt-for-nclex mobile dark",
+   "ok": true,
+   "detail": "scrollWidth 390"
+  },
+  {
+   "check": "style: text >= 12px /students/chatgpt-for-nclex mobile dark",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "check": "style: controls >= 44px, links meet 24px target spacing /students/chatgpt-for-nclex mobile dark",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "check": "style: text contrast >= 4.5:1 /students/chatgpt-for-nclex mobile dark",
+   "ok": true,
+   "detail": "110 text nodes"
+  },
+  {
+   "check": "style: one visible h1 /submit mobile dark",
+   "ok": true,
+   "detail": "1 visible"
+  },
+  {
+   "check": "style: no sideways scroll /submit mobile dark",
+   "ok": true,
+   "detail": "scrollWidth 390"
+  },
+  {
+   "check": "style: text >= 12px /submit mobile dark",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "check": "style: controls >= 44px, links meet 24px target spacing /submit mobile dark",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "check": "style: text contrast >= 4.5:1 /submit mobile dark",
+   "ok": true,
+   "detail": "14 text nodes"
+  },
+  {
+   "check": "safety: the browser made no off-box requests",
+   "ok": true,
+   "detail": ""
+  }
+ ]
+}

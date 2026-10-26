@@ -13,7 +13,7 @@ Scroll to the end of any page.
 
 ## Driving it
 
-`verify.py` fills the home form with `verify+<time>@example.invalid`, submits it to the local server, and expects "subscribed". With the default wrangler harness it then reads the local D1 `subscribers` table and expects exactly that address. It submits `not-an-email` and expects an error and no POST.
+`verify.py` fills the home form at 1280 wide, light, with `verify+<time>@example.invalid`, submits it to the local server, and expects "subscribed". It submits `not-an-email` and expects an error and no POST. Then it fills the same form on `/students/best-ai-nclex-prep` at 390 wide, dark, with `verify+<time>-phone@example.invalid`. Each good submit must make exactly one POST, to the local `/api/subscribe`. With the default wrangler harness it then reads the local D1 `subscribers` table and expects exactly those two addresses. The style audit covers the form's 44px field and button on every audited page.
 
 ## Gotchas
 
