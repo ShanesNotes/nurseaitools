@@ -80,7 +80,7 @@ npx wrangler secret put KIT_API_KEY
 npx wrangler secret put KIT_TAG_ID
 ```
 
-`deploy.js` is a second deploy path for a connector that uploads one module through the Cloudflare API with no bundler. `build.py` writes the worker into it with every module the template imports (`web/contract.js`, `server/forum.js`) inlined in place of its import. Those modules must not import anything themselves, and the build fails if they do. Run the build before you use it. The connector does not read `wrangler.toml`, so the build also writes `workers_dev` into the `deploy.js` subdomain call as `{enabled, previews_enabled}`; with `workers_dev = false` both are false. After a deploy, run `npm run check:live` to confirm the apex serves the site and workers.dev does not.
+`deploy.js` is a second deploy path for a connector that uploads one module through the Cloudflare API with no bundler. `build.py` writes the worker into it with every module the template imports (`web/contract.js`, `server/forum.js`) inlined in place of its import. Those modules must not import anything themselves, and the build fails if they do. Run the build before you use it. The connector does not read `wrangler.toml`, so the build also writes `workers_dev` into the `deploy.js` subdomain call as `{enabled, previews_enabled}`; with `workers_dev = false` both are false. After a deploy, run `npm run check:live` to confirm the public apex serves the site. Set `NAT_WORKERS_DEV_URL` to the workers.dev origin to also confirm that host does not serve the site. The repo does not store that origin.
 
 ## Reference
 

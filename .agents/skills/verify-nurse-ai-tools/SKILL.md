@@ -104,7 +104,7 @@ python3 .agents/skills/verify-nurse-ai-tools/live_check.py    # or: npm run chec
 It sends two plain HTTPS GETs. It makes no Cloudflare API call and needs no token. It prints `LIVE PASS` or `LIVE FAIL` and exits 0 or 1.
 
 - `https://nurseaitools.com/` returns 200 with the site's markup.
-- `https://nurseaitools.lectionary-web.workers.dev/` does not serve the site. Today it returns 404 with Cloudflare error 1042. It passes on any 4xx or 5xx, or on no reply, as long as the body has none of the site's markup. A 2xx or 3xx fails.
+- The workers.dev origin comes from `NAT_WORKERS_DEV_URL`. The repo does not store that host, and the script has no default. When the variable is set, the check GETs it and passes on any 4xx or 5xx, or on no reply, as long as the body has none of the site's markup. A 2xx or 3xx fails. When it is unset, that GET is skipped and the apex check still runs.
 
 Why: production deploys upload `deploy.js` through the Cloudflare API, which does not read `wrangler.toml`. Until this change, `deploy.js` POSTed `{enabled:true}` to the script's `/subdomain`, so every deploy turned workers.dev back on, even with `workers_dev = false`. `build.py` now writes `{enabled:<workers_dev>, previews_enabled:<workers_dev>}` from `wrangler.toml`, and `test/deploy.test.js` runs `deploy.js` against a fake client and fails if any request turns the subdomain on. If `LIVE FAIL` says workers.dev is serving, check the subdomain body in the `deploy.js` that was used, then redeploy from a fresh `python3 build.py`.
 
