@@ -4,7 +4,7 @@ BS,DK,ED="Bedside/mobile workflow","Desk or charting only","Education only"
 R={
 "Dragon Copilot (nursing)":(N,BS),"Commure Ambient for Nursing":(N,BS),"Abridge":(B,U),"Nabla":(Ph,U),"Suki":(Ph,U),
 "Sully.ai":(Ph,U),"Ambience Healthcare":(Ph,U),"DeepScribe":(Ph,U),"Heidi Health":(Ph,U),"Freed":(Ph,U),"Lyrebird Health":(Ph,U),
-"Oracle Health Clinical AI Agent":(Ph,U),"Tali AI":(Ph,U),"Navina":(Ph,DK),"Laudio":(N,DK),"Get Well":(U,U),
+"Oracle Health Clinical AI Agent":(B,BS),"Tali AI":(Ph,U),"Navina":(Ph,DK),"Laudio":(N,DK),"Get Well":(U,U),
 "Bayesian Health":(B,DK),"Viz.ai":(B,BS),"Aidoc":(Ph,DK),"OpenEvidence":(Ph,DK),"UpToDate (AI features)":(B,DK),"Glass Health":(Ph,DK),
 "Prenosis Sepsis ImmunoScore":(Ph,DK),"ClinicalKey AI":(B,DK),
 "UWorld Nursing":(N,ED),"Archer Review":(N,ED),"Picmonic":(B,ED),"SimpleNursing":(N,ED),"Kaplan NCLEX Prep":(N,ED),"Lecturio Nursing":(N,ED),
@@ -18,4 +18,5 @@ R={
 "Abridge for Nurses":(N,BS),"hellocare.ai":(N,BS),"Vitalize":(U,DK),
 "Healthleap":(U,DK),
 "GCLEX":(N,ED),"NurseReady":(N,ED),"NurseQuizAI":(N,ED),"NCLEX IT (ngnsimulation)":(N,ED),
+"StudyGlen":(Gn,ED),"ClinicalCue":(N,ED),"MedAnkiGen":(B,ED),
 }
