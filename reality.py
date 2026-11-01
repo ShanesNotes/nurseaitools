@@ -19,4 +19,5 @@ R={
 "Healthleap":(U,DK),
 "GCLEX":(N,ED),"NurseReady":(N,ED),"NurseQuizAI":(N,ED),"NCLEX IT (ngnsimulation)":(N,ED),
 "StudyGlen":(Gn,ED),"ClinicalCue":(N,ED),"MedAnkiGen":(B,ED),
+"Vera Health":(U,DK),"PeriWatch Vigilance":(B,BS),
 }
