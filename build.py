@@ -1,7 +1,7 @@
 import base64,glob,html,json,os,re,tomllib
 exec(open('tools.py').read());exec(open('reality.py').read())
 BASE="https://nurseaitools.com"
-HIP={"deepscribe","nabla","navina","caregility","clinicalkey","lyrebird","tali.ai","sully","getfreed","hippocratic","care.coach","heidihealth","hyro","suki","artisight","andorhealth","abridge.com/platform/nursing","hellocare"}
+HIP={"deepscribe","nabla","navina","caregility","clinicalkey","lyrebird","tali.ai","sully","getfreed","hippocratic","care.coach","heidihealth","hyro","suki","artisight","andorhealth","abridge.com/platform/nursing","hellocare","verahealth"}
 CATS=[A,H,C,E,K,S,P,G]
 def slug(s): return re.sub(r'[^a-z0-9]+','-',s.lower()).strip('-')
 e=html.escape

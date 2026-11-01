@@ -1064,5 +1064,31 @@
   "what": "AI Anki flashcard generator for NCLEX, USMLE and MCAT: upload PDFs, PowerPoints, Word docs or images and it drafts cloze and image-occlusion cards you preview and edit, then exports a .apkg for Anki, AnkiWeb or AnkiMobile (or study in-app with FSRS). Also generates exam-style questions. Free plan with 100 cards a month; Elite is about 8 pounds a month billed yearly.",
   "ehr": "Not publicly listed; check with vendor",
   "hipaa": "Study tool: never enter real patient information (PHI). Use made-up or de-identified cases only."
+ },
+ {
+  "built": "Unknown",
+  "hstat": "Mentions HIPAA",
+  "fit": "Desk or charting only",
+  "slug": "vera-health",
+  "name": "Vera Health",
+  "vendor": "Vera Health",
+  "url": "https://verahealth.ai",
+  "category": "Clinical decision support",
+  "what": "Free AI clinical search for licensed clinicians and trainees (sign up with professional credentials). Searches 60M+ papers, guidelines, drug labels and trials, grades evidence strength, and answers with in-line citations you can check. Marketed to physicians first (official ACEP AI partner); the site does not name nurses, so confirm you qualify at sign-up. Educational, not patient-specific orders: its terms bar patient-specific clinical data, so do not enter PHI. Raised a $28.5M Series A on Oct 27, 2026.",
+  "ehr": "Not publicly listed; check with vendor",
+  "hipaa": "Vendor website mentions HIPAA (checked Oct 2026). BAA availability not confirmed here; ask the vendor."
+ },
+ {
+  "built": "Both",
+  "hstat": "Unknown",
+  "fit": "Bedside/mobile workflow",
+  "slug": "periwatch-vigilance",
+  "name": "PeriWatch Vigilance",
+  "vendor": "PeriGen",
+  "url": "https://perigen.com/periwatch-vigilance/",
+  "category": "Clinical decision support",
+  "what": "AI labor-and-delivery surveillance that continuously tracks maternal vitals, fetal heart rate, contractions and labor progress, and alerts bedside nurses and leaders when values cross hospital-set limits. Supports central OB hub monitoring by L&D nurses on mobile devices. Sold to hospitals. Baptist Health rolled it out as an OB Hub across 7 Arkansas delivery hospitals (Oct 2026).",
+  "ehr": "Industry-standard EMRs, none named (per vendor site)",
+  "hipaa": "Not publicly stated on vendor homepage; verify with vendor."
  }
 ]
