@@ -1,0 +1,161 @@
+{
+  "as_of": "2026-11-24",
+  "benchmarks": {
+    "aa_index": {
+      "name": "Artificial Analysis Intelligence Index v5.0.1",
+      "short": "AA Index",
+      "plain": "One overall score from nine hard tests of knowledge work, coding and science, run independently by Artificial Analysis. Higher is better. Best model today scores 65.",
+      "source": "https://artificialanalysis.ai/evaluations/artificial-analysis-intelligence-index"
+    },
+    "arc_agi_2": {
+      "name": "ARC-AGI-2",
+      "short": "ARC-AGI-2",
+      "plain": "Visual puzzles that test reasoning on problems the model has never seen. Run by the ARC Prize Foundation. Higher is better.",
+      "source": "https://arcprize.org/leaderboard"
+    },
+    "healthbench_pro": {
+      "name": "HealthBench Professional (length-adjusted)",
+      "short": "HealthBench Pro",
+      "plain": "525 real clinician conversations (consults, writing, research) graded against physician-written rubrics. Closest public test to clinical questions. Independent run by Artificial Analysis. Higher is better. Blank means not tested yet.",
+      "source": "https://artificialanalysis.ai/evaluations/healthbench-professional"
+    }
+  },
+  "models": [
+    {
+      "id": "gpt-6-2-astra", "lab": "OpenAI", "model": "GPT-6.2 Astra", "released": "2026-11-17",
+      "release_source": "https://openai.com/index/introducing-gpt-6-2-astra-sol",
+      "scores": {"aa_index": {"value": 62, "setting": "max"}, "arc_agi_2": {"value": 95.8, "unit": "%"}, "healthbench_pro": null},
+      "plans": [
+        {"name": "Free", "usd_month": 0, "includes_model": false},
+        {"name": "Go", "usd_month": 8, "includes_model": false},
+        {"name": "Plus", "usd_month": 20, "includes_model": true},
+        {"name": "Pro 100 / 200 / 500", "usd_month": [100, 200, 500], "includes_model": true}
+      ],
+      "plan_note": "OpenAI says GPT-6.2 Astra and Sol are available to Plus and Pro users in ChatGPT Work and Codex.",
+      "price_sources": ["https://help.openai.com/en/articles/6950777-what-is-chatgpt-plus", "https://help.openai.com/en/articles/9793128-about-chatgpt-pro-tiers", "https://chatgpt.com/pricing"]
+    },
+    {
+      "id": "gpt-6-2-sol", "lab": "OpenAI", "model": "GPT-6.2 Sol", "released": "2026-11-17",
+      "release_source": "https://openai.com/index/introducing-gpt-6-2-astra-sol",
+      "scores": {"aa_index": {"value": 57, "setting": "max"}, "arc_agi_2": {"value": 85.8, "unit": "%"}, "healthbench_pro": null},
+      "plans": [
+        {"name": "Plus", "usd_month": 20, "includes_model": true},
+        {"name": "Pro 100 / 200 / 500", "usd_month": [100, 200, 500], "includes_model": true}
+      ],
+      "plan_note": "OpenAI's everyday model. Same plans as Astra.",
+      "price_sources": ["https://help.openai.com/en/articles/6950777-what-is-chatgpt-plus", "https://help.openai.com/en/articles/9793128-about-chatgpt-pro-tiers"]
+    },
+    {
+      "id": "claude-fable-5-2", "lab": "Anthropic", "model": "Claude Fable 5.2", "released": "2026-11-09",
+      "release_source": "https://www.anthropic.com/claude-fable-and-mythos-5-2",
+      "scores": {"aa_index": {"value": 65, "setting": "max"}, "arc_agi_2": {"value": 93.8, "unit": "%"}, "healthbench_pro": {"value": 67.7, "unit": "%", "setting": "max"}},
+      "plans": [
+        {"name": "Free", "usd_month": 0, "includes_model": false},
+        {"name": "Pro", "usd_month": 20, "includes_model": "usage credits only", "note": "$17/mo billed yearly"},
+        {"name": "Max", "usd_month": 100, "includes_model": true, "note": "up to half of weekly limit"},
+        {"name": "Ultra", "usd_month": 200, "includes_model": true, "note": "up to half of weekly limit"}
+      ],
+      "plan_note": "Top score on both the AA Index and HealthBench Professional today.",
+      "price_sources": ["https://claude.com/pricing"]
+    },
+    {
+      "id": "claude-opus-5-5", "lab": "Anthropic", "model": "Claude Opus 5.5", "released": "2026-09-22",
+      "release_source": "https://www.anthropic.com/claude-fable-and-mythos-5-2",
+      "scores": {"aa_index": {"value": 59, "setting": "max"}, "arc_agi_2": {"value": 93.3, "unit": "%"}, "healthbench_pro": {"value": 59.9, "unit": "%", "setting": "max"}},
+      "plans": [
+        {"name": "Pro", "usd_month": 20, "includes_model": true, "note": "$17/mo billed yearly"},
+        {"name": "Max", "usd_month": 100, "includes_model": true},
+        {"name": "Ultra", "usd_month": 200, "includes_model": true}
+      ],
+      "plan_note": "Anthropic calls Opus 5.5 its daily driver. Release date from the ARC Prize leaderboard entry.",
+      "price_sources": ["https://claude.com/pricing"]
+    },
+    {
+      "id": "gemini-4-neon", "lab": "Google", "model": "Gemini 4 Neon", "released": "2026-11-18",
+      "release_source": "https://blog.google/innovation-and-ai/models-and-research/gemini-models/introducing-gemini-4-neon/",
+      "scores": {"aa_index": {"value": 61, "setting": "xhigh"}, "arc_agi_2": null, "healthbench_pro": null},
+      "plans": [
+        {"name": "Google AI Plus", "usd_month": 4.99, "includes_model": false},
+        {"name": "Google AI Pro", "usd_month": 19.99, "includes_model": true},
+        {"name": "Google AI Ultra 5x / 20x", "usd_month": [99.99, 199.99], "includes_model": true}
+      ],
+      "plan_note": "Rolling out to Pro and Ultra subscribers in the Gemini app.",
+      "price_sources": ["https://one.google.com/about/google-ai-plans/", "https://gemini.google/subscriptions/"]
+    },
+    {
+      "id": "gemini-4-carbon", "lab": "Google", "model": "Gemini 4 Carbon", "released": "2026-10-28",
+      "release_source": "https://venturebeat.com/technology/google-gemini-4-carbon-is-now-publicly-available-and-it-undercuts-claude-fable-5-2-and-opus-5-5-on-api-price",
+      "scores": {"aa_index": {"value": 60, "setting": "high"}, "arc_agi_2": {"value": 94.2, "unit": "%"}, "healthbench_pro": null},
+      "plans": [
+        {"name": "Google AI Ultra 5x / 20x", "usd_month": [99.99, 199.99], "includes_model": true}
+      ],
+      "plan_note": "Announced Oct 28, generally available Nov 10. Ultra only for consumers.",
+      "price_sources": ["https://gemini.google/subscriptions/", "https://one.google.com/about/google-ai-plans/"]
+    },
+    {
+      "id": "grok-4-7", "lab": "xAI", "model": "Grok 4.7", "released": "2026-09-21",
+      "release_source": "https://x.ai/news/grok-4-7",
+      "scores": {"aa_index": {"value": 35, "setting": "xhigh"}, "arc_agi_2": {"value": 61.4, "unit": "%"}, "healthbench_pro": {"value": 55.8, "unit": "%", "setting": "xhigh"}},
+      "plans": [
+        {"name": "Free", "usd_month": 0, "includes_model": "unverified"},
+        {"name": "Plus", "usd_month": 8, "includes_model": "unverified"},
+        {"name": "Premium", "usd_month": 30, "includes_model": "unverified"},
+        {"name": "Super", "usd_month": 100, "includes_model": "unverified"},
+        {"name": "Ultra", "usd_month": 200, "includes_model": "unverified"}
+      ],
+      "plan_note": "Prices are xAI's subscription plans. xAI's launch post names Grok Build, Cursor and the API, not which subscription tier gets Grok 4.7.",
+      "price_sources": ["https://x.ai/pricing"]
+    },
+    {
+      "id": "muse-wonder", "lab": "Meta", "model": "Muse Wonder / Wonder Full", "released": "2026-10-12",
+      "release_source": "https://about.fb.com/news/2026/10/introducing-muse-wonder-models/",
+      "scores": {"aa_index": {"value": 50, "setting": "Wonder Full, max"}, "arc_agi_2": null, "healthbench_pro": null},
+      "plans": [
+        {"name": "Muse Free", "usd_month": 0, "includes_model": false},
+        {"name": "Muse Power", "usd_month": 20, "includes_model": "rolling out"},
+        {"name": "Muse Maximum", "usd_month": 100, "includes_model": "rolling out"}
+      ],
+      "plan_note": "Meta says Wonder will reach the Muse app subscribers first, no date given. Wonder Full is in Muse Code subscriptions. Muse Wonder (standard) scores 44 on the AA Index.",
+      "price_sources": ["https://www.meta.com/help/subscriptions/1021145227643680/", "https://dev.meta.ai/resources/blog/build-with-muse-wonder"]
+    },
+    {
+      "id": "kimi-k3-1-pro", "lab": "Moonshot AI", "model": "Kimi K3.1 Pro", "released": "2026-10",
+      "release_source": "https://huggingface.co/moonshotai/Kimi-K3.1-Pro",
+      "scores": {"aa_index": {"value": 46, "setting": "default"}, "arc_agi_2": null, "healthbench_pro": null},
+      "plans": [
+        {"name": "Plus", "usd_month": 19, "includes_model": true},
+        {"name": "Pro", "usd_month": 39, "includes_model": true},
+        {"name": "Max", "usd_month": 99, "includes_model": true}
+      ],
+      "plan_note": "Open weights. Exact release day not confirmed on a primary page, so only the month is shown.",
+      "price_sources": ["https://www.kimi.ai/help/membership/membership-pricing"]
+    },
+    {
+      "id": "qwen4-max", "lab": "Alibaba", "model": "Qwen4 Max", "released": null,
+      "release_source": "https://artificialanalysis.ai/evaluations/artificial-analysis-intelligence-index",
+      "scores": {"aa_index": {"value": 43, "setting": "default"}, "arc_agi_2": null, "healthbench_pro": null},
+      "plans": [],
+      "plan_note": "Consumer plan prices not verified yet.",
+      "price_sources": []
+    },
+    {
+      "id": "deepseek-v4-1-flash", "lab": "DeepSeek", "model": "DeepSeek V4.1 Flash (1017)", "released": "2026-10-17",
+      "release_source": "https://www.deepseek.com/en",
+      "scores": {"aa_index": {"value": 33, "setting": "max"}, "arc_agi_2": {"value": 78.1, "unit": "%"}, "healthbench_pro": {"value": 50.7, "unit": "%", "setting": "max"}},
+      "plans": [],
+      "plan_note": "DeepSeek runs a web chat and app. No paid consumer plan found. Note: Chinese-hosted service; never paste patient information into any public chatbot.",
+      "price_sources": ["https://www.deepseek.com/en"]
+    },
+    {
+      "id": "mistral-large-4", "lab": "Mistral AI", "model": "Mistral Large 4", "released": null,
+      "release_source": "https://artificialanalysis.ai/evaluations/artificial-analysis-intelligence-index",
+      "scores": {"aa_index": {"value": 26, "setting": "high"}, "arc_agi_2": null, "healthbench_pro": null},
+      "plans": [
+        {"name": "Free", "usd_month": 0, "includes_model": "unverified"},
+        {"name": "Pro", "usd_month": 14.99, "includes_model": "unverified", "note": "$5.99 for verified students"}
+      ],
+      "plan_note": "Mistral's chat plans. Which plan runs Large 4 is not stated on the pricing page. Student discount is worth knowing for nursing students.",
+      "price_sources": ["https://mistral.ai/pricing"]
+    }
+  ]
+}

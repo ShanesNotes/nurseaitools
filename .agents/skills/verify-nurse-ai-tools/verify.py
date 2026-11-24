@@ -334,6 +334,18 @@ try:
         errors = []
         page.on("pageerror", lambda e: errors.append(str(e)))
 
+        # Frontier navigation and data rows.
+        page.goto(base + "/", wait_until="networkidle")
+        page.locator('nav[aria-label="Site"] a[href="/frontier"]').click()
+        check("frontier: navigation opens page", page.url == base + "/frontier" and page.locator("h1").count() == 1)
+        check("frontier: 12 model rows", page.locator(".frontier-table tbody tr").count() == 12, f"{page.locator('.frontier-table tbody tr').count()} rows")
+        mobile = new_page(375, 844, "light")
+        mobile.goto(base + "/frontier", wait_until="networkidle")
+        width = mobile.evaluate("document.documentElement.scrollWidth")
+        check("frontier: no sideways scroll at 375px", width <= 375, f"scrollWidth {width}")
+        mobile.screenshot(path=os.path.join(args.shots, "frontier-375-light.png"), full_page=True)
+        mobile.context.close()
+
         # 5. Home and the directory.
         page.goto(base + "/", wait_until="networkidle")
         check("home: title present", bool(page.title().strip()), page.title())
@@ -450,7 +462,7 @@ try:
 
         # 9. Layout, type size, control size, and contrast on rendered pages.
         audit_js = open(os.path.join(os.path.dirname(__file__), "audit.js")).read()
-        targets = ["/", "/tools/" + tool["slug"], "/students"] + GUIDES + ["/submit", "/discuss"]
+        targets = ["/", "/tools/" + tool["slug"], "/students"] + GUIDES + ["/submit", "/discuss", "/frontier"]
         for scheme in [s for s in args.schemes.split(",") if s]:
             for vname, w, h in (("desktop", 1280, 800), ("mobile", 390, 844)):
                 shots = {"/": "home", "/tools/" + tool["slug"]: "tool", "/students": "students", "/discuss": "discuss"} if scheme == "light" or len(args.schemes.split(",")) == 1 else {}
@@ -468,6 +480,8 @@ try:
                     check(f"style: text contrast >= {args.min_contrast:g}:1 {where}", not r["low"], f"{r['texts']} text nodes" + ("; " + "; ".join(r["low"][:3]) if r["low"] else ""))
                     if p in shots:
                         pg.screenshot(path=os.path.join(args.shots, f"{shots[p]}-{vname}.png"), full_page=(p != "/"))
+                    if p == "/frontier":
+                        pg.screenshot(path=os.path.join(args.shots, f"frontier-{vname}-{scheme}.png"), full_page=True)
                     if p in GUIDES:
                         pg.screenshot(path=os.path.join(args.shots, f"guide-{p.rsplit('/', 1)[1]}-{vname}-{scheme}.png"), full_page=True)
                     pg.context.close()

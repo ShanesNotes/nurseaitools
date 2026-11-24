@@ -1,4 +1,5 @@
 import base64,glob,html,json,os,re,tomllib
+from urllib.parse import urlparse
 exec(open('tools.py').read());exec(open('reality.py').read())
 BASE="https://nurseaitools.com"
 HIP={"deepscribe","nabla","navina","caregility","clinicalkey","lyrebird","tali.ai","sully","getfreed","hippocratic","care.coach","heidihealth","hyro","suki","artisight","andorhealth","abridge.com/platform/nursing","hellocare","verahealth"}
@@ -23,6 +24,18 @@ FONTS={}
 for f in sorted(glob.glob("fonts/*")):
     name=os.path.basename(f); raw=open(f,"rb").read(); key="/fonts/"+name
     FONTS[key]={"type":"font/woff2","b64":base64.b64encode(raw).decode()} if name.endswith(".woff2") else {"type":"text/plain;charset=utf-8","text":raw.decode()}
+
+frontier=json.load(open("frontier.json"))
+for model in frontier["models"]:
+    if any(key not in model or model[key] is None for key in ("lab", "model", "scores", "plans")):
+        raise ValueError("Frontier model missing required field")
+    if set(model["scores"]) - set(frontier["benchmarks"]):
+        raise ValueError("Frontier score references an unknown benchmark")
+for url in ([b["source"] for b in frontier["benchmarks"].values()] +
+            [url for m in frontier["models"] for url in [m["release_source"], *m["price_sources"]]]):
+    parsed=urlparse(url)
+    if parsed.scheme != "https" or not parsed.netloc:
+        raise ValueError("Frontier source must be an HTTPS URL")
 
 CSS="""
 @font-face{font-family:"Host Grotesk";src:url("/fonts/host-grotesk-latin-400-normal.woff2") format("woff2");font-weight:400;font-style:normal;font-display:swap}
@@ -193,6 +206,15 @@ button:disabled{cursor:wait}
 .spec dd{overflow-wrap:anywhere}
 .spec dt a{color:var(--text);font:500 var(--body)/1.3 var(--f-display);letter-spacing:normal}
 .fine{margin-top:var(--s-2xl);font-size:var(--small)}
+.frontier-table{width:100%;border-collapse:collapse;margin-block:var(--s-3xl);font-size:var(--small)}
+.frontier-table th,.frontier-table td{text-align:left;vertical-align:top;padding:var(--s-m);border-bottom:var(--rule-w) solid var(--rule);overflow-wrap:anywhere}
+.frontier-table th{font-size:var(--micro)}
+.frontier-table small{display:block;font-size:var(--small)}
+.frontier-table p{margin:0 0 var(--s-m)}
+.frontier-table a{display:inline-block;min-height:var(--reach)}
+.frontier-note{margin-block:var(--s-3xl);padding:var(--s-2xl);border:var(--rule-w) solid var(--rule)}
+.frontier-note li{margin-block:var(--s-m)}
+@media (max-width:960px){.frontier-table,.frontier-table tbody,.frontier-table tr,.frontier-table td{display:block}.frontier-table thead{display:none}.frontier-table tr{border-top:var(--rule-w) solid var(--text);padding-block:var(--s-xl)}.frontier-table td{border:0}.frontier-table td::before{content:attr(data-label);display:block;font-size:var(--micro);font-weight:700}}
 .foot{padding-block:var(--s-3xl);font:400 var(--small)/1.6 var(--f-body)}
 .foot p{max-width:var(--measure)}
 @media (prefers-reduced-motion:reduce){*,*::before,*::after{transition:none!important;scroll-behavior:auto!important}}
@@ -224,7 +246,7 @@ button:disabled{cursor:wait}
 CSS="".join(l.strip() for l in CSS.splitlines())
 HEAD=("".join(f'<link rel=modulepreload href="{s}">' for s in SCRIPTS if s!="/js/page.js")
  +"".join(f'<link rel=preload href="{n}" as=font type="font/woff2" crossorigin>' for n in ("/fonts/host-grotesk-latin-400-normal.woff2","/fonts/host-grotesk-latin-500-normal.woff2","/fonts/jetbrains-mono-latin-400-normal.woff2")))
-NAV=[("/","Directory"),("/students","Students"),("/submit","Submit a tool"),("/about","About")]
+NAV=[("/","Directory"),("/students","Students"),("/frontier","Frontier"),("/submit","Submit a tool"),("/about","About")]
 # path=None is the 404 page: no canonical, no og:url, noindex, and no nav item marked current.
 def page(title,desc,body,path,news=True):
     nav="".join(f'<a href="{h}"{" aria-current=page" if h==path else ""}>{t}</a>' for h,t in NAV)
@@ -277,6 +299,32 @@ stu("/students/ai-care-plan-tools","AI care plan tools for nursing students","AI
 stu("/students/nclex-ai-tutors","NCLEX AI tutors compared (2026)","NCLEX AI tutors and adaptive question banks compared: GoodNurse, NCLEXIT, NurseSavvy, UWorld, Archer Review and more.",
  f'<section class=deck><h1>NCLEX AI tutors compared</h1><p class=lede>The newer NCLEX prep tools add an AI tutor you can argue with. The older question banks have years of polished rationales. Here is how they line up.</p>{RULE}</section><div class=prose><h2>What to compare</h2><ul><li><b>NGN coverage.</b> The current NCLEX tests clinical judgment with case studies, bow-tie, matrix and highlight items. Make sure the bank has all of them.</li><li><b>Rationales vs a tutor.</b> A tutor that answers follow-ups helps when a rationale does not click. AI can also be confidently wrong, so cross-check anything that surprises you.</li><li><b>Readiness exams.</b> Adaptive CAT-style practice tests tell you more than raw percent correct.</li><li><b>Price and free trials.</b> Check the current plan on the vendor site. Prices change.</li></ul></div>'
  +picks(["GoodNurse","NCLEXIT","NurseSavvy","UWorld Nursing","Archer Review","Kaplan NCLEX Prep","SimpleNursing","Lecturio Nursing"])+'<p class=fine>Feature descriptions come from each vendor&#39;s site in Oct 2026. Nurse AI Tools may earn a commission from some NCLEX prep links in the future; that will never change what we write.</p>')
+def frontier_price(plan):
+    prices=plan["usd_month"] if isinstance(plan["usd_month"], list) else [plan["usd_month"]]
+    status=plan["includes_model"]
+    status="included" if status is True else "not included" if status is False else status
+    note=" ("+e(plan["note"])+")" if plan.get("note") else ""
+    return e(plan["name"])+": "+" / ".join("$"+str(price)+"/mo" for price in prices)+"; "+e(status)+note
+
+def frontier_score(score):
+    if score is None: return "Not tested"
+    return e(str(score["value"])+score.get("unit", ""))+("<small>"+e(score["setting"])+"</small>" if score.get("setting") else "")
+
+benchmarks=frontier["benchmarks"]
+headers=["Lab", "Model", "Released"]+[b["short"] for b in benchmarks.values()]+["Plans that include it", "Sources"]
+rows=[]
+for m in sorted(frontier["models"], key=lambda m: (m["scores"].get("aa_index") or {}).get("value", float("-inf")), reverse=True):
+    plans="".join("<p>"+frontier_price(p)+"</p>" for p in m["plans"]) or "Not verified"
+    plans+="<small>"+e(m.get("plan_note", ""))+"</small>"
+    sources='<a href="'+e(m["release_source"], quote=True)+'">Release source</a>' + "".join('<br><a href="'+e(u, quote=True)+'">Price source '+str(i)+'</a>' for i,u in enumerate(m["price_sources"],1))
+    cells=[e(m["lab"]),e(m["model"]),e(m.get("released") or "Not available")]+[frontier_score(m["scores"].get(k)) for k in benchmarks]+[plans,sources]
+    rows.append("<tr>"+"".join('<td data-label="'+e(h, quote=True)+'">'+v+'</td>' for h,v in zip(headers,cells))+"</tr>")
+free=[e(m["lab"])+" / "+e(m["model"])+": "+frontier_price(p) for m in frontier["models"] for p in m["plans"] if p["usd_month"] == 0 or (m["lab"] == "Mistral AI" and "student" in p.get("note", "").lower())]
+frontier_body='<section class=deck><p class=kicker>Updated '+e(frontier["as_of"])+'</p><h1>Frontier AI models, in plain language</h1><p class=lede>Frontier models are among the most capable general-purpose AI models. They power the chat apps nurses and nursing students already use.</p></section>'
+frontier_body+='<section class=frontier-note><h2>What the scores mean for nurses</h2><ul>'+"".join('<li><a href="'+e(b["source"], quote=True)+'">'+e(b["short"])+'</a>: '+e(b["plain"])+'</li>' for b in benchmarks.values())+'</ul><p>Benchmark scores are not clinical validation. Never paste patient information (PHI) into a consumer chatbot. Follow your facility policy.</p></section>'
+frontier_body+='<table class=frontier-table><thead><tr>'+"".join('<th scope=col>'+e(h)+'</th>' for h in headers)+'</tr></thead><tbody>'+"".join(rows)+'</tbody></table>'
+frontier_body+='<section class=frontier-note><h2>Free options</h2><ul>'+"".join('<li>'+item+'</li>' for item in free)+'</ul></section><p class=fine>Prices are US monthly, before tax, as of '+e(frontier["as_of"])+'. Sources are linked per row.</p>'
+P_["/frontier"]=page("Frontier AI models | Nurse AI Tools", "Frontier AI models and benchmarks explained for nurses and nursing students.", frontier_body, "/frontier")
 NOT_FOUND=page("Page not found | Nurse AI Tools",HOME_DESC,'<div class=prose><h1>Page not found</h1><p><a href="/">Back to the directory</a></p></div>',None,news=False)
 sm='<?xml version="1.0" encoding="UTF-8"?><urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">'+"".join(f"<url><loc>{BASE}{p}</loc><lastmod>2026-10-17</lastmod></url>" for p in P_)+"</urlset>"
 json.dump(tools,open("tools.json","w"),indent=1)
