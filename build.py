@@ -207,8 +207,9 @@ button:disabled{cursor:wait}
 .spec dt a{color:var(--text);font:500 var(--body)/1.3 var(--f-display);letter-spacing:normal}
 .fine{margin-top:var(--s-2xl);font-size:var(--small)}
 .frontier-table{width:100%;border-collapse:collapse;margin-block:var(--s-3xl);font-size:var(--small)}
-.frontier-table th,.frontier-table td{text-align:left;vertical-align:top;padding:var(--s-m);border-bottom:var(--rule-w) solid var(--rule);overflow-wrap:anywhere}
+.frontier-table th,.frontier-table td{text-align:left;vertical-align:top;padding:var(--s-m);border-bottom:var(--rule-w) solid var(--rule);overflow-wrap:normal}
 .frontier-table th{font-size:var(--micro)}
+@media (min-width:961px){.frontier-table th:nth-child(-n+3),.frontier-table td:nth-child(-n+3){min-width:var(--s-6xl)}.frontier-table th:nth-child(2),.frontier-table td:nth-child(2){min-width:calc(var(--s-6xl) + var(--s-3xl))}}
 .frontier-table small{display:block;font-size:var(--small)}
 .frontier-table p{margin:0 0 var(--s-m)}
 .frontier-table a{display:inline-block;min-height:var(--reach)}
@@ -317,9 +318,19 @@ for m in sorted(frontier["models"], key=lambda m: (m["scores"].get("aa_index") o
     plans="".join("<p>"+frontier_price(p)+"</p>" for p in m["plans"]) or "Not verified"
     plans+="<small>"+e(m.get("plan_note", ""))+"</small>"
     sources='<a href="'+e(m["release_source"], quote=True)+'">Release source</a>' + "".join('<br><a href="'+e(u, quote=True)+'">Price source '+str(i)+'</a>' for i,u in enumerate(m["price_sources"],1))
-    cells=[e(m["lab"]),e(m["model"]),e(m.get("released") or "Not available")]+[frontier_score(m["scores"].get(k)) for k in benchmarks]+[plans,sources]
+    cells=[e(m["lab"]),e(m["model"]),e(m.get("released") or "Not confirmed")]+[frontier_score(m["scores"].get(k)) for k in benchmarks]+[plans,sources]
     rows.append("<tr>"+"".join('<td data-label="'+e(h, quote=True)+'">'+v+'</td>' for h,v in zip(headers,cells))+"</tr>")
-free=[e(m["lab"])+" / "+e(m["model"])+": "+frontier_price(p) for m in frontier["models"] for p in m["plans"] if p["usd_month"] == 0 or (m["lab"] == "Mistral AI" and "student" in p.get("note", "").lower())]
+# Supplemental display copy is kept separate from the supplied research file.
+free_notes={"DeepSeek V4.1 Flash (1017)": "DeepSeek runs a free web chat."}
+free=[]
+for m in frontier["models"]:
+    label=e(m["lab"])+" / "+e(m["model"])+": "
+    for p in m["plans"]:
+        if (p["usd_month"] == 0 and p["includes_model"] is not False) or ("student" in p.get("note", "").lower() and p["includes_model"] is not False):
+            free.append(label+frontier_price(p))
+    free_note=m.get("free_note") or free_notes.get(m["model"])
+    if free_note:
+        free.append(e(free_note))
 frontier_body='<section class=deck><p class=kicker>Updated '+e(frontier["as_of"])+'</p><h1>Frontier AI models, in plain language</h1><p class=lede>Frontier models are among the most capable general-purpose AI models. They power the chat apps nurses and nursing students already use.</p></section>'
 frontier_body+='<section class=frontier-note><h2>What the scores mean for nurses</h2><ul>'+"".join('<li><a href="'+e(b["source"], quote=True)+'">'+e(b["short"])+'</a>: '+e(b["plain"])+'</li>' for b in benchmarks.values())+'</ul><p>Benchmark scores are not clinical validation. Never paste patient information (PHI) into a consumer chatbot. Follow your facility policy.</p></section>'
 frontier_body+='<table class=frontier-table><thead><tr>'+"".join('<th scope=col>'+e(h)+'</th>' for h in headers)+'</tr></thead><tbody>'+"".join(rows)+'</tbody></table>'
